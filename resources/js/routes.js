@@ -1,0 +1,16 @@
+export default [
+    { path: '/users', name: 'users-index', component: require('./components/users/Index.vue').default },
+    { path: '/users/create', name: 'users-add', component: require('./components/users/Create.vue').default },
+    { path: '/users/:id', name: 'users-view', component: require('./components/users/View.vue').default },
+    { path: '/role', name: 'role-index', component: require('./components/role/RoleIndex.vue').default },
+    { path: '/role/create', name: 'role-add', component: require('./components/role/RoleCreate.vue').default },
+    { path: '/role/:id', name: 'role-view', component: require('./components/role/RoleEdit.vue').default },
+    { path: '/role/detail/:id', name: 'role-detail', component: require('./components/role/RoleDetail.vue').default },
+    { path: '/permission', name: 'permission-index', component: require('./components/permission/index.vue').default },
+    { path: '/permission/create', name: 'permission-add', component: require('./components/permission/create.vue').default },
+    { path: '/permission/:id', name: 'permission-view', component: require('./components/permission/edit.vue').default },
+    { path: '/profile', name: 'profileIndex', component: require('./components/Profile.vue').default },
+    { path: '/password', name: 'password', component: require('./components/Password.vue').default },
+    { path:'/', name:'homeIndex', component: require('./components/home.vue').default },
+    { path: '/user/:id/hakakses', name:'hasAksesUser', component: require('./components/users/hakakses.vue').default},
+]
