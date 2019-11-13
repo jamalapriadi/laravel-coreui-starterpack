@@ -55,6 +55,7 @@ Vue.component('tags-input', VoerroTagsInput);
 Vue.component('pagination', LaravelPagination);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('setup-instansi', require('./components/Instansi.vue').default);
 
 const routes = require('./routes').default
 const router = new VueRouter({ routes });

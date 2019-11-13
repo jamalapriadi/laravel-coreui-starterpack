@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['middleware'=>['site-info','access-log']],function(){
+    Route::get('/','WebController@index');
 });
+
+Route::post('/simpan-info','WebController@simpan_info');
 
 Auth::routes();
 
