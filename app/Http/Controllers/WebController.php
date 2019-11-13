@@ -51,13 +51,23 @@ class WebController extends Controller
                 $newinfo->logo=$filename;
             }
 
-            $newinfo->save();
+            $simpan=$newinfo->save();
 
-            $data=array(
-                'success'=>true,
-                'pesan'=>'Data berhasil disimpan',
-                'errors'=>array()
-            );
+            if($simpan){
+                \Artisan::call('db:seed');
+
+                $data=array(
+                    'success'=>true,
+                    'pesan'=>'Data berhasil disimpan',
+                    'errors'=>array()
+                );
+            }else{
+                $data=array(
+                    'success'=>false,
+                    'pesan'=>'Data gagal disimpan',
+                    'errors'=>array()
+                );
+            }
         }
 
         return response()->json($data);

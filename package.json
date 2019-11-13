@@ -107,6 +107,7 @@
         "vuejs-loading-plugin": "^1.0.51",
         "vuelidate": "^0.7.4",
         "vuetable-2": "^2.0.0-beta.4",
-        "weekstart": "^1.0.0"
+        "weekstart": "^1.0.0",
+        "vue-upload-multiple-image": "^1.1.4"
     }
 }

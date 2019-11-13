@@ -23,7 +23,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
-    /**User */
+    /**================================= User */
     Route::resource('users','User\UserController');
     Route::get('user','User\UserController@login_info');
     Route::post('update-foto','User\UserController@update_foto');
@@ -43,5 +43,28 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::get('notifications', 'User\UserController@notifications');
     Route::get('status-user/{id}','User\UserController@status_user');
     Route::post('update-role-user/{id}','User\UserController@update_role_user');
-    /**End User */
+    /**================================== End User */
+
+    /**================================== Instansi */
+    Route::get('info','Backend\InfoController@index');
+    Route::post('info','Backend\InfoController@save_info');
+
+    /**================================== CMS */
+    Route::resource('post','Backend\PostController');
+    Route::get('list-post','Backend\PostController@list_data');
+    Route::get('info','Backend\InfoController@index');
+    Route::post('info','Backend\InfoController@save_info');
+    Route::resource('category','Backend\CategoryController');
+    Route::get('sub-category-by-id/{id}','Backend\CategoryController@list_sub_category');
+    Route::get('list-category','Backend\CategoryController@list_category');
+    Route::get('list-artikel','Backend\PostController@list_artikel');
+    Route::resource('modul','Backend\ModulController');
+    Route::resource('event','Backend\EventController');
+
+    Route::resource('headline','Backend\HeadlineController');
+    Route::resource('testimoni','Backend\TestimoniController');
+    Route::get('list-headline','Backend\HeadlineController@list_headline');
+    Route::resource('tag','Backend\TagController');
+    Route::get('list-tag','Backend\TagController@list_tag');
+    Route::get('list-tags','Backend\TagController@list_tags');
 });
