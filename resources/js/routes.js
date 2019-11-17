@@ -1,6 +1,6 @@
 export default [
     /**======================= SETTING  */
-    { path: '/users', name: 'users-index', component: require('./components/users/Index.vue').default },
+    { path: '/users', name: 'users-index', component: require('./components/users/index.vue').default },
     { path: '/users/create', name: 'users-add', component: require('./components/users/Create.vue').default },
     { path: '/users/:id', name: 'users-view', component: require('./components/users/View.vue').default },
     { path: '/role', name: 'role-index', component: require('./components/role/RoleIndex.vue').default },
@@ -12,7 +12,7 @@ export default [
     { path: '/permission/:id', name: 'permission-view', component: require('./components/permission/edit.vue').default },
     { path: '/profile', name: 'profileIndex', component: require('./components/Profile.vue').default },
     { path: '/password', name: 'password', component: require('./components/Password.vue').default },
-    { path:'/', name:'homeIndex', component: require('./components/home.vue').default },
+    { path:'/', name:'homeIndex', component: require('./components/Home.vue').default },
     { path: '/user/:id/hakakses', name:'hasAksesUser', component: require('./components/users/hakakses.vue').default},
 
     { path: '/instansi', name:'Instansi', component: require('./components/instansi/index.vue').default},
