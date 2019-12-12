@@ -19,8 +19,22 @@ class EventController extends Controller
                 'penulis'
             ]
         )->where('post_type','event')
-        ->select('id','title','slug','description','updated_at','author','post_type','di_lihat',
-        'post_status','lokasi','jam_mulai','jam_selesai','tanggal');
+        ->select(
+            'id',
+            'title',
+            'slug',
+            'description',
+            'updated_at',
+            'author',
+            'post_type',
+            'di_lihat',
+            'post_status',
+            'lokasi',
+            'jam_mulai',
+            'jam_selesai',
+            'tanggal',
+            'featured_image'
+        );
 
         if($request->has('q')){
             $post=$post->where('title','like','%'.$request->input('q').'%');
@@ -179,5 +193,34 @@ class EventController extends Controller
         }
 
         return $data;
+    }
+
+    public function list_event(Request $request)
+    {
+        $post=Post::with(
+            [
+                'category',
+                'subcategory',
+                'penulis'
+            ]
+        )->where('post_type','event')
+        ->select(
+            'id',
+            'title',
+            'slug',
+            'description',
+            'updated_at',
+            'author',
+            'post_type',
+            'di_lihat',
+            'post_status',
+            'lokasi',
+            'jam_mulai',
+            'jam_selesai',
+            'tanggal',
+            'featured_image'
+        )->get();
+
+        return $post;
     }
 }

@@ -22,7 +22,9 @@ class PostController extends Controller
         'post_status');
 
         if($request->has('type')){
-            $post=$post->where('post_type','page');
+            $type=$request->input('type');
+
+            $post=$post->where('post_type',$type);
         }else{
             $post=$post->where('post_type','artikel');
         }
@@ -73,6 +75,7 @@ class PostController extends Controller
         }else{
             $post=new Post;
             $post->title=$request->input('title');
+            $post->second_title=$request->input('second_title');
             $post->description=$request->input('desc');
             $post->comment='open';
             $post->teaser=$request->input('teaser');
@@ -96,13 +99,13 @@ class PostController extends Controller
             $post->author=\Auth::user()->id;
 
             if($request->has('file') && $request->input('file')!=""){
-                if(!is_dir('uploads/blog/')){
-                    mkdir('uploads/blog/', 0777, TRUE);
+                if(!is_dir('uploads/artikel/')){
+                    mkdir('uploads/artikel/', 0777, TRUE);
                 }
 
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($request->input('file'))->save(public_path('uploads/blog/').$filename);
+                Image::make($request->input('file'))->save(public_path('uploads/artikel/').$filename);
                 $post->featured_image=$filename;
             }
 
@@ -173,14 +176,14 @@ class PostController extends Controller
                 }
 
                 if($request->has('images') && $request->input('images')!=""){
-                    if(!is_dir('uploads/blog/')){
-                        mkdir('uploads/blog/', 0777, TRUE);
+                    if(!is_dir('uploads/artikel/')){
+                        mkdir('uploads/artikel/', 0777, TRUE);
                     }
     
                     $imageData = $request->input('images');
                     foreach($imageData as $key=>$val){
                         $filename2 = Carbon::now()->timestamp . '_' . uniqid() . '.' . $val['name'];
-                        Image::make($val['path'])->save(public_path('uploads/blog/').$filename2);
+                        Image::make($val['path'])->save(public_path('uploads/artikel/').$filename2);
 
                         \DB::table('post_files')
                             ->insert(
@@ -257,6 +260,7 @@ class PostController extends Controller
             $post=Post::find($id);
             $post->slug=null;
             $post->title=$request->input('title');
+            $post->second_title=$request->input('second_title');
             $post->description=$request->input('desc');
             $post->comment='open';
             $post->teaser=$request->input('teaser');
@@ -280,13 +284,13 @@ class PostController extends Controller
             $post->author=\Auth::user()->id;
 
             if($request->has('file') && $request->input('file')!=""){
-                if(!is_dir('uploads/blog/')){
-                    mkdir('uploads/blog/', 0777, TRUE);
+                if(!is_dir('uploads/artikel/')){
+                    mkdir('uploads/artikel/', 0777, TRUE);
                 }
 
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($request->input('file'))->save(public_path('uploads/blog/').$filename);
+                Image::make($request->input('file'))->save(public_path('uploads/artikel/').$filename);
                 $post->featured_image=$filename;
             }
 

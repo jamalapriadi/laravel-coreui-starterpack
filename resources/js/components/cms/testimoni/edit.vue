@@ -9,8 +9,8 @@
                             <input class="form-control" name="title" id="title" placeholder="Title" v-model="state.title">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Full Text</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <label class="control-label">Description</label>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
                     </div>
                 </div>
@@ -76,13 +76,19 @@ import Datepicker from 'vuejs-datepicker';
 import moment from 'moment'
 import Timeselector from 'vue-timeselector';
 
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
+
 export default {
     components: {
         VueLoading,
         VoerroTagsInput,
         Multiselect,
         Datepicker,
-        Timeselector
+        Timeselector,
+        Trumbowyg
     },
     data(){
         return {

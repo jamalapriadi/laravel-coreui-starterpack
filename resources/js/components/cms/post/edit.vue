@@ -14,7 +14,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Full Text</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Youtube URL</label>
@@ -92,7 +92,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
-                                <img v-bind:src="state.file" v-show="showPreview" class="img-fluid"/>
+                                <img v-bind:src="state.file_preview" v-show="showPreview" class="img-fluid"/>
                             <br><br>
                             <div class="input-group">
                                 <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
@@ -197,12 +197,17 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { VueLoading } from 'vue-loading-template'
 import Multiselect from 'vue-multiselect'
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
 
 export default {
     components: {
         VueLoading,
         VoerroTagsInput,
-        Multiselect
+        Multiselect,
+        Trumbowyg
     },
     data(){
         return {
@@ -214,6 +219,7 @@ export default {
                 desc:'',
                 youtube:'',
                 file:'',
+                file_preview:'',
                 facebook:'',
                 category:'',
                 status:'publish',
@@ -269,7 +275,7 @@ export default {
                     this.state.relatednews=response.data.related;
                     this.state.status=response.data.post_status;
                     if(response.data.featured_image!=null){
-                        this.state.file='/uploads/blog/'+response.data.featured_image;
+                        this.state.file_preview=response.data.feature_image_url;
                         this.showPreview=true;
                     }
 
@@ -345,6 +351,7 @@ export default {
             let reader = new FileReader();
             let vm = this;
             reader.onload = (e) => {
+                vm.state.file_preview = e.target.result;
                 vm.state.file = e.target.result;
                 vm.showPreview = true;
             };

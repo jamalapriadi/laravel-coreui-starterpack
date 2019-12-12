@@ -5,12 +5,12 @@
                 <div class="card card-flat">
                     <div class="card-body">
                         <div class="form-group">
-                            <label class="control-label">Nama</label>
+                            <label class="control-label">Title</label>
                             <input class="form-control" name="title" id="title" placeholder="Title" v-model="state.title">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Testimoni</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <label class="control-label">Description</label>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
                     </div>
                 </div>
@@ -70,12 +70,17 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { VueLoading } from 'vue-loading-template'
 import Multiselect from 'vue-multiselect'
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
 
 export default {
     components: {
         VueLoading,
         VoerroTagsInput,
-        Multiselect
+        Multiselect,
+        Trumbowyg
     },
     data(){
         return {

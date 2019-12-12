@@ -1,0 +1,174 @@
+<template>
+    <div class="card card-accent-primary">
+        <div class="card-header">
+            Tambah Data Founder
+        </div>
+        <div class="card-body">
+
+            <div v-if="message" v-bind:class="pesankelas">
+                {{ message }}
+            </div>
+
+            <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
+
+            <form @submit.prevent="store" action="/data/founder" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="" class="control-label">Name</label>
+                    <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="state.name">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Images</label>
+                    <br>
+                        <img v-bind:src="imagePreview" v-show="showPreview" class="img-fluid"/>
+                    <br>
+                    <div class="input-group">
+                        <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
+                        <span class="input-group-addon" id="removeFeaturedImage">
+                            <i class=" icon-cross3"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="" class="control-label">Description</label>
+                    <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary">
+                        <i class="fa fa-save"></i>
+                        Simpan
+                    </button>
+
+                    <router-link to="/founder" class="btn btn-warning text-white">
+                        <i class="fa fa-backward"></i> Batal
+                    </router-link>                    
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<script>
+import { VueLoading } from 'vue-loading-template'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
+
+export default {
+    components: {
+        VueLoading,
+        Trumbowyg
+    },
+    data() {
+        return {
+            founderId:'',
+            state: {
+                kode:'',
+                name:'',
+                desc:'',
+                file:''
+            },
+            message:'',
+            loading:false,
+            pesankelas:'',
+            errors: [],
+            editor: ClassicEditor,
+            editorConfig: {
+                // The configuration of the editor.
+            },
+            showPreview: false,
+            imagePreview: '',
+        }
+    },
+    mounted(){
+        this.getData()
+    },
+    methods: {
+        getData(){
+            let app=this;
+            let id= app.$route.params.id;
+            this.founderId = id;
+
+            axios.get('/data/founder/'+id)
+                .then(response => {
+                    this.state.kode=response.data.id;
+                    this.state.name = response.data.name;
+                    this.state.desc = response.data.description;
+                    this.state.file = ''
+
+                    if(response.data.images!=null){
+                        this.imagePreview=response.data.image_url;
+                        this.showPreview=true;
+                    }
+                })
+                .catch( error => {
+                    alert('data tidak dapat di load');
+                })
+        },
+        store(e) {
+            this.loading = true;
+
+            axios.post(e.target.action, this.state).then(response => {
+                if(response.data.success==true){
+                    this.errors = [];
+                    this.state = {
+                        name:'',
+                        desc:'',
+                        file:''
+                    },
+                    this.getData()
+                    this.pesankelas='alert alert-success';
+                    this.message = 'Data berhasil disimpan';
+                }else{
+                    this.pesankelas='alert alert-danger';
+                    this.message = response.data.errors;
+                    this.errors.name=true;
+                }
+
+                this.loading = false;
+            }).catch(error => {
+                if (! _.isEmpty(error.response)) {
+                    if (error.response.status = 422) {
+                        this.errors = error.response.data;
+                        console.log(this.errors);
+                    }
+                }
+            });
+        },
+
+        onFileChange(e) {
+            let files = e.target.files || e.dataTransfer.files;
+            if (!files.length)
+                return;
+            this.createImage(files[0]);
+        },
+
+        createImage(file) {
+            let reader = new FileReader();
+            let vm = this;
+            reader.onload = (e) => {
+                vm.imagePreview= e.target.result;
+                vm.state.file = e.target.result;
+                vm.showPreview = true;
+            };
+            reader.readAsDataURL(file);
+        },
+    },
+    computed:{
+        valname() {
+            if (this.post.name.length === 0 || this.post.name.length > 50) {
+                return true;
+            } 
+            return false;
+        },
+        valStatus() {
+            if (this.post.harga.length === 0 || this.post.harga.length > 50) {
+                return true;
+            } 
+            return false;
+        }
+    }
+}
+</script>

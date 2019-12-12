@@ -54,27 +54,26 @@
                                 {{ __('Login') }}
                             </button>
                         </div>
-                        <div class="col-8 text-right">
+                        {{-- <div class="col-8 text-right">
                             <a class="btn btn-link px-0" href="{{ route('password.request') }}">
                                 {{ __('Forgot Your Password?') }}
                             </a>
-                        </div>
+                        </div> --}}
                     </div>
                 </form>
             </div>
             <div class="card-footer p-4 d-lg-none">
                 <div class="col-12 text-right">
-                    <a class="btn btn-outline-primary btn-block mt-3" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    {{-- <a class="btn btn-outline-primary btn-block mt-3" href="{{ route('register') }}">{{ __('Register') }}</a> --}}
                 </div>
             </div>
         </div>
         <div class="card text-white bg-primary py-5 d-md-down-none">
             <div class="card-body text-center">
                 <div>
-                    <img src="https://coreui.io/demo/img/brand/logo.svg" class="mb-5" width="150" alt="Modulr Logo">
-                    <h2>{{ __('Sign up') }}</h2>
-                    <p>If you don't have account create one.</p>
-                    <a class="btn btn-primary active mt-2" href="{{ route('register') }}">{{ __('Register Now!') }}</a>
+                    <h2>Login</h2>
+                    <p>Please Login using email and password</p>
+                    {{-- <a class="btn btn-primary active mt-2" href="{{ route('register') }}">{{ __('Register Now!') }}</a> --}}
                 </div>
             </div>
         </div>

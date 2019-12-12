@@ -14,7 +14,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Full Text</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Youtube URL</label>
@@ -222,12 +222,18 @@ import { VueLoading } from 'vue-loading-template'
 import Multiselect from 'vue-multiselect'
 import VueUploadMultipleImage from 'vue-upload-multiple-image'
 
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
+
 export default {
     components: {
         VueLoading,
         VoerroTagsInput,
         Multiselect,
-        VueUploadMultipleImage
+        VueUploadMultipleImage,
+        Trumbowyg
     },
     data(){
         return {

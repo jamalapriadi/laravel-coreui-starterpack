@@ -17,7 +17,7 @@
 
                         <div class="form-group">
                             <label for="" class="control-label">Description</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
 
                         <div class="form-group">
@@ -78,7 +78,9 @@
                                 <!-- <td>{{l.id}}</td> -->
                                 <td>{{l.category_name}}</td>
                                 <td>{{l.slug}}</td>
-                                <td>{{l.description}}</td>
+                                <td>
+                                    <div v-html="l.description"></div>
+                                </td>
                                 <td v-if="l.parent==null">-</td>
                                 <td v-if="l.parent!=null">{{l.parent.category_name}}</td>
                                 <td>
@@ -110,9 +112,15 @@
     import { VueLoading } from 'vue-loading-template'
     import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+    import Trumbowyg from 'vue-trumbowyg';
+  
+    // Import editor css
+    import 'trumbowyg/dist/ui/trumbowyg.css';
+
     export default {
         components: {
-            VueLoading
+            VueLoading,
+            Trumbowyg
         },
         data(){
             return {

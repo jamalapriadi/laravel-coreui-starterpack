@@ -10,6 +10,11 @@
             </div>
         </div>
         <div class="card-body">
+            <code>Event</code> digunakan untuk maintenance konten event yang ada dimenu <a href="https://kidsrepublic.sch.id" target="_blank">Home</a> frontend.<br>
+            file <code>images</code> untuk tampilan preview dibawah ini otomatis akan disetting ke 150x100 pixel.<br>
+            file <code>images</code> ditampilan details event frontend otomatis akan disetting ke 770x348 pixel.<br>
+            <hr>
+
             <div class="row">
                 <div class="col-lg-5">
                     <form class="form-inline">
@@ -29,6 +34,7 @@
                 <thead>
                     <tr>
                         <th width="5%">No.</th>
+                        <th>Images</th>
                         <th>Title</th>
                         <th>Lokasi</th>
                         <th>Tanggal</th>
@@ -40,6 +46,9 @@
                 <tbody>
                     <tr v-for="(l, index) in list.data" v-bind:key="index">
                         <td>{{index+1}}</td>
+                        <td>
+                            <img :src="l.feature_image_url" alt="" class="img-fluid" style="width:120px;">
+                        </td>
                         <td>{{l.title}}</td>
                         <td>{{l.lokasi}}</td>
                         <td>{{l.tanggal}}</td>

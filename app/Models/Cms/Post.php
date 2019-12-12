@@ -13,6 +13,16 @@ class Post extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
+    protected $appends = [
+        'feature_image_url'
+    ];
+
+    public function getFeatureImageUrlAttribute(){
+        $url = asset('uploads/'.$this->post_type.'/'.$this->featured_image);
+
+        return $url;
+    }
+
     public function penulis()
     {
         return $this->belongsTo('App\User','author','id')

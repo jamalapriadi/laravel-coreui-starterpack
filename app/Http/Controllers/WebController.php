@@ -4,11 +4,198 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\Cms\Instansi;
+use App\Models\Cms\Post;
+use App\Models\Cms\Carousel;
+use App\Models\Cms\Carouseloverlay;
+use Carbon\Carbon;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class WebController extends Controller
 {
+    public function __construct()
+    {
+        $info=\App\Models\Cms\Instansi::first();
+
+        \View::share('instansi',$info);
+    }
+    
     public function index(){
         return view('welcome');
+    }
+
+    public function gallery(Request $request)
+    {
+        return view('web.gallery');
+    }
+
+    public function single_page(Request $request,$slug ='/')
+    {
+        if($slug=='home'){
+            if(\Auth::check()){
+                return view('home');
+            }else{
+                return view('web.404');    
+            }
+        }
+
+        if($slug=='login'){
+            return view('auth.login');
+        }
+
+        $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"page")
+            ->whereSlug($slug)
+            ->first();
+
+        if($page == null){
+            return abort(404);
+        }
+
+        return view('web.single_page')
+            ->with('page',$page);
+    }
+
+    public function single_promo(Request $request, $slug='/')
+    {
+        $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"promo")
+            ->whereSlug($slug)
+            ->first();
+
+        if($page == null){
+            return abort(404);
+        }
+
+        $other=Post::where('slug','<>',$slug)
+            ->with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"promo")
+            ->orderBy('created_at','desc')
+            ->get();
+
+        return view('web.single_promo')
+            ->with('page',$page)
+            ->with('other',$other);
+    }
+
+    public function single_news(Request $request, $slug='/')
+    {
+        $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"artikel")
+            ->whereSlug($slug)
+            ->first();
+
+        if($page == null){
+            return abort(404);
+        }
+
+        $other=Post::where('slug','<>',$slug)
+            ->with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"artikel")
+            ->orderBy('created_at','desc')
+            ->get();
+
+        return view('web.single_artikel')
+            ->with('page',$page)
+            ->with('other',$other);
+    }
+
+    public function single_event(Request $request, $slug='/')
+    {
+        $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"event")
+            ->whereSlug($slug)
+            ->first();
+
+        if($page == null){
+            return abort(404);
+        }
+
+        $other=Post::where('slug','<>',$slug)
+            ->with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"event")
+            ->orderBy('created_at','desc')
+            ->get();
+
+        return view('web.single_event')
+            ->with('page',$page)
+            ->with('other',$other);
+    }
+
+    public function subscribe(Request $request)
+    {
+        return view('web.subscribe');
+    }
+
+    public function list_menu(Request $request){
+        if($request->ajax()){
+            $menu=\App\Models\Cms\Menu::with('child','child')
+                ->whereNull('parent_id')
+                ->where('active','Y')
+                ->select(
+                    [
+                        'id',
+                        'menu',
+                        'slug',
+                        'thumb',
+                        'parent_id',
+                        'no_urut',
+                        'active'
+                    ]
+                )
+                ->get();
+
+            return $menu;
+        }
+
+        return abort(404);
+    }
+
+    public function list_carousel(Request $request)
+    {
+        if($request->ajax()){
+            $overlay=Carouseloverlay::select('text')->first();
+            $carousel=Carousel::select('caption','text','image')
+                ->where('active','Y')
+                ->get();
+
+            return array(
+                'overlay'=>$overlay,
+                'carousel'=>$carousel
+            );
+        }
+
+        return abort(404);
+    }
+
+    public function list_promo(Request $request)
+    {
+        $post=Post::with(
+            [
+                'category',
+                'subcategory',
+                'penulis'
+            ]
+        )->where('post_type','promo')
+        ->select(
+            'id',
+            'title',
+            'slug',
+            'description',
+            'updated_at',
+            'author',
+            'post_type',
+            'di_lihat',
+            'post_status',
+            'lokasi',
+            'jam_mulai',
+            'jam_selesai',
+            'tanggal',
+            'featured_image'
+        );
+
+        $post=$post->get();
+
+        return $post;
     }
 
     public function simpan_info(Request $request){

@@ -35,5 +35,43 @@ export default [
     { path: '/testimoni', name: 'testimoniIndex', component: require('./components/cms/testimoni/index.vue').default },
     { path: '/testimoni/create', name: 'testimoniCreate', component: require('./components/cms/testimoni/create.vue').default },
     { path: '/testimoni/:id/edit', name: 'testimoniEdit', component: require('./components/cms/testimoni/edit.vue').default },
+    { path: '/menu', name: 'menuIndex', component: require('./components/cms/menu/index.vue').default },
+    { path: '/page', name: 'pageIndex', component: require('./components/cms/page/index.vue').default },
+    { path: '/page/create', name: 'pageCreate', component: require('./components/cms/page/create.vue').default },
+    { path: '/page/:id/edit', name: 'pageEdit', component: require('./components/cms/page/edit.vue').default },
+    { path: '/promo', name:'promoIndex', component: require('./components/cms/promo/index.vue').default},
+    { path: '/promo/create', name:'promoCreate', component: require('./components/cms/promo/create.vue').default},
+    { path: '/promo/:id/edit', name:'promoEdit', component: require('./components/cms/promo/edit.vue').default},
+    { path: '/newsletter', name:'newsletterIndex', component: require('./components/cms/newsletter/index.vue').default},
+    { path: '/newsletter/create', name:'newsletterCreate', component: require('./components/cms/newsletter/create.vue').default},
+    { path: '/newsletter/:id/edit', name:'newsletterEdit', component: require('./components/cms/newsletter/edit.vue').default},
+
+     { path : '/main-slider', name:'mainSliderIndex', component: require('./components/cms/mainslider/index.vue').default},
     /**======================= END CMS */
+
+
+    /**======================= FOUNDER DAN TEACHER */
+    { path: '/founder', name:'founderIndex', component: require('./components/founder/list.vue').default},
+    { path: '/founder/create', name: 'founderCreate', component: require('./components/founder/create.vue').default},
+    { path: '/founder/:id/edit', name: 'founder-view', component: require('./components/founder/edit.vue').default},
+
+    /**======================= TEACHER */
+    { path: '/pengurus', name:'teacherIndex', component: require('./components/teacher/list.vue').default},
+    { path: '/pengurus/create', name:'teacherCreate', component: require('./components/teacher/create.vue').default},
+    { path: '/pengurus/:id/edit', name:'teacher-view', component: require('./components/teacher/edit.vue').default},
+
+    /**======================= JABATAN */
+    { path: '/jabatan', name:'jabatanIndex', component: require('./components/jabatan/index.vue').default},
+
+    /**======================= POSISI */
+    { path: '/posisi', name:'posisiIndex', component: require('./components/posisi/index.vue').default},
+    { path: '/posisi/create', name:'posisiCreate', component: require('./components/posisi/create.vue').default},
+    { path: '/posisi/:id/view', name:'posisi-view', component: require('./components/posisi/edit.vue').default},    
+
+    /**======================= CALENDAR ACADEMIC */
+    { path: '/calendar-academics', name:'calendarIndex', component: require('./components/calendars/index.vue').default},
+
+    /**======================= OUR PROGRAM */
+    { path: '/our-program', name:'ourprogramIndex', component: require('./components/program/index.vue').default},
+
 ]

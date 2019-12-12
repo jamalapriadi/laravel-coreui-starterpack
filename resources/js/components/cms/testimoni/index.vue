@@ -28,16 +28,22 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Nama</th>
-                        <!-- <th>Testimoni</th> -->
+                        <th>Image</th>
+                        <th>Title</th>
+                        <th>Testimoni</th>
                         <th width="17%"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="(l, index) in list.data" v-bind:key="index">
                         <td>{{index+1}}</td>
+                        <td>
+                            <img :src="l.feature_image_url" alt="" class="img-fluid">
+                        </td>
                         <td>{{l.title}}</td>
-                        <!-- <td>{{l.description}}</td> -->
+                        <td>
+                            <div v-html="l.description"></div>
+                        </td>
                         <td>
                             <div class="btn-group">
                                 <router-link :to="{ name: 'testimoniEdit', params: {id: l.id}}" class="btn btn-warning">

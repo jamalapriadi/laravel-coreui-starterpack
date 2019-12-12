@@ -110,7 +110,7 @@ export default {
     methods: {
         goToWeb(slug){
             // location.href = 'page/'+slug
-            window.open('page/'+slug, '_blank');
+            window.open('news/'+slug, '_blank');
         },
         paginate(url){
             axios.get(url)

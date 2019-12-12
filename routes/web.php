@@ -13,6 +13,27 @@
 
 Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('/','WebController@index');
+    Route::get('gallery','WebController@gallery');
+    Route::get('page/{id}','WebController@single_page');
+    Route::get('promo/{slug}','WebController@single_promo');
+    Route::get('news/{slug}','WebController@single_news');
+    Route::get('event/{slug}','WebController@single_event');
+    Route::get('subscribe','WebController@subscribe');
+
+
+    Route::get('list-carousel','WebController@list_carousel');
+    Route::get('list-menu','WebController@list_menu');
+    Route::get('list-founder','KidsController@list_founder');
+    Route::get('list-video-profile','KidsController@list_video_profile');
+    Route::get('list-fasilitas','KidsController@list_fasilitas');
+    Route::get('list-promo','KidsController@list_promo');
+    Route::get('list-testimoni','KidsController@list_testimoni');
+    Route::get('latest-news','KidsController@latest_news');
+    Route::get('list-event','KidsController@list_event');
+    Route::get('list-gallery','KidsController@list_gallery');
+    Route::get('list-gallery-file','KidsController@list_gallery_file');
+    Route::get('list-newsletter','KidsController@list_newsletter');
+    Route::post('upload-file-ckfinder','KidsController@upload_file_ckfinder');
 });
 
 Route::post('/simpan-info','WebController@simpan_info');
@@ -48,6 +69,9 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     /**================================== Instansi */
     Route::get('info','Backend\InfoController@index');
     Route::post('info','Backend\InfoController@save_info');
+    Route::resource('fasilitas','Kids\FasilitasController');
+    Route::resource('video','Kids\VideoController');
+    Route::resource('kontak','Kids\KontakController');
 
     /**================================== CMS */
     Route::resource('post','Backend\PostController');
@@ -60,6 +84,18 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::get('list-artikel','Backend\PostController@list_artikel');
     Route::resource('modul','Backend\ModulController');
     Route::resource('event','Backend\EventController');
+    Route::get('list-event','Backend\EventController@list_event');
+    Route::resource('promo','Backend\PromoController');
+    Route::resource('newsletter','Backend\NewsletterController');
+    Route::resource('gallery','Backend\GalleryController');
+    Route::get('detail-gallery/{id}','Backend\GalleryController@detail_gallery');
+    Route::post('save-file-gallery/{id}','Backend\GalleryController@save_file_gallery');
+    Route::delete('delete-file-gallery/{id}','Backend\GalleryController@detele_file_gallery');
+    Route::resource('menu','Backend\MenuController');
+    Route::get('list-menu','Backend\MenuController@list_menu');
+    Route::get('status-menu/{id}','Backend\MenuController@status_menu');
+    Route::resource('page','Backend\PageController');
+    Route::delete('post-file/{id}','Backend\PageController@delete_post_file');
 
     Route::resource('headline','Backend\HeadlineController');
     Route::resource('testimoni','Backend\TestimoniController');
@@ -67,4 +103,18 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::resource('tag','Backend\TagController');
     Route::get('list-tag','Backend\TagController@list_tag');
     Route::get('list-tags','Backend\TagController@list_tags');
+    Route::get('list-sosmed','Backend\SosmedController@list_sosmed');
+    Route::get('list-instansi-sosmed','Backend\SosmedController@index');
+    Route::post('sosmed','Backend\SosmedController@store');
+    Route::resource('carousel','Backend\CarouselController');
+    Route::get('carousel-overlay','Backend\CarouselController@overlay');
+    Route::post('carousel-overlay','Backend\CarouselController@store_overlay');
+
+    /**================================== KIDS */
+    Route::resource('jabatan','Kids\JabatanController');
+    Route::get('list-jabatan','Kids\JabatanController@list_jabatan');
+    Route::resource('posisi','Kids\PosisiController');
+    Route::get('list-posisi','Kids\PosisiController@list_posisi');
+    Route::resource('founder','Kids\FounderController');
+    Route::resource('pengurus','Kids\PengurusController');
 });

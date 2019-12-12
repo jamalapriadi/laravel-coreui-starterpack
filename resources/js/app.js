@@ -28,6 +28,8 @@ import VueMoment from 'vue-moment'
 import LaravelPagination from 'laravel-vue-pagination'
 import checkbox from 'vue-material-checkbox'
 import ToggleButton from 'vue-js-toggle-button'
+import VueYouTubeEmbed from 'vue-youtube-embed'
+import Vue2Editor from "vue2-editor"
 
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
@@ -48,6 +50,8 @@ Vue.use(Datetime)
 Vue.use(VueGoogleCharts)
 Vue.use(checkbox)
 Vue.use(ToggleButton)
+Vue.use(VueYouTubeEmbed)
+Vue.use(Vue2Editor)
 
 // register plugin component
 Vue.component('multiselect', Multiselect);

@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Full Text</label>
-                            <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Youtube URL</label>
@@ -130,7 +130,7 @@
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
                                 <img v-bind:src="state.file" v-show="showPreview" class="img-fluid"/>
-                                <img v-bind:src="state.tmp_file" v-show="tmpshowPreview" class="img-fluid"/>
+                                <img v-bind:src="state.file_preview" v-show="tmpshowPreview" class="img-fluid"/>
                             <br><br>
                             <div class="input-group">
                                 <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
@@ -217,13 +217,19 @@ import Datepicker from 'vuejs-datepicker';
 import moment from 'moment'
 import Timeselector from 'vue-timeselector';
 
+import Trumbowyg from 'vue-trumbowyg';
+  
+// Import editor css
+import 'trumbowyg/dist/ui/trumbowyg.css';
+
 export default {
     components: {
         VueLoading,
         VoerroTagsInput,
         Multiselect,
         Datepicker,
-        Timeselector
+        Timeselector,
+        Trumbowyg
     },
     data(){
         return {
@@ -242,6 +248,7 @@ export default {
                 lng:'',
                 youtube:'',
                 file:'',
+                file_preview:'',
                 facebook:'',
                 category:'',
                 status:'publish',
@@ -304,7 +311,7 @@ export default {
                     this.state.lokasi=response.data.lokasi;
                     this.state.file="";
                     if(response.data.featured_image!=null){
-                        this.state.tmp_file='/uploads/event/'+response.data.featured_image;
+                        this.state.file_preview=response.data.feature_image_url;
                         this.showPreview=false;
                         this.tmpshowPreview=true;
                     }
@@ -371,6 +378,7 @@ export default {
             let reader = new FileReader();
             let vm = this;
             reader.onload = (e) => {
+                vm.state.file_preview = e.target.result;
                 vm.state.file = e.target.result;
                 vm.showPreview = true;
                 vm.tmpshowPreview=false;
@@ -403,6 +411,7 @@ export default {
                         this.message = 'Data has been saved.';
                         this.pesankelas='alert alert-success';
                         // this.$router.replace('/all-post');
+                        this.getData()
                     }else{
                         this.pesankelas='alert alert-danger';
                         this.message = response.data.errors;
