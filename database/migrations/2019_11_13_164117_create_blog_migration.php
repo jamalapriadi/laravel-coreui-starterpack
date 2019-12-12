@@ -47,8 +47,8 @@ class CreateBlogMigration extends Migration
             $table->string('featured_image',191)->nullable();
             $table->enum('comment',['open','close'])->default('open');
             $table->enum('post_status',['publish','draft','private'])->default('publish');
-            $table->enum('post_type',['category','course','page','artikel','portofolio','gallery','template','event','testimoni','promo','newsletter'])->nullable();
-            $table->enum('page_type',['text','component','url'])->nullable();
+            $table->enum('post_type',['category','course','page','artikel','portofolio','gallery','template','event','testimoni','promo','newsletter','calendar','program'])->nullable();
+            $table->enum('page_type',['text','component','url','text and component'])->nullable();
             $table->string('component_name',191)->nullable();
             $table->string('post_template',191)->nullable();
             $table->unsignedBigInteger('menu_id')->nullable();
@@ -90,7 +90,7 @@ class CreateBlogMigration extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->unsignedBigInteger('post_id');
             $table->string('title',191)->nullable();
-            $table->enum('type_file',['image','video'])->default('image');
+            $table->enum('type_file',['image','video','file'])->default('image');
             $table->string('file',191)->nullable();
             $table->unsignedBigInteger('author');
             $table->timestamps();

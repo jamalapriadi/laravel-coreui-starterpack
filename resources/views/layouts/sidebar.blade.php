@@ -6,6 +6,38 @@
                     <i class="nav-icon fa fa-dashboard"></i> Dashboard
                 </router-link>
             </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#">
+                    <i class="nav-icon fa fa-users"></i> Founder & Teacher
+                </a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <router-link to="/founder" class="nav-link" active-class="active">
+                            <i class="nav-icon icon-arrow-right22"></i> Founder
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/pengurus" class="nav-link" active-class="active">
+                            <i class="nav-icon icon-arrow-right22"></i> Teacher
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/posisi" class="nav-link" active-class="active">
+                            <i class="nav-icon icon-arrow-right22"></i> Posisi
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/jabatan" class="nav-link" active-class="active">
+                            <i class="nav-icon icon-arrow-right22"></i> Jabatan
+                        </router-link>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <router-link to="/our-program" class="nav-link" active-class="active">
+                    <i class="nav-icon icon-globe-alt"></i> Our Program
+                </router-link>
+            </li>
             <li class="nav-title">MANAGE PORTAL</li>
             <li class="nav-item">
                 <router-link to="/page" class="nav-link" active-class="active">
@@ -69,6 +101,11 @@
             <li class="nav-item">
                 <router-link to="/newsletter" class="nav-link" active-class="active">
                     <i class="nav-icon icon-magazine"></i> Newsletter</a>
+                </router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/calendar-academics" class="nav-link" active-class="active">
+                    <i class="nav-icon icon-calendar2"></i> Calendar Academics</a>
                 </router-link>
             </li>
 

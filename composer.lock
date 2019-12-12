@@ -2391,16 +2391,16 @@
         },
         {
             "name": "spatie/dropbox-api",
-            "version": "1.11.0",
+            "version": "1.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/dropbox-api.git",
-                "reference": "47c6a14bcdc639ba90f86f98b2ada38ac9cc8e30"
+                "reference": "338dbffe1a5dc10145b40c07804a03e3f0eeb0c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/47c6a14bcdc639ba90f86f98b2ada38ac9cc8e30",
-                "reference": "47c6a14bcdc639ba90f86f98b2ada38ac9cc8e30",
+                "url": "https://api.github.com/repos/spatie/dropbox-api/zipball/338dbffe1a5dc10145b40c07804a03e3f0eeb0c4",
+                "reference": "338dbffe1a5dc10145b40c07804a03e3f0eeb0c4",
                 "shasum": ""
             },
             "require": {
@@ -2409,7 +2409,7 @@
                 "php": "^7.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^7.5.15|^8.5"
             },
             "type": "library",
             "autoload": {
@@ -2423,14 +2423,14 @@
             ],
             "authors": [
                 {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
+                    "name": "Alex Vanderbist",
+                    "email": "alex.vanderbist@gmail.com",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 },
                 {
-                    "name": "Alex Vanderbist",
-                    "email": "alex.vanderbist@gmail.com",
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
                     "homepage": "https://spatie.be",
                     "role": "Developer"
                 }
@@ -2444,7 +2444,7 @@
                 "spatie",
                 "v2"
             ],
-            "time": "2019-07-04T19:04:14+00:00"
+            "time": "2019-12-12T11:54:27+00:00"
         },
         {
             "name": "spatie/flysystem-dropbox",
@@ -4392,16 +4392,16 @@
         },
         {
             "name": "fzaninotto/faker",
-            "version": "v1.9.0",
+            "version": "v1.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fzaninotto/Faker.git",
-                "reference": "27a216cbe72327b2d6369fab721a5843be71e57d"
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/27a216cbe72327b2d6369fab721a5843be71e57d",
-                "reference": "27a216cbe72327b2d6369fab721a5843be71e57d",
+                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/fc10d778e4b84d5bd315dad194661e091d307c6f",
+                "reference": "fc10d778e4b84d5bd315dad194661e091d307c6f",
                 "shasum": ""
             },
             "require": {
@@ -4414,7 +4414,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": []
+                "branch-alias": {
+                    "dev-master": "1.9-dev"
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -4436,7 +4438,7 @@
                 "faker",
                 "fixtures"
             ],
-            "time": "2019-11-14T13:13:06+00:00"
+            "time": "2019-12-12T13:22:17+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",

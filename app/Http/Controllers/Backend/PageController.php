@@ -84,7 +84,7 @@ class PageController extends Controller
                 $post->teaser=$request->input('teaser');
             }
 
-            if($page_type == "component"){
+            if($page_type == "component" || $page_type == "text and component"){
                 $post->component_name=$request->input('component');
             }
 
@@ -268,7 +268,7 @@ class PageController extends Controller
                 $post->teaser=$request->input('teaser');
             }
 
-            if($page_type == "component"){
+            if($page_type == "component" || $page_type == "text and component"){
                 $post->component_name=$request->input('component');
             }
 

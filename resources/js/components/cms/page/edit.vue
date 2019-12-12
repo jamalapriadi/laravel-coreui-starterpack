@@ -1,6 +1,104 @@
 <template>
     <form v-on:submit.prevent="saveForm()" enctype="multipart/form-data">
         <div class="row">
+
+            <div class="col-lg-4">
+                <div class="card card-default">
+                    <div class="card-header">Page Attribut</div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="" class="control-label">Menu</label>
+                            <select name="menu" id="menu" class="form-control" v-model="state.menu">
+                                <option value="" disabled selected>--Pilih Menu--</option>
+                                <option v-for="(l,index) in menus" :key="index" :value="l.id">{{l.menu}}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" v-show="state.page_type =='text' || state.page_type=='component' || state.page_type=='text and component'">
+                            <label for="template" class="control-label">Template</label>
+                            <select name="template" id="template" class="form-control" v-model="state.template">
+                                <option value="default">Default Template (1 Column)</option>
+                                <option value="column-two" v-show="state.page_type == 'text'">2 Column (Page+Image)</option>
+                                <option value="column-two-with-slider" v-show="state.page_type == 'text'">2 Column (Page+Slider)</option>
+                                <option value="column-two-with-thumbnail" v-show="state.page_type == 'text'">2 Column (Page+Thumbnail)</option>
+                                <option value="column-text-with-component" v-show="state.page_type == 'text'">2 Column (Page+Component)</option>
+                                <option value="template-with-sidebar">Template With Sidebar</option>
+                            </select>
+                        </div>
+
+                        <div v-show="state.template == 'template-with-sidebar'">
+                            <div class="form-group">
+                                <label for="sidebar" class="control-label">Sidebar Layout</label>
+                                <select name="sidebar" id="sidebar" class="form-control" v-model="state.sidebar_layout">
+                                    <option value="left-sidebar">Left Sidebar</option>
+                                    <option value="right-sidebar">Right Sidebar</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="" class="control-label">Sidebar Content</label>
+                                <select name="sidebar_content" id="sidebar_content" class="form-control" v-model="state.sidebar_content">
+                                    <option value="latest-news">Latest News</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-primary" v-show="state.page_type =='text' || state.page_type=='component' || state.page_type=='text and component'">
+                    <div class="card-header">
+                        <h6 class="card-title">Status</h6>
+                    </div>
+                    <div class="card-body">
+                        <select name="status" id="status" class="form-control" v-model="state.status">
+                            <option value="publish">Publish</option>
+                            <option value="draft">Draft</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </div>  
+                </div>
+
+                <div class="card card-flat" v-show="state.page_type =='text' || state.page_type=='component' || state.page_type=='text and component'">
+                    <div class="card-header">
+                        <h6 class="card-title">Featured Image</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="control-label">Choose File</label><br>
+                                <img v-bind:src="state.file_preview" v-show="showPreview" class="img-fluid"/>
+                            <br><br>
+                            <div class="input-group">
+                                <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
+                                <span class="input-group-addon" id="removeFeaturedImage">
+                                    <i class=" icon-cross3"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-flat" v-show="state.page_type =='text' || state.page_type=='component' || state.page_type=='text and component'">
+                    <div class="card-header">
+                        Tags
+                        <span class="float-right">
+                            <a href="#" class="btn btn-primary header-btn" id="addtag">
+                                <i class="icon-add"></i> Add Tag
+                            </a>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <tags-input element-id="tags"
+                            v-model="state.tags"
+                            :typeahead="true">
+                        </tags-input>
+                    </div>
+                </div>
+
+
+            </div>
+
+
             <div class="col-lg-8">
                 <div class="card card-flat">
                     <div class="card-body">
@@ -21,9 +119,29 @@
                                 <option value="text">Text</option>
                                 <option value="component">Component</option>
                                 <option value="url">Url</option>
+                                <option value="text and component">Text and Component</option>
                             </select>
                         </div>
-                        <div v-show="state.page_type == 'text'">
+
+                        <div v-show="state.page_type == 'component' || state.page_type == 'text and component'">
+                            <div class="form-group">
+                                <label for="" class="control-label">Component Name</label>
+                                <select name="component" id="component" class="form-control" v-model="state.component">
+                                    <option value="" disabled selected>--Pilih Component--</option>
+                                    <option value="founder-component">Founder Component</option>
+                                    <option value="teacher-component">Teacher Component</option>
+                                    <option value="program-component">Program Component</option>
+                                    <option value="blog-component">Blog Component</option>
+                                    <option value="gallery-component">Gallery Component</option>
+                                    <option value="contact-component">Contact Component</option>
+                                    <option value="newsletter-component">Newsletter Component</option>
+                                    <option value="testimoni-component">Testimoni Component</option>
+                                    <option value="single-post-component">Single Post Component</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div v-show="state.page_type == 'text' || state.page_type=='text and component'">
                             <div class="form-group">
                                 <label class="control-label">Full Text</label>
                                 <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
@@ -113,23 +231,6 @@
                             </div>
                         </div>
 
-                        <div v-show="state.page_type == 'component'">
-                            <div class="form-group">
-                                <label for="" class="control-label">Component Name</label>
-                                <select name="component" id="component" class="form-control" v-model="state.component">
-                                    <option value="" disabled selected>--Pilih Component--</option>
-                                    <option value="founder-component">Founder Component</option>
-                                    <option value="teacher-component">Teacher Component</option>
-                                    <option value="blog-component">Blog Component</option>
-                                    <option value="gallery-component">Gallery Component</option>
-                                    <option value="contact-component">Contact Component</option>
-                                    <option value="newsletter-component">Newsletter Component</option>
-                                    <option value="testimoni-component">Testimoni Component</option>
-                                    <option value="single-post-component">Single Post Component</option>
-                                </select>
-                            </div>
-                        </div>
-
                         <div v-show="state.page_type == 'url'">
                             <div class="form-group">
                                 <label for="" class="control-label">URL</label>
@@ -140,101 +241,6 @@
 
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="card card-default">
-                    <div class="card-header">Page Attribut</div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="" class="control-label">Menu</label>
-                            <select name="menu" id="menu" class="form-control" v-model="state.menu">
-                                <option value="" disabled selected>--Pilih Menu--</option>
-                                <option v-for="(l,index) in menus" :key="index" :value="l.id">{{l.menu}}</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group" v-show="state.page_type =='text' || state.page_type=='component'">
-                            <label for="template" class="control-label">Template</label>
-                            <select name="template" id="template" class="form-control" v-model="state.template">
-                                <option value="default">Default Template (1 Column)</option>
-                                <option value="column-two" v-show="state.page_type == 'text'">2 Column (Page+Image)</option>
-                                <option value="column-two-with-slider" v-show="state.page_type == 'text'">2 Column (Page+Slider)</option>
-                                <option value="column-two-with-thumbnail" v-show="state.page_type == 'text'">2 Column (Page+Thumbnail)</option>
-                                <option value="template-with-sidebar">Template With Sidebar</option>
-                            </select>
-                        </div>
-
-                        <div v-show="state.template == 'template-with-sidebar'">
-                            <div class="form-group">
-                                <label for="sidebar" class="control-label">Sidebar Layout</label>
-                                <select name="sidebar" id="sidebar" class="form-control" v-model="state.sidebar_layout">
-                                    <option value="left-sidebar">Left Sidebar</option>
-                                    <option value="right-sidebar">Right Sidebar</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="" class="control-label">Sidebar Content</label>
-                                <select name="sidebar_content" id="sidebar_content" class="form-control" v-model="state.sidebar_content">
-                                    <option value="latest-news">Latest News</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="card card-primary" v-show="state.page_type =='text' || state.page_type=='component'">
-                    <div class="card-header">
-                        <h6 class="card-title">Status</h6>
-                    </div>
-                    <div class="card-body">
-                        <select name="status" id="status" class="form-control" v-model="state.status">
-                            <option value="publish">Publish</option>
-                            <option value="draft">Draft</option>
-                            <option value="private">Private</option>
-                        </select>
-                    </div>  
-                </div>
-
-                <div class="card card-flat" v-show="state.page_type =='text' || state.page_type=='component'">
-                    <div class="card-header">
-                        <h6 class="card-title">Featured Image</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label class="control-label">Choose File</label><br>
-                                <img v-bind:src="state.file_preview" v-show="showPreview" class="img-fluid"/>
-                            <br><br>
-                            <div class="input-group">
-                                <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
-                                <span class="input-group-addon" id="removeFeaturedImage">
-                                    <i class=" icon-cross3"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-flat" v-show="state.page_type =='text' || state.page_type=='component'">
-                    <div class="card-header">
-                        Tags
-                        <span class="float-right">
-                            <a href="#" class="btn btn-primary header-btn" id="addtag">
-                                <i class="icon-add"></i> Add Tag
-                            </a>
-                        </span>
-                    </div>
-                    <div class="card-body">
-                        <tags-input element-id="tags"
-                            v-model="state.tags"
-                            :typeahead="true">
-                        </tags-input>
-                    </div>
-                </div>
-
-
             </div>
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
@@ -251,7 +257,7 @@
                             <i class="icon-arrow-left7"></i> Back
                         </router-link>
 
-                        <button class="btn btn-primary pull-right">
+                        <button class="btn btn-primary pull-right float-right">
                             <i class="icon-floppy-disk"></i>
                             Save
                         </button>

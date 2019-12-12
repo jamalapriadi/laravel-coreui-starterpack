@@ -70,8 +70,12 @@ export default [
 
     /**======================= CALENDAR ACADEMIC */
     { path: '/calendar-academics', name:'calendarIndex', component: require('./components/calendars/index.vue').default},
+    { path: '/calendar/create', name:'calendarCreate', component: require('./components/calendars/create.vue').default},
+    { path: '/calendar/:id/edit', name:'calendarEdit', component: require('./components/calendars/edit.vue').default},
 
     /**======================= OUR PROGRAM */
     { path: '/our-program', name:'ourprogramIndex', component: require('./components/program/index.vue').default},
+    { path: '/program/create', name:'programCreate', component: require('./components/program/create.vue').default},
+    { path: '/program/:id/edit', name: 'programEdit', component: require('./components/program/edit.vue').default },
 
 ]
