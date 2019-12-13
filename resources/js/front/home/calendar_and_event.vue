@@ -7,18 +7,17 @@
                         <h2>Calendar<span> Academics</span></h2>
 
                         <ul>
-                            <li><a href="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf" target="_blank" rel="nofollow" title="Calendar Academic"><button type="button" class="btn btn-primary" style="margin-bottom: 10px"> <i class="fa fa-download"></i> Download Calendar</button></a></li>
+                            <li><a :href="calendar" target="_blank" rel="nofollow" title="Calendar Academic"><button type="button" class="btn btn-primary" style="margin-bottom: 10px"> <i class="fa fa-download"></i> Download Calendar</button></a></li>
+                            
                         </ul>
 
-                        <!-- <pdf src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf" :page="1">
-                            <template slot="loading">
-                            loading content here...
-                            </template>
-                        </pdf> -->
+                        <div class="myIframe">
+                            <pdf :src="calendar" style="position: absolute; top: -10%;
+                                left:-20%;
+                                width: 200%;
+                                height: 74%;"></pdf>
+                        </div>
 
-                        <!-- <div class="myIframe">
-                            <iframe src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf" frameborder="0" allowfullscreen></iframe>
-                        </div> -->
                     </div>
                 </div>
 
@@ -51,25 +50,44 @@
 </template>
 
 <script>
-import pdf from 'pdfvuer'
+import vuePdfjs from 'vue-pdfjs'
+import pdf from 'vue-pdf'
 
 export default {
     components: {
+        vuePdfjs,
         pdf
     },
     data(){
         return {
-            event:[]
+            event:[],
+            calendar:''
         }
     },
     mounted(){
         this.getEvent()
+        this.getCalendar()
     },
     methods:{
         getEvent(){
             axios.get('/list-event')
                 .then(response => {
                     this.event = response.data
+                })
+        },
+
+        getCalendar(){
+            axios.get('/list-calendar')
+                .then(response => {
+                    if(response.data!=null){
+                        if(response.data.files.length >  0){
+                            for(var a=0; a<response.data.files.length; a++){
+                                this.calendar = response.data.files[a].image_url
+                            }
+                        }
+                    }
+
+                    console.log(this.calendar)
                 })
         }
     }

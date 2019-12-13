@@ -23,7 +23,13 @@ class WebController extends Controller
     }
     
     public function index(){
-        return view('web.home');
+        $calendar=\App\Models\Cms\Post::where('post_type','calendar')
+                ->with('files')
+                ->whereHas('files')
+                ->first();
+
+        return view('web.home')
+            ->with('calendar',$calendar);
     }
 
     public function gallery(Request $request)

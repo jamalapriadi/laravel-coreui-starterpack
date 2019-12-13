@@ -20,6 +20,7 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('event/{slug}','WebController@single_event');
     Route::get('subscribe','WebController@subscribe');
     Route::post('kontak','WebController@save_kontak');
+    Route::post('subscribe','WebController@save_subscribe');
 
 
     Route::get('list-carousel','WebController@list_carousel');
@@ -35,6 +36,7 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('list-gallery-file','KidsController@list_gallery_file');
     Route::get('list-newsletter','KidsController@list_newsletter');
     Route::get('list-program','KidsController@list_program');
+    Route::get('list-calendar','KidsController@list_calendar');
     Route::post('upload-file-ckfinder','KidsController@upload_file_ckfinder');
 });
 

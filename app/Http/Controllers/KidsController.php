@@ -126,6 +126,20 @@ class KidsController extends Controller
         return abort(404);
     }
 
+    public function list_calendar(Request $request)
+    {
+        if($request->ajax()){
+            $model=\App\Models\Cms\Post::where('post_type','calendar')
+                ->with('files')
+                ->whereHas('files')
+                ->first();
+
+            return $model;
+        }
+
+        return abort(404);
+    }
+
     public function list_gallery_file(Request $request)
     {
         if($request->ajax()){
