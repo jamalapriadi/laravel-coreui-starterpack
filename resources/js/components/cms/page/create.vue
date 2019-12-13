@@ -21,6 +21,7 @@
                                     <option value="column-two" v-show="state.page_type == 'text'">2 Column (Page+Image)</option>
                                     <option value="column-two-with-slider" v-show="state.page_type == 'text'">2 Column (Page+Slider)</option>
                                     <option value="column-two-with-thumbnail" v-show="state.page_type == 'text'">2 Column (Page+Thumbnail)</option>
+                                    <option value="column-two-with-carousel" v-show="state.page_type == 'text'">1 Column (Page+Carousel)</option>
                                     <option value="template-with-sidebar">Template With Sidebar</option>
                                 </select>
                             </div>
@@ -155,7 +156,7 @@
                                 <input type="text" name="facebook" id="facebook" class="form-control" v-model="state.facebook">
                             </div>
 
-                            <div class="form-group" v-show="state.template != 'column-two-with-slider'">
+                            <!-- <div class="form-group" v-show="state.template != 'column-two-with-slider'">
                                 <label for="">Gallery Image</label>
                                 <vue-upload-multiple-image
                                     @upload-success="uploadImageSuccess"
@@ -171,12 +172,13 @@
                                     primaryText="Primary Image"
                                     >
                                 </vue-upload-multiple-image>
-                            </div>
+                            </div> -->
 
-                            <div v-show="state.template == 'column-two-with-slider' || state.template == 'column-two-with-thumbnail'">
+                            <div v-show="state.template == 'column-two-with-slider' || state.template == 'column-two-with-thumbnail' || state.template == 'column-two-with-carousel'">
                                 <fieldset>
                                     <legend v-if="state.template == 'column-two-with-slider'">Add New Slider</legend>
                                     <legend v-if="state.template == 'column-two-with-thumbnail'">Add New Thumbnail</legend>
+                                    <legend v-if="state.template == 'column-two-with-carousel'">Add New Carousel</legend>
                                     <div>
                                         <div class="form-group">
                                             <label for="" class="control-label">File Name</label>

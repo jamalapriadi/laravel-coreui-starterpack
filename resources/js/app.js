@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./front/template');
 
 window.Vue = require('vue');
 
@@ -30,6 +31,9 @@ import checkbox from 'vue-material-checkbox'
 import ToggleButton from 'vue-js-toggle-button'
 import VueYouTubeEmbed from 'vue-youtube-embed'
 import Vue2Editor from "vue2-editor"
+import VueCarousel from '@chenfengyuan/vue-carousel'
+import VueLazyLoad from 'vue-lazyload'
+
 
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
@@ -52,6 +56,8 @@ Vue.use(checkbox)
 Vue.use(ToggleButton)
 Vue.use(VueYouTubeEmbed)
 Vue.use(Vue2Editor)
+Vue.use(VueCarousel);
+Vue.use(VueLazyLoad)
 
 // register plugin component
 Vue.component('multiselect', Multiselect);
@@ -60,6 +66,22 @@ Vue.component('pagination', LaravelPagination);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('setup-instansi', require('./components/Instansi.vue').default);
+
+//setup front end
+Vue.component('home-kid', require('./front/index.vue').default);
+Vue.component('video-profile', require('./front/video_profile.vue').default);
+Vue.component('our-feature', require('./front/our_feature.vue').default);
+Vue.component('current-promo', require('./front/current_promo.vue').default);
+Vue.component('latest-news', require('./front/latest_news.vue').default);
+Vue.component('founder-component', require('./front/components/founder_component.vue').default);
+Vue.component('testimoni', require('./front/home/testimoni.vue').default);
+Vue.component('calendar-dan-event',require('./front/home/calendar_and_event.vue').default);
+Vue.component('gallery-component', require('./front/components/gallery_component.vue').default);
+Vue.component('newsletter-component', require('./front/components/newsletter_component.vue').default);
+Vue.component('contact-component', require('./front/components/contact_component.vue').default);
+Vue.component('testimoni-component', require('./front/components/testimoni_component.vue').default);
+Vue.component('program-component', require('./front/components/program_component.vue').default);
+Vue.component('subscribe-component', require('./front/subscribe.vue').default);
 
 const routes = require('./routes').default
 const router = new VueRouter({ routes });

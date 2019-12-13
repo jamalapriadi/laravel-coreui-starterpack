@@ -10,12 +10,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Scripts -->
-    <script src="{{ asset('front/js/front.js') }}" defer></script>
-    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    <link media="all" type="text/css" rel="stylesheet" href="{{asset('front/kids/css/common-style.css')}}">
-	<link media="all" type="text/css" rel="stylesheet" href="{{asset('front/kids/css/responsive.css')}}">
-	<link media="all" type="text/css" rel="stylesheet" href="{{asset('front/kids/css/prettyPhoto.css')}}">
+    <link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/common-style.css')}}">
+	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/responsive.css')}}">
+	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/prettyPhoto.css')}}">
     <link rel="shortcut icon" href="https://kidsrepublic.sch.id/uploads/icons/favicon.ico">
 </head>
 <body class="home-one">

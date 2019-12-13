@@ -10,6 +10,9 @@ use App\Models\Cms\Carouseloverlay;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendContactUs;
+
 class WebController extends Controller
 {
     public function __construct()
@@ -258,5 +261,60 @@ class WebController extends Controller
         }
 
         return response()->json($data);
+    }
+
+    public function save_kontak(Request $request)
+    {
+        $rules=[
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'email'=>'required',
+            'phone'=>'required',
+            'message'=>'required'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules);
+
+        if($validasi->fails()){
+            $data=array(
+                'success'=>false,
+                'message'=>'Validasi errors',
+                'errors'=>$validasi->errors()->all()
+            );
+        }else{
+            $first_name = $request->input('first_name');
+            $last_name = $request->input('last_name');
+            $email = $request->input('email');
+            $phone = $request->input('phone');
+            $pesan = $request->input('message');
+
+            $model=new \App\Models\Cms\Message;
+            $model->first_name=$request->input('first_name');
+            $model->last_name=$request->input('last_name');
+            $model->email=$request->input('email');
+            $model->phone=$request->input('phone');
+            $model->message=$request->input('message');
+            $simpan=$model->save();
+
+            if($simpan){
+                \Mail::to('info@kidsrepublic.sch.id')
+                    ->send(new SendContactUs($first_name,$last_name,$email,$phone,$pesan));
+
+                $data=array(
+                    'success'=>true,
+                    'message'=>'Message send',
+                    'errors'=>array()
+                );
+            }else{
+                $data=array(
+                    'success'=>false,
+                    'message'=>'Message fail to send',
+                    'errors'=>array()
+                );
+            }
+
+        }
+
+        return $data;
     }
 }

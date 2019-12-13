@@ -20,7 +20,12 @@
                                 <h2>Get In<span> Touch</span> </h2>
                             </div>    
                             <div class="contact-box">
-                                <form method="post" action="#" class="contact-formnew" novalidate="novalidate">
+                                <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
+                                <div class="col-lg-12" v-if="message" v-bind:class="pesankelas">
+                                    {{ message }}
+                                </div>
+
+                                <form @submit.prevent="store" action="/kontak" method="post" enctype="multipart/form-data">
                             
                                     <div class="row clearfix">
                                         <div class="form-group col-lg-6 col-md-6 col-xs-12">
@@ -33,13 +38,13 @@
                                             <input type="email" style="border-radius: 10px" name="email" maxlength="50" v-model="state.email" placeholder="Email*" required>
                                         </div>
                                         <div class="form-group col-lg-6 col-md-6 col-xs-12">
-                                            <input type="text" style="border-radius: 10px" name="phone" maxlength="30" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" v-model="state.phone" placeholder="Phone No" required>
+                                            <input type="text" style="border-radius: 10px" name="phone" maxlength="30" v-model="state.phone" placeholder="Phone No" required>
                                         </div>
                                         <div class="form-group col-lg-12 col-sm-12 col-xs-12">
                                             <textarea name="message" style="border-radius: 10px; height: 285px" maxlength="300" v-model="state.message" placeholder="Message" required></textarea>
                                         </div>
                                         <div class="form-group col-lg-12 center">
-                                            <button @click="save()" name="submit" class="btn-style-one center">Submit now</button>
+                                            <button type="submit" name="submit" class="btn-style-one center">Submit now</button>
                                         </div>
                                     </div>
                                 </form>
@@ -124,7 +129,12 @@
 </template>
 
 <script>
+import { VueLoading } from 'vue-loading-template'
+
 export default {
+    components: {
+        VueLoading
+    },
     data(){
         return {
             state:{
@@ -133,13 +143,43 @@ export default {
                 email:'',
                 phone:'',
                 message:''
-            }
+            },
+            pesankelas:'',
+            message:'',
+            loading:false,
         }
     },
     methods:{
-        save(){
+        store(e) {
+            this.loading=true;
 
-        }
+            axios.post(e.target.action, this.state).then(response => {
+                this.loading=false;
+                if(response.data.success==true){
+                    this.errors = [];
+                    this.state={
+                        first_name:'',
+                        last_name:'',
+                        email:'',
+                        phone:'',
+                        message:''
+                    },
+                    this.message = 'Data has been saved.';
+                    this.pesankelas='alert alert-success';
+                }else{
+                    this.pesankelas='alert alert-danger';
+                    this.message = response.data.errors;
+                    this.errors.nama=true;
+                }
+            }).catch(error => {
+                if (! _.isEmpty(error.response)) {
+                    if (error.response.status = 422) {
+                        this.errors = error.response.data;
+                        console.log(this.errors);
+                    }
+                }
+            });
+        },
     }
 }
 </script>

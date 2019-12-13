@@ -170,4 +170,33 @@
         @endif
         
     @endif
+
+    @if($page->page_type == "text and component")
+        <section class="about" id="teacher">
+            <div class="container">
+                <div class="row">
+                    <div class="single-column col-md-12 col-sm-12">
+                        <div class="section-title">
+                            <h2>{{$page->title}}<span> {{$page->second_title}}</span> </h2>
+                        </div>
+
+                        <div class="wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn;">
+                            <div class="post-content">
+                                <div id="fromcke">
+                                    {!! $page->description !!}
+
+                                    <hr>
+                                    @if($page->component_name == "program-component")
+                                        <program-component></program-component>
+                                    @endif
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> 
+                </div>
+            </div>
+        </section>
+    @endif
 @stop

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -41236,7 +41236,7 @@ __webpack_require__(/*! ../sass/startbootstrap-clean-blog/js/clean-blog */ "./re
 
 /***/ }),
 
-/***/ 1:
+/***/ 5:
 /*!*************************************!*\
   !*** multi ./resources/js/front.js ***!
   \*************************************/

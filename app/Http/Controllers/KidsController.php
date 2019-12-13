@@ -103,6 +103,18 @@ class KidsController extends Controller
         return abort(404);
     }
 
+    public function list_program(Request $request)
+    {
+        if($request->ajax()){
+            $model=\App\Models\Cms\Post::where('post_type','program')
+                ->get();
+
+            return $model;
+        }
+
+        return abort(404);
+    }
+
     public function list_gallery(Request $request)
     {
         if($request->ajax()){

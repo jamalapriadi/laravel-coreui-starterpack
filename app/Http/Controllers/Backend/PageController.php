@@ -85,6 +85,8 @@ class PageController extends Controller
             }
 
             if($page_type == "component" || $page_type == "text and component"){
+                $post->description=$request->input('desc');
+                $post->comment='open';
                 $post->component_name=$request->input('component');
             }
 
@@ -269,6 +271,8 @@ class PageController extends Controller
             }
 
             if($page_type == "component" || $page_type == "text and component"){
+                $post->description=$request->input('desc');
+                $post->comment='open';
                 $post->component_name=$request->input('component');
             }
 

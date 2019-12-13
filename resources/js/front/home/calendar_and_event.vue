@@ -16,9 +16,9 @@
                             </template>
                         </pdf> -->
 
-                        <div class="myIframe">
+                        <!-- <div class="myIframe">
                             <iframe src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf" frameborder="0" allowfullscreen></iframe>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 

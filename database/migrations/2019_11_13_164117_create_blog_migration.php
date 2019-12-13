@@ -160,6 +160,16 @@ class CreateBlogMigration extends Migration
             $table->timestamps();
         });
 
+        Schema::create('messages', function (Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->string('first_name',65)->nullable();
+            $table->string('last_name',65)->nullable();
+            $table->string('email',65)->nullable();
+            $table->string('phone',65)->nullable();
+            $table->string('ip_address',65)->nullable();
+            $table->timestamps();
+        });
+
         /**================ CREATE RELATION */
         Schema::table('post_category',function(Blueprint $table){
             $table->foreign('post_id')
