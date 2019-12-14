@@ -23,7 +23,7 @@
             <div style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
                 <span style="color:#333333;">
                     <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
-                        <img alt="Crawler" src="/uploads/images/crawler-icon.jpg" style="width: 150px; height: 150px;" />
+                        <img alt="Crawler" :src="l.feature_image_url" style="width: 150px; height: 150px;" />
                     </span>
                 </span>
             </div>
@@ -56,7 +56,7 @@ export default {
     },
     methods:{
         getprogram(){
-            axios.get('/list-program')
+            axios.get('list-program')
                 .then(response => {
                     this.program = response.data
                 })
