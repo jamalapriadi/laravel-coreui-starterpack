@@ -25,7 +25,7 @@
                                     {{ message }}
                                 </div>
 
-                                <form @submit.prevent="store" action="proses/kontak" method="post" enctype="multipart/form-data">
+                                <form @submit.prevent="store" action="/proses/kontak" method="post" enctype="multipart/form-data">
                             
                                     <div class="row clearfix">
                                         <div class="form-group col-lg-6 col-md-6 col-xs-12">
