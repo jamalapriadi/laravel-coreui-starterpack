@@ -22,8 +22,6 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('news/{slug}','WebController@single_news');
     Route::get('event/{slug}','WebController@single_event');
     Route::get('subscribe','WebController@subscribe');
-    Route::post('kontak','WebController@save_kontak');
-    Route::post('subscribe','WebController@save_subscribe');
 });
 
 Route::group(['prefix'=>'list'],function(){
@@ -42,6 +40,11 @@ Route::group(['prefix'=>'list'],function(){
     Route::get('program','KidsController@list_program');
     Route::get('calendar','KidsController@list_calendar');
     Route::post('upload-file-ckfinder','KidsController@upload_file_ckfinder');
+});
+
+Route::group(['prefix'=>'proses'],function(){
+    Route::post('kontak','WebController@save_kontak');
+    Route::post('subscribe','WebController@save_subscribe');
 });
 
 
