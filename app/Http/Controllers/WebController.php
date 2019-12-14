@@ -56,12 +56,29 @@ class WebController extends Controller
             ->whereSlug($slug)
             ->first();
 
+        $program=array();
+
+        if($page->component_name == "program-component"){
+            $program=\App\Models\Cms\Post::where('post_type','program')
+                ->get();
+        }
+
+        $component=array();
+
+        if($page->page_type == "component"){
+            if($page->component_name == "founder-component"){
+                $component=\App\Models\Kids\Founder::orderBy('created_at','desc')->get();
+            }
+        }
+
         if($page == null){
             return abort(404);
         }
 
         return view('web.single_page')
-            ->with('page',$page);
+            ->with('page',$page)
+            ->with('program',$program)
+            ->with('component', $component);
     }
 
     public function single_promo(Request $request, $slug='/')

@@ -15,7 +15,30 @@
 
     @if($page->page_type == "component")
         @if($page->component_name == "founder-component")
-            <founder-component></founder-component>
+            <section class="about" id="founder">
+                <div class="container">
+                    <div class="section-title">
+                        <h2>Founders <span>Profile</span> </h2>
+                    </div>
+                    <div class="row text">
+                        @foreach($component as $row)
+                            <div class="teacher-profile-tab col-md-8" style="text-align: justify;">  
+                                <div class="heading-block">
+                                    <h3>{{$row->name}}</h3>
+                                </div>
+                                <br>
+                                {!! $row->description !!}
+                            </div>
+                            <div class="teacher-profile-tab col-md-4"> 
+                                <a href="#10" aria-controls="10" role="tab" data-toggle="tab">
+                                    <img src="{{$row->image_url}}" alt="images">
+                                </a>
+                                <hr>
+                            </div> 
+                        @endforeach
+                    </div>
+                </div>
+            </section>
         @endif
 
         @if($page->component_name == "gallery-component")
@@ -187,7 +210,52 @@
 
                                     <hr>
                                     @if($page->component_name == "program-component")
-                                        <program-component></program-component>
+                                        <div class="row">
+                                            <div style="text-align: center;"><span style="color:#333333;"><small><span dir="ltr"><big><span style="font-size:26px;"><span style="background:white"><span style="line-height:normal"><span style="font-family:&quot;dosis&quot;,serif"><strong>OUR PROGRAM</strong></span></span></span></span></big></span></small></span></div>
+                                            <br>
+                                            
+                                            @foreach($program as $file)
+                                                <div class="col-lg-6" style="margin-bottom:20px;">
+                                                    <div style="background: rgb(253, 253, 102); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
+                                                        <span style="color:#333333;">
+                                                            <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
+                                                                <span style="font-size:9.0pt">
+                                                                    <span style="line-height:107%">
+                                                                        <span style="font-size:16px;">
+                                                                            <strong>{{$file->title}}</strong>
+                                                                        </span>
+                                                                        <br />
+                                                                        {{$file->second_title}}&nbsp;
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                        
+                                                    <div style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
+                                                        <span style="color:#333333;">
+                                                            <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
+                                                                <img alt="Crawler" src="{{$file->feature_image_url}}" style="width: 150px; height: 150px;" />
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                        
+                                                    <div style="background: rgb(172, 225, 250); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
+                                                        <span style="color:#333333;">
+                                                            <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
+                                                                <span style="font-size:14px;">
+                                                                    <span style="line-height:107%">
+                                                                        {!! $file->description !!}
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                        
+                                        
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     @endif
 
                                 </div>
