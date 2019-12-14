@@ -81,14 +81,14 @@ export default {
     },
     methods:{
         getGallery(){
-            axios.get('/list-gallery') 
+            axios.get('list/gallery') 
                 .then(response => {
                     this.list = response.data
                 })
         },
 
         getGalleryFile(){
-            axios.get('/list-gallery-file')
+            axios.get('list/gallery-file')
                 .then(response => {
                     this.file = response.data
                 })

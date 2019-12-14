@@ -44,7 +44,7 @@ export default {
     },
     methods:{
         getCarousel(){
-            axios.get('/list-carousel')
+            axios.get('list/carousel')
                 .then(response => {
                     this.overlay = response.data.overlay
                 })

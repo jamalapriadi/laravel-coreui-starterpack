@@ -73,7 +73,7 @@ export default {
     },
     methods:{
         getData(){
-            axios.get('list-menu')
+            axios.get('list/menu')
                 .then(response => {
                     this.list = response.data
                     console.log(this.list)

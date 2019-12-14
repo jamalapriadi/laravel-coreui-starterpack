@@ -34,7 +34,7 @@ export default {
     },
     methods:{
         getEvent(){
-            axios.get('/list-event')
+            axios.get('list/event')
                 .then(response => {
                     this.event = response.data
                 })

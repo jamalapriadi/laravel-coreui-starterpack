@@ -38,7 +38,7 @@ export default {
     },
     methods:{
         getFounder(){
-            axios.get('/list-founder')
+            axios.get('list/founder')
                 .then(response => {
                     this.founder = response.data
                 })

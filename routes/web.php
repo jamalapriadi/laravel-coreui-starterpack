@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/simpan-info','WebController@simpan_info');
+
+Auth::routes();
 
 Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('/','WebController@index');
@@ -21,28 +24,28 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('subscribe','WebController@subscribe');
     Route::post('kontak','WebController@save_kontak');
     Route::post('subscribe','WebController@save_subscribe');
+});
 
-
-    Route::get('list-carousel','WebController@list_carousel');
-    Route::get('list-menu','WebController@list_menu');
-    Route::get('list-founder','KidsController@list_founder');
-    Route::get('list-video-profile','KidsController@list_video_profile');
-    Route::get('list-fasilitas','KidsController@list_fasilitas');
-    Route::get('list-promo','KidsController@list_promo');
-    Route::get('list-testimoni','KidsController@list_testimoni');
+Route::group(['prefix'=>'list'],function(){
+    Route::get('carousel','WebController@list_carousel');
+    Route::get('menu','WebController@list_menu');
+    Route::get('founder','KidsController@list_founder');
+    Route::get('video-profile','KidsController@list_video_profile');
+    Route::get('fasilitas','KidsController@list_fasilitas');
+    Route::get('promo','KidsController@list_promo');
+    Route::get('testimoni','KidsController@list_testimoni');
     Route::get('latest-news','KidsController@latest_news');
-    Route::get('list-event','KidsController@list_event');
-    Route::get('list-gallery','KidsController@list_gallery');
-    Route::get('list-gallery-file','KidsController@list_gallery_file');
-    Route::get('list-newsletter','KidsController@list_newsletter');
-    Route::get('list-program','KidsController@list_program');
-    Route::get('list-calendar','KidsController@list_calendar');
+    Route::get('event','KidsController@list_event');
+    Route::get('gallery','KidsController@list_gallery');
+    Route::get('gallery-file','KidsController@list_gallery_file');
+    Route::get('newsletter','KidsController@list_newsletter');
+    Route::get('program','KidsController@list_program');
+    Route::get('calendar','KidsController@list_calendar');
     Route::post('upload-file-ckfinder','KidsController@upload_file_ckfinder');
 });
 
-Route::post('/simpan-info','WebController@simpan_info');
 
-Auth::routes();
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -70,7 +70,7 @@ export default {
     },
     methods:{
         getPromo(){
-            axios.get('/latest-news')
+            axios.get('list/latest-news')
                 .then(response => {
                     this.promo = response.data
                 })

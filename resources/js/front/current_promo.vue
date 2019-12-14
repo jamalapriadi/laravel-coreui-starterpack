@@ -48,7 +48,7 @@ export default {
     },
     methods:{
         getPromo(){
-            axios.get('/list-promo')
+            axios.get('list/promo')
                 .then(response => {
                     this.promo = response.data
                 })

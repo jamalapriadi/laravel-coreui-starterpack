@@ -77,7 +77,7 @@ export default {
     },
     methods:{
         getNewsletter(){
-            axios.get('/list-newsletter')
+            axios.get('list/newsletter')
                 .then(response => {
                     this.newsletter = response.data
                 })

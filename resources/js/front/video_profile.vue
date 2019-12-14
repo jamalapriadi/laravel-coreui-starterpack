@@ -35,7 +35,7 @@ export default {
     },
     methods:{
         getVideo(){
-            axios.get('/list-video-profile')
+            axios.get('list/video-profile')
                 .then(response => {
                     this.videos = response.data
                 })

@@ -56,7 +56,7 @@ export default {
     },
     methods:{
         getprogram(){
-            axios.get('list-program')
+            axios.get('list/program')
                 .then(response => {
                     this.program = response.data
                 })

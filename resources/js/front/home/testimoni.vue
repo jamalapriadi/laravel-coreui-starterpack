@@ -33,7 +33,7 @@ export default {
     },
     methods:{
         getPromo(){
-            axios.get('/list-testimoni')
+            axios.get('list/testimoni')
                 .then(response => {
                     this.promo = response.data
                 })

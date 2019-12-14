@@ -23,13 +23,21 @@ class WebController extends Controller
     }
     
     public function index(){
+
         $calendar=\App\Models\Cms\Post::where('post_type','calendar')
                 ->with('files')
                 ->whereHas('files')
                 ->first();
 
+        $overlay=Carouseloverlay::select('text')->first();
+        $carousel=Carousel::select('caption','text','image')
+            ->where('active','Y')
+            ->get();
+
         return view('web.home')
-            ->with('calendar',$calendar);
+            ->with('calendar',$calendar)
+            ->with('overlay',$overlay)
+            ->with('carousel',$carousel);
     }
 
     public function gallery(Request $request)

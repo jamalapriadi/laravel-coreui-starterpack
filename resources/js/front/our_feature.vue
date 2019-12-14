@@ -75,7 +75,7 @@ export default {
     },
     methods:{
         getFasilitas(){
-            axios.get('/list-fasilitas')
+            axios.get('list/fasilitas')
                 .then(response => {
                     this.fasilitas = response.data
                 })

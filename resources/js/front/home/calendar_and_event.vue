@@ -70,14 +70,14 @@ export default {
     },
     methods:{
         getEvent(){
-            axios.get('/list-event')
+            axios.get('list/event')
                 .then(response => {
                     this.event = response.data
                 })
         },
 
         getCalendar(){
-            axios.get('/list-calendar')
+            axios.get('list/calendar')
                 .then(response => {
                     if(response.data!=null){
                         if(response.data.files.length >  0){

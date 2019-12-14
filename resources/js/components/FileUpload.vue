@@ -41,7 +41,7 @@
                 reader.readAsDataURL(file);
             },
             upload(){
-                axios.post('/api/upload',{image: this.image}).then(response => {
+                axios.post('list/upload',{image: this.image}).then(response => {
 
                 });
             }
