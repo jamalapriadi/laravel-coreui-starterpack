@@ -131,7 +131,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/pengurus?q='+this.pencarian)
+                axios.get('data/pengurus?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -153,7 +153,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/pengurus/'+id)
+                        axios.delete('data/pengurus/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Deleted', response.data.pesan , 'success');

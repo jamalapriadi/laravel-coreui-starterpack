@@ -32,7 +32,7 @@ export default {
     },
     methods:{
         getUser(){
-            axios.get('/data/user')
+            axios.get('data/user')
                 .then(response => {
                     this.state={
                         nama: response.data.name,

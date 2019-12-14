@@ -9,7 +9,7 @@
                         {{ message }}
                     </div>
 
-                    <form @submit.prevent="store" action="/data/category" method="post">
+                    <form @submit.prevent="store" action="data/category" method="post">
                         <div class="form-group">
                             <label for="" class="control-label">Category Name</label>
                             <input type="text" class="form-control" v-model="state.name">
@@ -166,7 +166,7 @@
             },
 
             getCategory(){
-                axios.get('/data/list-category')
+                axios.get('data/list-category')
                     .then(response => {
                         this.categories=response.data
                     })
@@ -197,7 +197,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/category?q='+this.pencarian)
+                axios.get('data/category?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -219,7 +219,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/category/'+id)
+                        axios.delete('data/category/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.message="";
@@ -270,7 +270,7 @@
                 this.state.kode=id;
                 this.message='';
 
-                axios.get('/data/category/'+id)
+                axios.get('data/category/'+id)
                     .then(response => {
                         this.state.kode = response.data.category.id;
                         this.state.name = response.data.category.category_name;

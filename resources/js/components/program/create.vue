@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store" action="/data/program" method="post" enctype="multipart/form-data">
+    <form @submit.prevent="store" action="data/program" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-8">
                 <div class="card card-flat">
@@ -214,7 +214,7 @@ export default {
             return moment(date).format('h:mm:ss a');
         },
         getCategory(){
-            axios.get('/data/list-category')
+            axios.get('data/list-category')
                 .then(response => {
                     this.categories = response.data;
                 })  
@@ -237,7 +237,7 @@ export default {
         },
 
         showRelatedNews(){
-            axios.get('/data/list-post?type=artikel')
+            axios.get('data/list-post?type=artikel')
                 .then(response => {
                     this.relatednews = response.data;
                     console.log(this.relatednews);
@@ -249,7 +249,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/list-post?type=artikel&q='+this.pencarian)
+            axios.get('data/list-post?type=artikel&q='+this.pencarian)
                 .then(response => {
                     this.relatednews = response.data;
                 })

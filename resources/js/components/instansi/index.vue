@@ -22,7 +22,7 @@
 
             <div class="tab-content">
                 <div class="tab-pane active" id="home" role="tabpanel">
-                    <form @submit.prevent="store" action="/data/info" method="post" enctype="multipart/form-data">
+                    <form @submit.prevent="store" action="data/info" method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="" class="control-label">Nama Instansi</label>
                             <input type="text" class="form-control" v-model="state.nama_instansi">
@@ -131,7 +131,7 @@
                                         {{ messagefasilitas }}
                                     </div>
 
-                                    <form @submit.prevent="storeFasilitas" action="/data/fasilitas" method="post">
+                                    <form @submit.prevent="storeFasilitas" action="data/fasilitas" method="post">
                                         <div class="form-group">
                                             <label for="" class="control-label">Name</label>
                                             <input type="text" class="form-control" v-model="statefasilitas.name">
@@ -227,7 +227,7 @@
                                         {{ messagefasilitas }}
                                     </div>
 
-                                    <form @submit.prevent="storeVideo" action="/data/video" method="post">
+                                    <form @submit.prevent="storeVideo" action="data/video" method="post">
                                         <div class="form-group">
                                             <label for="" class="control-label">Youtube URL</label>
                                             <input type="text" class="form-control" v-model="video.url">
@@ -297,7 +297,7 @@
                                         {{ messagefasilitas }}
                                     </div>
 
-                                    <form @submit.prevent="storeKontak" action="/data/kontak" method="post">
+                                    <form @submit.prevent="storeKontak" action="data/kontak" method="post">
                                         <div class="form-group">
                                             <label for="" class="control-label">Parameter Name</label>
                                             <input type="text" class="form-control" v-model="kontak.name">
@@ -381,7 +381,7 @@
 
                 <div class="tab-pane" id="sosmed" role="tabpanel">
                     <div v-show="tampilFormSosmed == true">
-                        <form @submit.prevent="storeSosmed" action="/data/sosmed" method="post" enctype="multipart/form-data">
+                        <form @submit.prevent="storeSosmed" action="data/sosmed" method="post" enctype="multipart/form-data">
                             <vue-loading v-if="loading2" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
                             <div v-if="messagefasilitas" v-bind:class="pesankelasfasilitas">
                                 {{ messagefasilitas }}
@@ -570,7 +570,7 @@ export default {
         },
 
         showFasilitas(){
-            axios.get('/data/fasilitas')
+            axios.get('data/fasilitas')
                 .then(response => {
                     this.fasilitas = response.data
                     this.listFasilitas=response.data
@@ -578,28 +578,28 @@ export default {
         },
 
         showVideo(){
-            axios.get('/data/video')
+            axios.get('data/video')
                 .then(response => {
                     this.videos = response.data
                 })
         },
 
         showKontak(){
-            axios.get('/data/kontak')
+            axios.get('data/kontak')
                 .then(response => {
                     this.kontaks = response.data
                 })
         },
 
         getSosmed(){
-            axios.get('/data/list-sosmed')
+            axios.get('data/list-sosmed')
                 .then(response => {
                     this.sosmed = response.data
                 })
         },
 
         getInstansiSosmed(){
-            axios.get('/data/list-instansi-sosmed')
+            axios.get('data/list-instansi-sosmed')
                 .then(response => {
                     this.instansiSosmed= response.data.sosmed;
 
@@ -708,7 +708,7 @@ export default {
             this.statefasilitas.kode=id;
             this.messagefasilitas='';
 
-            axios.get('/data/fasilitas/'+id)
+            axios.get('data/fasilitas/'+id)
                 .then(response => {
                     this.statefasilitas.kode = response.data.id;
                     this.statefasilitas.name = response.data.name;
@@ -737,7 +737,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/fasilitas/'+id)
+                    axios.delete('data/fasilitas/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";
@@ -791,7 +791,7 @@ export default {
             this.video.kode=id;
             this.messagefasilitas='';
 
-            axios.get('/data/video/'+id)
+            axios.get('data/video/'+id)
                 .then(response => {
                     this.video.kode = response.data.id;
                     this.video.url = response.data.youtube_url;
@@ -814,7 +814,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/video/'+id)
+                    axios.delete('data/video/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";
@@ -871,7 +871,7 @@ export default {
             this.kontak.kode=id;
             this.messagefasilitas='';
 
-            axios.get('/data/kontak/'+id)
+            axios.get('data/kontak/'+id)
                 .then(response => {
                     this.kontak.kode = response.data.id;
                     this.kontak.name = response.data.parameter_name;
@@ -897,7 +897,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/kontak/'+id)
+                    axios.delete('data/kontak/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";

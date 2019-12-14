@@ -58,7 +58,7 @@ export default {
             let id= app.$route.params.id;
             this.bankId = id;
 
-            axios.get('/data/roles/'+id)
+            axios.get('data/roles/'+id)
                 .then(response => {
                     this.state.name = response.data.name;
                 })
@@ -71,7 +71,7 @@ export default {
             var newState = this.state;
             this.loading=true;
 
-            axios.patch('/data/roles/'+this.bankId, newState)
+            axios.patch('data/roles/'+this.bankId, newState)
                 .then(response => {
                     if(response.data.success==true){
                         this.pesankelas='alert alert-success';

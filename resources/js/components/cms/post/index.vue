@@ -138,7 +138,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/post?q='+this.pencarian)
+            axios.get('data/post?q='+this.pencarian)
                 .then(response => {
                     this.list = response.data;
                 })
@@ -160,7 +160,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/post/'+id)
+                    axios.delete('data/post/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";

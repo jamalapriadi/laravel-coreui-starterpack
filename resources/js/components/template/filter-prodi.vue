@@ -42,8 +42,8 @@
     },
     mounted() {
       let sources = [
-        ['prodis', '/data/akademik/resources/prodi'],
-        ['tahuns', '/data/akademik/resources/tahun'],
+        ['prodis', 'data/akademik/resources/prodi'],
+        ['tahuns', 'data/akademik/resources/tahun'],
       ]
 
       axios.all(sources.map(source => axios.get(source[1])))

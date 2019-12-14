@@ -10,7 +10,7 @@
                     {{ message }}
                 </div>
 
-                <form @submit.prevent="store" action="/data/users" method="post" enctype="multipart/form-data">
+                <form @submit.prevent="store" action="data/users" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="" class="control-label">Email</label>
                         <input type="text" class="form-control" :class="{ 'is-invalid': errors.email }" v-model="state.email">
@@ -91,7 +91,7 @@ export default {
     },
     methods: {
         getRole(){
-            axios.get('/data/list-role')
+            axios.get('data/list-role')
                 .then(response => {
                     this.role = response.data
                 })

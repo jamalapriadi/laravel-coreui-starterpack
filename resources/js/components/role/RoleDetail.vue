@@ -76,7 +76,7 @@ export default {
             let id= app.$route.params.id;
             this.bankId = id;
 
-            axios.get('/data/roles/'+id)
+            axios.get('data/roles/'+id)
                 .then(response => {
                     this.state.name = response.data.name;
                     this.perm = response.data.permissions
@@ -87,7 +87,7 @@ export default {
         },
 
         getPermission(){
-            axios.get('/data/list-permission')
+            axios.get('data/list-permission')
                 .then(response => {
                     this.permission = response.data
 
@@ -104,7 +104,7 @@ export default {
 
         simpanPermission(){
             this.loading = true
-            axios.post('/data/save-permission-role/'+this.bankId,this.state)
+            axios.post('data/save-permission-role/'+this.bankId,this.state)
                 .then(response => {
                     this.loading = false
                     if(response.data.success==true){

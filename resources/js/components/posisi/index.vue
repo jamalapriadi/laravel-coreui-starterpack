@@ -123,7 +123,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/posisi?q='+this.pencarian)
+                axios.get('data/posisi?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -145,7 +145,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/posisi/'+id)
+                        axios.delete('data/posisi/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Deleted', response.data.pesan , 'success');

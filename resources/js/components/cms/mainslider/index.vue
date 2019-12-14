@@ -3,7 +3,7 @@
         <div class="card card-default">
             <div class="card-header">Slide Overlay</div>
             <div class="card-body">
-                <form @submit.prevent="storeOverlay" action="/data/carousel-overlay" method="post">
+                <form @submit.prevent="storeOverlay" action="data/carousel-overlay" method="post">
                     <vue-loading v-if="loading3" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
                     <div v-if="messageoverlay" v-bind:class="pesankelasoverlay">
                         {{ messageoverlay }}
@@ -38,7 +38,7 @@
                                     {{ message }}
                                 </div>
 
-                                <form @submit.prevent="store" action="/data/carousel" method="post">
+                                <form @submit.prevent="store" action="data/carousel" method="post">
                                     <div class="form-group">
                                         <label for="" class="control-label">Caption</label>
                                         <input type="text" class="form-control" v-model="state.caption">
@@ -212,7 +212,7 @@
             },
 
             getOverlay(){
-                axios.get('/data/carousel-overlay')
+                axios.get('data/carousel-overlay')
                     .then(response => {
                         if(response.data!=null){
                             this.overlay.kode = response.data.id
@@ -223,7 +223,7 @@
             },
 
             getCategory(){
-                axios.get('/data/list-category')
+                axios.get('data/list-category')
                     .then(response => {
                         this.categories=response.data
                     })
@@ -254,7 +254,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/carousel?q='+this.pencarian)
+                axios.get('data/carousel?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -293,7 +293,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/carousel/'+id)
+                        axios.delete('data/carousel/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.message="";
@@ -344,7 +344,7 @@
                 this.state.kode=id;
                 this.message='';
 
-                axios.get('/data/carousel/'+id)
+                axios.get('data/carousel/'+id)
                     .then(response => {
                         this.state.kode = response.data.id;
                         this.state.caption = response.data.caption;

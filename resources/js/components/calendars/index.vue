@@ -134,7 +134,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/calendar?q='+this.pencarian+'&type=promo')
+            axios.get('data/calendar?q='+this.pencarian+'&type=promo')
                 .then(response => {
                     this.list = response.data;
                 })
@@ -156,7 +156,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/post/'+id)
+                    axios.delete('data/post/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";

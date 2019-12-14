@@ -57,7 +57,7 @@ export default {
             this.state.id=id
             this.userId = id;
 
-            axios.get('/data/list-role-with-permission/'+id)
+            axios.get('data/list-role-with-permission/'+id)
                 .then(response => {
                     this.user = response.data.user
                     this.role = response.data.role
@@ -70,7 +70,7 @@ export default {
 
         updateRole(){
             this.loading = true
-            axios.post('/data/update-role-user/'+this.userId,this.state)
+            axios.post('data/update-role-user/'+this.userId,this.state)
                 .then(response => {
                     this.loading = false
                     if(response.data.success == true){

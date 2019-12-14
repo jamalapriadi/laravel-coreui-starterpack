@@ -403,7 +403,7 @@ export default {
     },
     methods:{
         getMenu(){
-            axios.get('/data/list-menu')
+            axios.get('data/list-menu')
                 .then(response => {
                     this.menus = response.data
                 })
@@ -414,7 +414,7 @@ export default {
             let id= app.$route.params.id;
             this.postId = id;
 
-            axios.get('/data/page/'+id)
+            axios.get('data/page/'+id)
                 .then(response => {
                     this.state.kode = response.data.id;
                     this.state.title=response.data.title;
@@ -476,7 +476,7 @@ export default {
         },
 
         showRelatedNews(){
-            axios.get('/data/list-post?type=artikel')
+            axios.get('data/list-post?type=artikel')
                 .then(response => {
                     this.relatednews = response.data;
                 })
@@ -487,7 +487,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/list-post?type=artikel&q='+this.pencarian)
+            axios.get('data/list-post?type=artikel&q='+this.pencarian)
                 .then(response => {
                     this.relatednews = response.data;
                 })
@@ -590,7 +590,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/post-file/'+id)
+                    axios.delete('data/post-file/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";
@@ -611,7 +611,7 @@ export default {
         saveForm(){
             this.loading=true;
 
-            axios.patch('/data/page/'+this.postId, this.state)
+            axios.patch('data/page/'+this.postId, this.state)
                 .then(response => {
                     this.loading=false;
                     if(response.data.success==true){
@@ -658,7 +658,7 @@ export default {
             console.log('data', formData, index, fileList)
             this.state.images.push(fileList[index]);
             // Upload image api
-            // axios.post('/data/page', { data: formData }).then(response => {
+            // axios.post('data/page', { data: formData }).then(response => {
             //   console.log(response)
             // })
         },

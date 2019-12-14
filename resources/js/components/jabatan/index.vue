@@ -9,7 +9,7 @@
                         {{ message }}
                     </div>
 
-                    <form @submit.prevent="store" action="/data/jabatan" method="post">
+                    <form @submit.prevent="store" action="data/jabatan" method="post">
                         <div class="form-group">
                             <label for="" class="control-label">Name</label>
                             <input type="text" class="form-control" v-model="state.name">
@@ -157,7 +157,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/jabatan?q='+this.pencarian)
+                axios.get('data/jabatan?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -179,7 +179,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/jabatan/'+id)
+                        axios.delete('data/jabatan/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.message="";
@@ -228,7 +228,7 @@
                 this.state.kode=id;
                 this.message='';
 
-                axios.get('/data/jabatan/'+id)
+                axios.get('data/jabatan/'+id)
                     .then(response => {
                         this.state.kode = response.data.id;
                         this.state.name = response.data.name;

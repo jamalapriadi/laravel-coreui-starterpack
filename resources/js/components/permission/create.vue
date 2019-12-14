@@ -11,7 +11,7 @@
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
 
-            <form @submit.prevent="store" action="/data/permissions" method="post">
+            <form @submit.prevent="store" action="data/permissions" method="post">
                 <div class="form-group">
                     <label for="" class="control-label">Name</label>
                     <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="state.name">

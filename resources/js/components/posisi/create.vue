@@ -11,7 +11,7 @@
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
 
-            <form @submit.prevent="store" action="/data/posisi" method="post">
+            <form @submit.prevent="store" action="data/posisi" method="post">
                 <div class="form-group">
                     <label for="" class="control-label">Jabatan</label>
                     <select name="jabatan" id="jabatan" class="form-control" v-model="state.jabatan">
@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         getJabatan(){
-            axios.get('/data/list-jabatan')
+            axios.get('data/list-jabatan')
                 .then(response => {
                     this.jabatan = response.data
                 })

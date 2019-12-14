@@ -144,7 +144,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.get('/data/status-user/'+id+'?status=N')
+                        axios.get('data/status-user/'+id+'?status=N')
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Non Aktif', 'Non Aktif user berhasil' , 'success');
@@ -176,7 +176,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.get('/data/status-user/'+id+'?status=Y')
+                        axios.get('data/status-user/'+id+'?status=Y')
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Aktif', 'Aktif user berhasil' , 'success');
@@ -221,7 +221,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/users?q='+this.pencarian)
+                axios.get('data/users?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -243,7 +243,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/users/'+id)
+                        axios.delete('data/users/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Deleted', response.data.pesan , 'success');

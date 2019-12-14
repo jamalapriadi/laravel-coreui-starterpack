@@ -88,7 +88,7 @@
                     <div class="card card-default" v-show="tampilFormImage==true">
                         <div class="card-header">Add Images</div>
                         <div class="card-body">
-                            <form @submit.prevent="savegallery" action="/data/save-file-gallery" method="post" enctype="multipart/form-data">
+                            <form @submit.prevent="savegallery" action="data/save-file-gallery" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="" class="control-label">Image Title</label>
                                     <input type="text" class="form-control" v-model="form.video_title" required>
@@ -114,7 +114,7 @@
                     <div class="card card-default" v-show="tampilFormYoutube==true">
                         <div class="card-header">Add Video</div>
                         <div class="card-body">
-                            <form @submit.prevent="savegallery" action="/data/save-file-gallery" method="post" enctype="multipart/form-data">
+                            <form @submit.prevent="savegallery" action="data/save-file-gallery" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="" class="control-label">Video Title</label>
                                     <input type="text" class="form-control" v-model="form.video_title" required>
@@ -203,7 +203,7 @@
                     <div class="card card-default">
                         <div class="card-header">Add New Album</div>
                         <div class="card-body">
-                            <form @submit.prevent="store" action="/data/gallery" method="post" enctype="multipart/form-data">
+                            <form @submit.prevent="store" action="data/gallery" method="post" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="" class="control-label">Nama Album</label>
                                     <input type="text" class="form-control" placeholder="Nama Album" v-model="state.name">
@@ -323,7 +323,7 @@ export default {
             this.event=[]
 
             if(this.state.related == 'Yes'){
-                axios.get('/data/list-event')
+                axios.get('data/list-event')
                     .then(response => {
                         this.event = response.data
                     })
@@ -386,7 +386,7 @@ export default {
         },
 
         getDetailGallery(){
-            axios.get('/data/detail-gallery/'+this.gallery.id)
+            axios.get('data/detail-gallery/'+this.gallery.id)
                 .then(response => {
                     this.listdetailGallery = response.data
                 })
@@ -436,7 +436,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/gallery?q='+this.pencarian)
+            axios.get('data/gallery?q='+this.pencarian)
                 .then(response => {
                     this.list = response.data;
                 })
@@ -458,7 +458,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/post/'+id)
+                    axios.delete('data/post/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";
@@ -488,7 +488,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/delete-file-gallery/'+id)
+                    axios.delete('data/delete-file-gallery/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 // this.message="";

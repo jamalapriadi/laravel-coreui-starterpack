@@ -118,7 +118,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/subscribes?q='+this.pencarian)
+                axios.get('data/subscribes?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -140,7 +140,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/subscribes/'+id)
+                        axios.delete('data/subscribes/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Deleted', response.data.pesan , 'success');

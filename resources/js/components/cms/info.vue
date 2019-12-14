@@ -26,7 +26,7 @@
                         {{ message }}
                     </div>
 
-                    <form @submit.prevent="store" action="/data/info" method="post" enctype="multipart/form-data">
+                    <form @submit.prevent="store" action="data/info" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group">
@@ -151,7 +151,7 @@
                         {{ message }}
                     </div>
 
-                    <form @submit.prevent="store" action="/data/info" method="post" enctype="multipart/form-data">
+                    <form @submit.prevent="store" action="data/info" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-8">
                                 <form action="">
@@ -197,7 +197,7 @@
                         {{ message }}
                     </div>
                     
-                    <form @submit.prevent="store" action="/data/info" method="post" enctype="multipart/form-data">
+                    <form @submit.prevent="store" action="data/info" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-lg-8">
                                 <form action="">

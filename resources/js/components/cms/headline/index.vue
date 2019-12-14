@@ -124,7 +124,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/headline?type=Featured&q='+this.pencarian)
+            axios.get('data/headline?type=Featured&q='+this.pencarian)
                 .then(response => {
                     this.list = response.data.head;
                 })
@@ -146,7 +146,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('/data/headline/'+id)
+                    axios.delete('data/headline/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";

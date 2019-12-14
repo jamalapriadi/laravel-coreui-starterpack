@@ -122,7 +122,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/permissions?q='+this.pencarian)
+                axios.get('data/permissions?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -144,7 +144,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/permissions/'+id)
+                        axios.delete('data/permissions/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Deleted', response.data.pesan , 'success');

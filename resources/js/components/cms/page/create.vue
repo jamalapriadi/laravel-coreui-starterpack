@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store" action="/data/page" method="post" enctype="multipart/form-data">
+    <form @submit.prevent="store" action="data/page" method="post" enctype="multipart/form-data">
         <div class="row">
 
             <div class="col-lg-4">
@@ -386,7 +386,7 @@ export default {
     },
     methods:{
         getMenu(){
-            axios.get('/data/list-menu')
+            axios.get('data/list-menu')
                 .then(response => {
                     this.menus = response.data
                 })
@@ -409,7 +409,7 @@ export default {
         },
 
         showRelatedNews(){
-            axios.get('/data/list-post?type=artikel')
+            axios.get('data/list-post?type=artikel')
                 .then(response => {
                     this.relatednews = response.data;
                     console.log(this.relatednews);
@@ -421,7 +421,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/list-post?type=artikel&q='+this.pencarian)
+            axios.get('data/list-post?type=artikel&q='+this.pencarian)
                 .then(response => {
                     this.relatednews = response.data;
                 })
@@ -554,7 +554,7 @@ export default {
             console.log('data', formData, index, fileList)
             this.state.images.push(fileList[index]);
             // Upload image api
-            // axios.post('/data/page', { data: formData }).then(response => {
+            // axios.post('data/page', { data: formData }).then(response => {
             //   console.log(response)
             // })
         },

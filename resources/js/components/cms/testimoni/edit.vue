@@ -125,7 +125,7 @@ export default {
             let id= app.$route.params.id;
             this.postId = id;
 
-            axios.get('/data/post/'+id)
+            axios.get('data/post/'+id)
                 .then(response => {
                     this.state.title=response.data.title;
                     this.state.topik=response.data.topik;
@@ -163,7 +163,7 @@ export default {
         saveForm(){
             this.loading=true;
 
-            axios.patch('/data/testimoni/'+this.postId, this.state)
+            axios.patch('data/testimoni/'+this.postId, this.state)
                 .then(response => {
                     this.loading=false;
                     if(response.data.success==true){

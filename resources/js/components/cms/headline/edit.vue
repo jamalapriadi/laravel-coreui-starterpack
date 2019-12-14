@@ -258,7 +258,7 @@ export default {
             let id= app.$route.params.id;
             this.postId = id;
 
-            axios.get('/data/post/'+id)
+            axios.get('data/post/'+id)
                 .then(response => {
                     this.state.title=response.data.title;
                     this.state.topik=response.data.topik;
@@ -287,7 +287,7 @@ export default {
         },
 
         getCategory(){
-            axios.get('/data/list-category')
+            axios.get('data/list-category')
                 .then(response => {
                     this.categories = response.data;
                 })  
@@ -299,7 +299,7 @@ export default {
         },
 
         showRelatedNews(){
-            axios.get('/data/list-post?type=artikel')
+            axios.get('data/list-post?type=artikel')
                 .then(response => {
                     this.relatednews = response.data;
                 })
@@ -310,7 +310,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/list-post?type=artikel&q='+this.pencarian)
+            axios.get('data/list-post?type=artikel&q='+this.pencarian)
                 .then(response => {
                     this.relatednews = response.data;
                 })
@@ -352,7 +352,7 @@ export default {
         saveForm(){
             this.loading=true;
 
-            axios.patch('/data/headline/'+this.postId, this.state)
+            axios.patch('data/headline/'+this.postId, this.state)
                 .then(response => {
                     this.loading=false;
                     if(response.data.success==true){

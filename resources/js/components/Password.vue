@@ -11,7 +11,7 @@
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
 
 
-			<form  @submit.prevent="store" action="/data/change-password" method="post">
+			<form  @submit.prevent="store" action="data/change-password" method="post">
 				<div id="pesan"></div>
 				<div class="form-group">
 					<label for="" class="control-label text-semibold">Password Lama</label>

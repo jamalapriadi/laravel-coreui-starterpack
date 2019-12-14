@@ -9,7 +9,7 @@
                         {{ message }}
                     </div>
 
-                    <form @submit.prevent="store" action="/data/menu" method="post">
+                    <form @submit.prevent="store" action="data/menu" method="post">
                         <div class="form-group">
                             <label for="" class="control-label">Menu Name</label>
                             <input type="text" class="form-control" v-model="state.name">
@@ -186,7 +186,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.get('/data/status-menu/'+id+'?status=N')
+                        axios.get('data/status-menu/'+id+'?status=N')
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Non Aktif', 'Non Aktif menu berhasil' , 'success');
@@ -218,7 +218,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.get('/data/status-menu/'+id+'?status=Y')
+                        axios.get('data/status-menu/'+id+'?status=Y')
                             .then(response => {
                                 if(response.data.success==true){
                                     this.$swal('Aktif', 'Aktif Menu berhasil' , 'success');
@@ -243,7 +243,7 @@
             },
 
             getCategory(){
-                axios.get('/data/list-menu')
+                axios.get('data/list-menu')
                     .then(response => {
                         this.menus=response.data
                     })
@@ -274,7 +274,7 @@
                     page = 1;
                 }
 
-                axios.get('/data/menu?q='+this.pencarian)
+                axios.get('data/menu?q='+this.pencarian)
                     .then(response => {
                         this.list = response.data;
                     })
@@ -296,7 +296,7 @@
                 })
                 .then((result) => {
                     if(result.value) {
-                        axios.delete('/data/menu/'+id)
+                        axios.delete('data/menu/'+id)
                             .then(response => {
                                 if(response.data.success==true){
                                     this.message="";
@@ -350,7 +350,7 @@
                 this.state.kode=id;
                 this.message='';
 
-                axios.get('/data/menu/'+id)
+                axios.get('data/menu/'+id)
                     .then(response => {
                         this.state.kode = response.data.id;
                         this.state.name = response.data.menu;

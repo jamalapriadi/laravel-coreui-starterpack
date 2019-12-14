@@ -11,7 +11,7 @@
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
 
-            <form @submit.prevent="store" action="/data/pengurus" method="post" enctype="multipart/form-data">
+            <form @submit.prevent="store" action="data/pengurus" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="form-group">
@@ -151,7 +151,7 @@ export default {
             let id= app.$route.params.id;
             this.pengurusId = id;
 
-            axios.get('/data/pengurus/'+id)
+            axios.get('data/pengurus/'+id)
                 .then(response => {
                     this.state= {
                         name:response.data.name,
@@ -191,21 +191,21 @@ export default {
             return moment(date).format('YYYY-MM-DD');
         },
         getJabatan(){
-            axios.get('/data/list-jabatan')
+            axios.get('data/list-jabatan')
                 .then(response => {
                     this.jabatan = response.data
                 })
         },
 
         getPosisi(){
-            axios.get('/data/list-posisi')
+            axios.get('data/list-posisi')
                 .then(response => {
                     this.posisi = response.data
                 })
         },
 
         ubahJabatan(){
-            axios.get('/data/list-posisi',{
+            axios.get('data/list-posisi',{
                 params:{
                     jabatan: this.state.jabatan_id
                 }

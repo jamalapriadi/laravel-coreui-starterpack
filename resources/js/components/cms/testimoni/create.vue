@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent="store" action="/data/testimoni" method="post" enctype="multipart/form-data">
+    <form @submit.prevent="store" action="data/testimoni" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-lg-8">
                 <div class="card card-flat">
