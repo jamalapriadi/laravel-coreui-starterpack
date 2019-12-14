@@ -102,6 +102,10 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::get('status-menu/{id}','Backend\MenuController@status_menu');
     Route::resource('page','Backend\PageController');
     Route::delete('post-file/{id}','Backend\PageController@delete_post_file');
+    Route::get('subscribes','Backend\PostController@subscribe');
+    Route::delete('subscribes/{id}','Backend\PostController@subscribe_delete');
+    Route::get('messages','Backend\PostController@messages');
+    Route::delete('messages/{id}','Backend\PostController@message_delete');
 
     Route::resource('headline','Backend\HeadlineController');
     Route::resource('testimoni','Backend\TestimoniController');

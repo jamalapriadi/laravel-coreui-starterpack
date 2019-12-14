@@ -27,69 +27,71 @@
 
             <br>
             
-            <table class="table table-striped">
-                <thead class="bg-light">
-                    <tr>
-                        <th width="5%">No.</th>
-                        <th width="15%">
-                            <!-- <i class="icon-people"></i> -->
-                        </th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Status Login</th>
-                        <th>Role</th>
-                        <th>Active</th>
-                        <th width="8%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(l, index) in list.data" v-bind:key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="l.image_url" alt="" class="img-avatar" style="height:50px;width:50px;">
-                        </td>
-                        <td>{{l.name}}</td>
-                        <td>{{l.email}}</td>
-                        <td>
-                            {{l.status_login}}
-                        </td>
-                        <td>
-                            <span v-for="(k,idx) in l.roles" :key="idx" class="label label-info">{{k.name}}</span>
-                        </td>
-                        <td>
-                            <!-- {{l.active}} -->
-                            <span v-show="l.active == 'Y'">
-                                <toggle-button :value="true"
-                                    :sync="true"
-                                    name="phone"
-                                    :labels="{checked: 'Ya', unchecked: 'No'}"
-                                    :color="{checked: '#7DCE94', unchecked: '#82C7EB'}"
-                                    @change="nonAktifUser(l.id)"/>
-                            </span>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="bg-light">
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th width="15%">
+                                <!-- <i class="icon-people"></i> -->
+                            </th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Status Login</th>
+                            <th>Role</th>
+                            <th>Active</th>
+                            <th width="8%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(l, index) in list.data" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <td>
+                                <img :src="l.image_url" alt="" class="img-avatar" style="height:50px;width:50px;">
+                            </td>
+                            <td>{{l.name}}</td>
+                            <td>{{l.email}}</td>
+                            <td>
+                                {{l.status_login}}
+                            </td>
+                            <td>
+                                <span v-for="(k,idx) in l.roles" :key="idx" class="label label-info">{{k.name}}</span>
+                            </td>
+                            <td>
+                                <!-- {{l.active}} -->
+                                <span v-show="l.active == 'Y'">
+                                    <toggle-button :value="true"
+                                        :sync="true"
+                                        name="phone"
+                                        :labels="{checked: 'Ya', unchecked: 'No'}"
+                                        :color="{checked: '#7DCE94', unchecked: '#82C7EB'}"
+                                        @change="nonAktifUser(l.id)"/>
+                                </span>
 
-                            <span v-show="l.active == 'N'">
-                                <toggle-button :value="false"
-                                    name="phone"
-                                    :sync="false"
-                                    :labels="{checked: 'Ya', unchecked: 'No'}"
-                                    :color="{checked: '#7DCE94', unchecked: '#82C7EB'}"
-                                    @change="aktifUser(l.id)"/>
-                            </span>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <router-link :to="{ name: 'hasAksesUser', params: {id: l.id}}" class="btn btn-sm btn-success text-white" title="Ubah Role">
-                                    <i class="icon-support text-white"></i>
-                                </router-link>
+                                <span v-show="l.active == 'N'">
+                                    <toggle-button :value="false"
+                                        name="phone"
+                                        :sync="false"
+                                        :labels="{checked: 'Ya', unchecked: 'No'}"
+                                        :color="{checked: '#7DCE94', unchecked: '#82C7EB'}"
+                                        @change="aktifUser(l.id)"/>
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <router-link :to="{ name: 'hasAksesUser', params: {id: l.id}}" class="btn btn-sm btn-success text-white" title="Ubah Role">
+                                        <i class="icon-support text-white"></i>
+                                    </router-link>
 
-                                <!-- <a class="btn btn-danger" v-on:click="hapus(l.id, index, l.nm)" v-bind:id="'delete'+l.id">
-                                    <i class="fa fa-trash text-white"></i>
-                                </a> -->
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                    <!-- <a class="btn btn-danger" v-on:click="hapus(l.id, index, l.nm)" v-bind:id="'delete'+l.id">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a> -->
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
             <div align="right">

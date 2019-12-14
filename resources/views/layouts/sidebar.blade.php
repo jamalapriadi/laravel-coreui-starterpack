@@ -108,6 +108,16 @@
                     <i class="nav-icon icon-calendar2"></i> Calendar Academics</a>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link to="/messages" class="nav-link" active-class="active">
+                    <i class="nav-icon icon-comment-discussion"></i> Message
+                </router-link>
+            </li>
+            <li class="nav-item">
+                <router-link to="/subscribes" class="nav-link" active-class="active">
+                    <i class="nav-icon icon-file-eye"></i> Subscribes
+                </router-link>
+            </li>
 
             <li class="nav-title">Settings</li>
             <li class="nav-item">

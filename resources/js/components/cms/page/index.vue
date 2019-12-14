@@ -25,44 +25,46 @@
 
             <br>
             
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th width="5%">No.</th>
-                        <th>Title</th>
-                        <th>Slug</th>
-                        <th>Post Status</th>
-                        <th></th>
-                        <th width="17%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(l, index) in list.data" v-bind:key="index">
-                        <td>{{index+1}}</td>
-                        <!-- <td>{{l.id}}</td> -->
-                        <td>{{l.title}}</td>
-                        <td>{{l.slug}}</td>
-                        <td>{{l.post_status}}</td>
-                        <td>
-                            <a @click="goToWeb(l.slug)" target="_blank" class="btn btn-primary text-white">
-                                <i class="fa fa-browser"></i>
-                                Lihat Di web
-                            </a>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <router-link :to="{ name: 'pageEdit', params: {id: l.id}}" class="btn btn-warning">
-                                    <i class="fa fa-edit text-white"></i>
-                                </router-link>
-
-                                <a class="btn btn-danger" v-on:click="hapus(l.id, index)" v-bind:id="'delete'+l.id">
-                                    <i class="fa fa-trash text-white"></i>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th>Title</th>
+                            <th>Slug</th>
+                            <th>Post Status</th>
+                            <th></th>
+                            <th width="17%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(l, index) in list.data" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <!-- <td>{{l.id}}</td> -->
+                            <td>{{l.title}}</td>
+                            <td>{{l.slug}}</td>
+                            <td>{{l.post_status}}</td>
+                            <td>
+                                <a @click="goToWeb(l.slug)" target="_blank" class="btn btn-primary text-white">
+                                    <i class="fa fa-browser"></i>
+                                    Lihat Di web
                                 </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <router-link :to="{ name: 'pageEdit', params: {id: l.id}}" class="btn btn-warning">
+                                        <i class="fa fa-edit text-white"></i>
+                                    </router-link>
+
+                                    <a class="btn btn-danger" v-on:click="hapus(l.id, index)" v-bind:id="'delete'+l.id">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
             <div align="right">

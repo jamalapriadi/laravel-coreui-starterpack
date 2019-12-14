@@ -27,40 +27,42 @@
 
             <br>
             
-            <table class="table table-striped">
-                <thead class="thead-light">
-                    <tr>
-                        <th width="5%">No.</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th width="17%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(l, index) in list.data" v-bind:key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <img :src="l.image_url" class="img-fluid" style="height:80px;">
-                        </td>
-                        <td>{{l.name}}</td>
-                        <td>
-                            <div v-html="l.description"></div>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <router-link :to="{ name: 'founder-view', params: {id: l.id}}" class="btn btn-warning">
-                                    <i class="fa fa-edit text-white"></i>
-                                </router-link>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th width="17%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(l, index) in list.data" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <td>
+                                <img :src="l.image_url" class="img-fluid" style="height:80px;">
+                            </td>
+                            <td>{{l.name}}</td>
+                            <td>
+                                <div v-html="l.description"></div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <router-link :to="{ name: 'founder-view', params: {id: l.id}}" class="btn btn-warning">
+                                        <i class="fa fa-edit text-white"></i>
+                                    </router-link>
 
-                                <a class="btn btn-danger" v-on:click="hapus(l.id, index, l.name)" v-bind:id="'delete'+l.id">
-                                    <i class="fa fa-trash text-white"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                    <a class="btn btn-danger" v-on:click="hapus(l.id, index, l.name)" v-bind:id="'delete'+l.id">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
             <div align="right">

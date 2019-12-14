@@ -206,6 +206,42 @@ class WebController extends Controller
 
         return $post;
     }
+    
+    public function save_subscribe(Request $request)
+    {
+        $rules=[
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'email'=>'required',
+            'phone'=>'required'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules);
+
+        if($validasi->fails()){
+            $data=array(
+                'success'=>false,
+                'message'=>"Valdiasi errors",
+                'errors'=>$validasi->errors()->all()
+            );
+        }else{
+            $model=new \App\Models\Cms\Subscribe;
+            $model->first_name=$request->input('first_name');
+            $model->last_name=$request->input('last_name');
+            $model->email=$request->input('email');
+            $model->phone=$request->input('phone');
+            $model->ip_address=\Request::ip();
+            $model->save();
+
+            $data=array(
+                'success'=>true,
+                'message'=>'You has been subscribe our newsletter',
+                'errors'=>array()
+            );
+        }
+
+        return $data;
+    }
 
     public function simpan_info(Request $request){
         $rules=[

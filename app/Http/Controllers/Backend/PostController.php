@@ -499,4 +499,76 @@ class PostController extends Controller
         // return LaravelVideoEmbed::getYoutubeThumbnail($url)
         // //https://<youtube image thumbnail with max resolution>. usage: <img src="{{ LaravelVideoEmbed::getYoutubeThumbnail($url) }}"> 
     }
+
+    public function subscribe(Request $request)
+    {
+        $post=\App\Models\Cms\Subscribe::select('*');
+
+        if($request->has('q')){
+            $post=$post->where('first_name','like','%'.$request->input('q').'%');
+        }
+
+        $post=$post->paginate(10);
+
+        return $post;
+    }
+
+    public function subscribe_delete(Request $request, $id)
+    {
+        $post=\App\Models\Cms\Subscribe::find($id);
+
+        $hapus=$post->delete();
+
+        if($hapus){
+            $data=array(
+                'success'=>true,
+                'pesan'=>'Data berhasil dihapus',
+                'error'=>''
+            );
+        }else{
+            $data=array(
+                'success'=>false,
+                'pesan'=>'Data gagal dihapus',
+                'error'=>''
+            );
+        }
+
+        return $data;
+    }
+
+    public function messages(Request $request)
+    {
+        $post=\App\Models\Cms\Message::select('*');
+
+        if($request->has('q')){
+            $post=$post->where('first_name','like','%'.$request->input('q').'%');
+        }
+
+        $post=$post->paginate(10);
+
+        return $post;
+    }
+
+    public function message_delete(Request $request,$id)
+    {
+        $post=\App\Models\Cms\Message::find($id);
+
+        $hapus=$post->delete();
+
+        if($hapus){
+            $data=array(
+                'success'=>true,
+                'pesan'=>'Data berhasil dihapus',
+                'error'=>''
+            );
+        }else{
+            $data=array(
+                'success'=>false,
+                'pesan'=>'Data gagal dihapus',
+                'error'=>''
+            );
+        }
+
+        return $data;
+    }
 }

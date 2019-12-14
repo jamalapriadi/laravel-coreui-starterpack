@@ -93,11 +93,11 @@ export default {
                         email:'',
                         phone:''
                     },
-                    this.message = 'Data has been saved.';
+                    this.message = response.data.message;
                     this.pesankelas='alert alert-success';
                 }else{
                     this.pesankelas='alert alert-danger';
-                    this.message = response.data.errors;
+                    this.message = response.data.message;
                     this.errors.nama=true;
                 }
             }).catch(error => {

@@ -171,40 +171,42 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th width="5%">No.</th>
-                                        <th>Name</th>
-                                        <th>Description</th>
-                                        <th>Icon</th>
-                                        <th width="17%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(l, index) in fasilitas.data" v-bind:key="index">
-                                        <td>{{index+1}}</td>
-                                        <td>{{l.name}}</td>
-                                        <td>
-                                            <div v-html="l.deskripsi"></div>
-                                        </td>
-                                        <td>
-                                            <img :src="l.icon_url" alt="" class="img-fluid">
-                                        </td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-warning" @click="updateFasilitas(l.id)">
-                                                    <i class="fa fa-edit text-white"></i>
-                                                </a>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">No.</th>
+                                            <th>Name</th>
+                                            <th>Description</th>
+                                            <th>Icon</th>
+                                            <th width="17%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(l, index) in fasilitas.data" v-bind:key="index">
+                                            <td>{{index+1}}</td>
+                                            <td>{{l.name}}</td>
+                                            <td>
+                                                <div v-html="l.deskripsi"></div>
+                                            </td>
+                                            <td>
+                                                <img :src="l.icon_url" alt="" class="img-fluid">
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning" @click="updateFasilitas(l.id)">
+                                                        <i class="fa fa-edit text-white"></i>
+                                                    </a>
 
-                                                <a class="btn btn-danger" v-on:click="hapusFasilitas(l.id)" v-bind:id="'delete'+l.id">
-                                                    <i class="fa fa-trash text-white"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                    <a class="btn btn-danger" v-on:click="hapusFasilitas(l.id)" v-bind:id="'delete'+l.id">
+                                                        <i class="fa fa-trash text-white"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
                         </div>
@@ -248,34 +250,36 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th width="5%">No.</th>
-                                        <th>Video</th>
-                                        <th width="17%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(l, index) in videos.data" v-bind:key="index">
-                                        <td>{{index+1}}</td>
-                                        <td>
-                                            <youtube :video-id="l.video_id" :player-width="230" :player-height="120"></youtube>
-                                        </td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-warning" @click="updateVideo(l.id)">
-                                                    <i class="fa fa-edit text-white"></i>
-                                                </a>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">No.</th>
+                                            <th>Video</th>
+                                            <th width="17%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(l, index) in videos.data" v-bind:key="index">
+                                            <td>{{index+1}}</td>
+                                            <td>
+                                                <youtube :video-id="l.video_id" :player-width="230" :player-height="120"></youtube>
+                                            </td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning" @click="updateVideo(l.id)">
+                                                        <i class="fa fa-edit text-white"></i>
+                                                    </a>
 
-                                                <a class="btn btn-danger" v-on:click="hapusVideo(l.id)" v-bind:id="'delete'+l.id">
-                                                    <i class="fa fa-trash text-white"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                    <a class="btn btn-danger" v-on:click="hapusVideo(l.id)" v-bind:id="'delete'+l.id">
+                                                        <i class="fa fa-trash text-white"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
 
@@ -335,38 +339,40 @@
                         </div>
 
                         <div class="col-lg-8">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th width="5%">No.</th>
-                                        <th>Parameter Name</th>
-                                        <th>Parameter Value</th>
-                                        <th>Show Name</th>
-                                        <th>Icon</th>
-                                        <th width="17%"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr v-for="(l, index) in kontaks.data" v-bind:key="index">
-                                        <td>{{index+1}}</td>
-                                        <td>{{l.parameter_name}}</td>
-                                        <td>{{l.parameter_value}}</td>
-                                        <td>{{l.show_name}}</td>
-                                        <td>{{l.icon}}</td>
-                                        <td>
-                                            <div class="btn-group">
-                                                <a class="btn btn-warning" @click="updateKontak(l.id)">
-                                                    <i class="fa fa-edit text-white"></i>
-                                                </a>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th width="5%">No.</th>
+                                            <th>Parameter Name</th>
+                                            <th>Parameter Value</th>
+                                            <th>Show Name</th>
+                                            <th>Icon</th>
+                                            <th width="17%"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(l, index) in kontaks.data" v-bind:key="index">
+                                            <td>{{index+1}}</td>
+                                            <td>{{l.parameter_name}}</td>
+                                            <td>{{l.parameter_value}}</td>
+                                            <td>{{l.show_name}}</td>
+                                            <td>{{l.icon}}</td>
+                                            <td>
+                                                <div class="btn-group">
+                                                    <a class="btn btn-warning" @click="updateKontak(l.id)">
+                                                        <i class="fa fa-edit text-white"></i>
+                                                    </a>
 
-                                                <a class="btn btn-danger" v-on:click="hapusKontak(l.id)" v-bind:id="'delete'+l.id">
-                                                    <i class="fa fa-trash text-white"></i>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                                    <a class="btn btn-danger" v-on:click="hapusKontak(l.id)" v-bind:id="'delete'+l.id">
+                                                        <i class="fa fa-trash text-white"></i>
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
 

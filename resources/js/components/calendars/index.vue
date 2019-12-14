@@ -26,42 +26,45 @@
 
             <br>
             
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th width="5%">No.</th>
-                        <th>Images</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th width="17%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="(l, index) in list.data" v-bind:key="index">
-                        <td>{{index+1}}</td>
-                        <td>
-                            <a v-for="(k,idx) in l.files" :key="idx" :href="k.image_url" class="btn btn-info text-white" target="blank">
-                                <i class="fa fa-attachment"></i> Klik Disini
-                            </a>
-                        </td>
-                        <td>{{l.title}}</td>
-                        <td>
-                            <div v-html="l.description"></div>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <router-link :to="{ name: 'calendarEdit', params: {id: l.id}}" class="btn btn-warning">
-                                    <i class="fa fa-edit text-white"></i>
-                                </router-link>
 
-                                <a class="btn btn-danger" v-on:click="hapus(l.id, index)" v-bind:id="'delete'+l.id">
-                                    <i class="fa fa-trash text-white"></i>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th width="5%">No.</th>
+                            <th>File</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th width="17%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(l, index) in list.data" v-bind:key="index">
+                            <td>{{index+1}}</td>
+                            <td>
+                                <a v-for="(k,idx) in l.files" :key="idx" :href="k.image_url" class="btn btn-info text-white" target="blank">
+                                    <i class="fa fa-attachment"></i> Klik Disini
                                 </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td>{{l.title}}</td>
+                            <td>
+                                <div v-html="l.description"></div>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <router-link :to="{ name: 'calendarEdit', params: {id: l.id}}" class="btn btn-warning">
+                                        <i class="fa fa-edit text-white"></i>
+                                    </router-link>
+
+                                    <a class="btn btn-danger" v-on:click="hapus(l.id, index)" v-bind:id="'delete'+l.id">
+                                        <i class="fa fa-trash text-white"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
             <div align="right">

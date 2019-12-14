@@ -47,6 +47,8 @@ export default [
     { path: '/newsletter/:id/edit', name:'newsletterEdit', component: require('./components/cms/newsletter/edit.vue').default},
 
      { path : '/main-slider', name:'mainSliderIndex', component: require('./components/cms/mainslider/index.vue').default},
+     { path: '/subscribes', name:'subscribesIndex', component: require('./components/cms/subcribes/index.vue').default},
+     { path: '/messages', name:'messagesIndex', component: require('./components/cms/messages/index.vue').default},
     /**======================= END CMS */
 
 
