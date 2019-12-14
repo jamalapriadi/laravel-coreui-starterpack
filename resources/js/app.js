@@ -5,7 +5,6 @@
  */
 
 require('./bootstrap');
-require('./front/template');
 
 window.Vue = require('vue');
 

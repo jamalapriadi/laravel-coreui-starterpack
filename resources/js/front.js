@@ -1,5 +1,6 @@
 require('./bootstrap');
-// require('jquery');
+require('jquery');
+require('./front/template');
 // require('../sass/startbootstrap-clean-blog/js/clean-blog');
 
 window.Vue = require('vue')
