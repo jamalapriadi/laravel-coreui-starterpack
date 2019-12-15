@@ -17,6 +17,8 @@
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/responsive.css')}}">
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/prettyPhoto.css')}}">
     <link rel="shortcut icon" href="https://kidsrepublic.sch.id/uploads/icons/favicon.ico">
+
+    @yield('css')
 </head>
 <body class="home-one">
     <div id="app2">
@@ -28,6 +30,8 @@
     
 
         @include('layouts.kids.partials.footer')
+
+        @yield('js')
     </div>
 </body>
 </html>

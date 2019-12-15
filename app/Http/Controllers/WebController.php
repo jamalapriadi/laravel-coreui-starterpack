@@ -51,7 +51,7 @@ class WebController extends Controller
             ->whereHas('files')
             ->first();
 
-        return view('web.template.main')
+        return view('web.home')
             ->with('overlay',$overlay)
             ->with('carousel',$carousel)
             ->with('video',$video)
@@ -66,6 +66,14 @@ class WebController extends Controller
     public function gallery(Request $request)
     {
         return view('web.gallery');
+    }
+
+    public function testimoni(){
+        $model=\App\Models\Cms\Post::where('post_type','testimoni')
+                ->get();
+
+        return view('web.testimoni')
+            ->with('testimoni',$model);
     }
 
     public function single_page(Request $request,$slug ='/')
@@ -87,7 +95,13 @@ class WebController extends Controller
             ->whereSlug($slug)
             ->first();
 
+        if($page == null){
+            return abort(404);
+        }
+
         $program=array();
+        $photo=array();
+        $summary=array();
 
         if($page->component_name == "program-component"){
             $program=\App\Models\Cms\Post::where('post_type','program')
@@ -100,15 +114,42 @@ class WebController extends Controller
             if($page->component_name == "founder-component"){
                 $component=\App\Models\Kids\Founder::orderBy('created_at','desc')->get();
             }
-        }
 
-        if($page == null){
-            return abort(404);
+            if($page->component_name == "testimoni-component"){
+                $component=\App\Models\Cms\Post::where('post_type','testimoni')
+                    ->get();
+            }
+
+            if($page->component_name == "gallery-component"){
+                $component=\App\Models\Cms\Gallery::with(
+                    [
+                        'file'
+                    ]
+                )->get();
+            }
+
+            if($page->component_name == "newsletter-component"){
+                $component=\App\Models\Cms\Post::where('post_type','newsletter')
+                    ->get();
+
+                $summary=\App\Models\Cms\Post::where('post_type','newsletter')
+                    ->select(
+                        \DB::raw("date_format(created_at,'%M %Y') as periode"),
+                        \DB::raw("count(*) as jumlah")
+                    )->groupBy(\DB::raw("date_format(created_at,'%M %Y')"))
+                    ->get();
+
+                $photo=\App\Models\Cms\Galleryfile::orderBy('created_at','desc')
+                    ->limit(9)
+                    ->get();
+            }
         }
 
         return view('web.single_page')
             ->with('page',$page)
             ->with('program',$program)
+            ->with('photo',$photo)
+            ->with('summary',$summary)
             ->with('component', $component);
     }
 
@@ -129,8 +170,13 @@ class WebController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
+        $photo=\App\Models\Cms\Galleryfile::orderBy('created_at','desc')
+            ->limit(9)
+            ->get();
+
         return view('web.single_promo')
             ->with('page',$page)
+            ->with('photo',$photo)
             ->with('other',$other);
     }
 
@@ -151,9 +197,14 @@ class WebController extends Controller
             ->orderBy('created_at','desc')
             ->get();
 
+        $photo=\App\Models\Cms\Galleryfile::orderBy('created_at','desc')
+            ->limit(9)
+            ->get();
+
         return view('web.single_artikel')
             ->with('page',$page)
-            ->with('other',$other);
+            ->with('other',$other)
+            ->with('photo',$photo);
     }
 
     public function single_event(Request $request, $slug='/')

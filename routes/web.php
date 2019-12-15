@@ -24,6 +24,7 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('news/{slug}','WebController@single_news');
     Route::get('event/{slug}','WebController@single_event');
     Route::get('subscribe','WebController@subscribe');
+    Route::get('testimony','WebController@testimoni');
 });
 
 Route::group(['prefix'=>'list'],function(){

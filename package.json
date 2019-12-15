@@ -62,6 +62,7 @@
     "@coreui/icons": "0.3.0",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@johmun/vue-tags-input": "^2.0.1",
+    "@types/jquery.prettyphoto": "^3.1.29",
     "chart.js": "2.7.3",
     "ckeditor": "^4.12.1",
     "core-js": "^2.5.7",
