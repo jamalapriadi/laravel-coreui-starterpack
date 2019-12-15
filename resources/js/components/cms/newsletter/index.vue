@@ -46,7 +46,7 @@
                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="l.feature_image_url" alt="" class="img-fluid">
+                                <img :src="l.feature_image_url" alt="" class="img-fluid" style="width:150px; height:100px;">
                             </td>
                             <td>{{l.title}}</td>
                             <td>

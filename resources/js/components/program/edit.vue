@@ -53,8 +53,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
-                                <img v-bind:src="state.file" v-show="showPreview" class="img-fluid"/>
-                                <img v-bind:src="state.tmp_file" v-show="tmpshowPreview" class="img-fluid"/>
+                                <img v-bind:src="state.tmp_file" v-show="showPreview" class="img-fluid"/>
                             <br><br>
                             <div class="input-group">
                                 <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
@@ -176,6 +175,7 @@ export default {
                 facebook:'',
                 category:'',
                 status:'publish',
+                tmp_file:''
             },
             pencarian:'',
             pesankelas:'',
@@ -237,8 +237,7 @@ export default {
                     this.state.file="";
                     if(response.data.featured_image!=null){
                         this.state.tmp_file=response.data.feature_image_url;
-                        this.showPreview=false;
-                        this.tmpshowPreview=true;
+                        this.showPreview=true;
                     }
                 })
                 .catch( error => {
@@ -297,13 +296,30 @@ export default {
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
-            this.createImage(files[0]);
+
+            let ukuran = files[0].size;
+
+            if(ukuran > 1000000){
+                this.$swal('Warning', 'Ukuran file image tidak boleh lebih dari 1 MB' , 'warning');
+                return;
+            }
+            
+            if(files[0]['type']==='image/jpeg' || files[0]['type']==='image/png' || files[0]['type']==='image/jpg'){
+                this.createImage(files[0]);
+            }else{
+                this.$swal('Warning', 'Format file tidak diketahui' , 'warning');
+                return;
+            }
+
+            
         },
+
         createImage(file) {
             let reader = new FileReader();
             let vm = this;
             reader.onload = (e) => {
-                vm.state.file = e.target.result;
+                vm.state.tmp_file = e.target.result;
+                this.state.file = e.target.files[0];
                 vm.showPreview = true;
                 vm.tmpshowPreview=false;
             };
@@ -335,6 +351,7 @@ export default {
                         this.message = 'Data has been saved.';
                         this.pesankelas='alert alert-success';
                         // this.$router.replace('/all-post');
+                        this.getData()
                     }else{
                         this.pesankelas='alert alert-danger';
                         this.message = response.data.errors;

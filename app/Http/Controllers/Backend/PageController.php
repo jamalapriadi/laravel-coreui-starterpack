@@ -8,6 +8,7 @@ use App\Models\Cms\Post;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class PageController extends Controller
 {
@@ -18,7 +19,7 @@ class PageController extends Controller
                 'subcategory',
                 'penulis'
             ]
-        )->select('id','title','slug','description','updated_at','author','post_type','di_lihat',
+        )->select('id','heading_title','title','slug','description','updated_at','author','post_type','di_lihat',
         'post_status');
 
         if($request->has('type')){
@@ -43,7 +44,8 @@ class PageController extends Controller
             'title'=>'required',
             'page_type'=>'required',
             'template'=>'required',
-            'menu'=>'required'
+            'menu'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -57,8 +59,8 @@ class PageController extends Controller
         }else{
             $page_type=$request->input('page_type');
 
-
             $post=new Post;
+            $post->heading_title=$request->input('heading_title');
             $post->title=$request->input('title');
             $post->second_title=$request->input('second_title');
             $post->menu_id=$request->input('menu');
@@ -233,7 +235,8 @@ class PageController extends Controller
             'title'=>'required',
             'page_type'=>'required',
             'template'=>'required',
-            'menu'=>'required'
+            'menu'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -250,6 +253,7 @@ class PageController extends Controller
 
             $post=Post::find($id);
             $post->title=$request->input('title');
+            $post->heading_title=$request->input('heading_title');
             $post->second_title=$request->input('second_title');
             $post->menu_id=$request->input('menu');
             $post->page_type=$page_type;

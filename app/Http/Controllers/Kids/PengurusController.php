@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Kids\Pengurus;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class PengurusController extends Controller
 {
@@ -29,7 +30,8 @@ class PengurusController extends Controller
             'name'=>'required',
             'email'=>'required',
             'desc'=>'required',
-            'posisi'=>'required'
+            'posisi'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -58,7 +60,6 @@ class PengurusController extends Controller
                 if(!is_dir('uploads/pengurus/')){
                     mkdir('uploads/pengurus/', 0777, TRUE);
                 }
-
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                 Image::make($request->input('file'))->save(public_path('uploads/pengurus/').$filename);
@@ -75,8 +76,8 @@ class PengurusController extends Controller
                     $model->posisi()->sync(
                         [
                             $model->id => [
-                                'position_id'=>$posisi['id'],
-                                'tgl_menjabat'=>date('Y-m-d',strtotime($posisi['tgl_menjabat'])),
+                                'position_id'=>$posisi,
+                                'tgl_menjabat'=>date('Y-m-d',strtotime($request->input('tgl_menjabat'))),
                                 'active'=>'Y'
                             ]
                         ]
@@ -117,7 +118,8 @@ class PengurusController extends Controller
         $rules=[
             'name'=>'required',
             'email'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>'nullable|image|max:1000'
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -141,7 +143,6 @@ class PengurusController extends Controller
                 if(!is_dir('uploads/pengurus/')){
                     mkdir('uploads/pengurus/', 0777, TRUE);
                 }
-
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                 Image::make($request->input('file'))->save(public_path('uploads/pengurus/').$filename);

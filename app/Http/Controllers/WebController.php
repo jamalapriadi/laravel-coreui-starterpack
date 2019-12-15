@@ -24,20 +24,43 @@ class WebController extends Controller
     
     public function index(){
 
-        $calendar=\App\Models\Cms\Post::where('post_type','calendar')
-                ->with('files')
-                ->whereHas('files')
-                ->first();
-
         $overlay=Carouseloverlay::select('text')->first();
         $carousel=Carousel::select('caption','text','image')
             ->where('active','Y')
             ->get();
 
-        return view('web.home')
-            ->with('calendar',$calendar)
+        $video=\App\Models\Cms\Instansivideo::orderBy('created_at','desc')->get();
+
+        $fasilitas=\App\Models\Cms\Fasilitas::all();
+
+        $promo=\App\Models\Cms\Post::where('post_type','promo')
+            ->get();
+
+        $testimoni=\App\Models\Cms\Post::where('post_type','testimoni')
+            ->get();
+
+        
+        $news=\App\Models\Cms\Post::where('post_type','artikel')
+            ->get();
+
+        $event=\App\Models\Cms\Post::where('post_type','event')
+            ->get();
+
+        $calendar=\App\Models\Cms\Post::where('post_type','calendar')
+            ->with('files')
+            ->whereHas('files')
+            ->first();
+
+        return view('web.template.main')
             ->with('overlay',$overlay)
-            ->with('carousel',$carousel);
+            ->with('carousel',$carousel)
+            ->with('video',$video)
+            ->with('fasilitas',$fasilitas)
+            ->with('testimoni', $testimoni)
+            ->with('news',$news)
+            ->with('event',$event)
+            ->with('calendar',$calendar)
+            ->with('promo',$promo);
     }
 
     public function gallery(Request $request)
@@ -383,5 +406,46 @@ class WebController extends Controller
         }
 
         return $data;
+    }
+
+    public function template(Request $request)
+    {
+        $overlay=Carouseloverlay::select('text')->first();
+        $carousel=Carousel::select('caption','text','image')
+            ->where('active','Y')
+            ->get();
+
+        $video=\App\Models\Cms\Instansivideo::orderBy('created_at','desc')->get();
+
+        $fasilitas=\App\Models\Cms\Fasilitas::all();
+
+        $promo=\App\Models\Cms\Post::where('post_type','promo')
+            ->get();
+
+        $testimoni=\App\Models\Cms\Post::where('post_type','testimoni')
+            ->get();
+
+        
+        $news=\App\Models\Cms\Post::where('post_type','artikel')
+            ->get();
+
+        $event=\App\Models\Cms\Post::where('post_type','event')
+            ->get();
+
+        $calendar=\App\Models\Cms\Post::where('post_type','calendar')
+            ->with('files')
+            ->whereHas('files')
+            ->first();
+
+        return view('web.template.main')
+            ->with('overlay',$overlay)
+            ->with('carousel',$carousel)
+            ->with('video',$video)
+            ->with('fasilitas',$fasilitas)
+            ->with('testimoni', $testimoni)
+            ->with('news',$news)
+            ->with('event',$event)
+            ->with('calendar',$calendar)
+            ->with('promo',$promo);
     }
 }

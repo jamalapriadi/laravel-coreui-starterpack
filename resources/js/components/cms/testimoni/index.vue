@@ -9,6 +9,11 @@
             </div>
         </div>
         <div class="card-body">
+            <code>Testimony</code> digunakan untuk maintenance konten testimony yang ada dimenu <a href="https://kidsrepublic.sch.id" target="_blank">Home</a> frontend.<br>
+            <code>Testimony</code> wajib ada <code>images</code> dari parent.<br>
+            Dimensi <code>images</code> 74x74 atau dengan rasio yang sama.<br>
+            <hr>
+
             <div class="row">
                 <div class="col-lg-5">
                     <form class="form-inline">
@@ -29,8 +34,8 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Image</th>
-                            <th>Title</th>
+                            <th width="10%">Image</th>
+                            <th width="15%">Title</th>
                             <th>Testimoni</th>
                             <th width="17%"></th>
                         </tr>
@@ -39,7 +44,7 @@
                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="l.feature_image_url" alt="" class="img-fluid">
+                                <img :src="l.feature_image_url" alt="" class="img-fluid img-responsive" style="width:75px;height:54px">
                             </td>
                             <td>{{l.title}}</td>
                             <td>

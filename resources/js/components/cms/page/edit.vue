@@ -104,6 +104,10 @@
                 <div class="card card-flat">
                     <div class="card-body">
                         <div class="form-group">
+                            <label for="" class="control-label">Heading Title</label>
+                            <input class="form-control" name="heading title" id="title" placeholder="Heading Title" v-model="state.heading_title">
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Title</label>
                             <div class="row">
                                 <div class="col-lg-6">
@@ -333,6 +337,7 @@ export default {
             postId:'',
             state:{
                 kode:'',
+                heading_title:'',
                 title:'',
                 second_title:'',
                 topik:'',
@@ -417,6 +422,7 @@ export default {
             axios.get('data/page/'+id)
                 .then(response => {
                     this.state.kode = response.data.id;
+                    this.state.heading_title = response.data.heading_title;
                     this.state.title=response.data.title;
                     this.state.second_title = response.data.second_title;
                     this.state.topik=response.data.topik;
@@ -514,8 +520,22 @@ export default {
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
-            this.createImage(files[0]);
+
+            let ukuran = files[0].size;
+
+            if(ukuran > 1000000){
+                this.$swal('Warning', 'Ukuran file image tidak boleh lebih dari 1 MB' , 'warning');
+                return;
+            }
+
+            if(files[0]['type']==='image/jpeg' || files[0]['type']==='image/png' || files[0]['type']==='image/jpg'){
+                this.createImage(files[0]);
+            }else{
+                this.$swal('Warning', 'Format file tidak diketahui' , 'warning');
+                return;
+            }
         },
+
         createImage(file) {
             let reader = new FileReader();
             let vm = this;
@@ -531,7 +551,20 @@ export default {
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
-            this.createImageSlider(files[0]);
+
+            let ukuran = files[0].size;
+
+            if(ukuran > 1000000){
+                this.$swal('Warning', 'Ukuran file image tidak boleh lebih dari 1 MB' , 'warning');
+                return;
+            }
+
+            if(files[0]['type']==='image/jpeg' || files[0]['type']==='image/png' || files[0]['type']==='image/jpg'){
+                this.createImageSlider(files[0]);
+            }else{
+                this.$swal('Warning', 'Format file tidak diketahui' , 'warning');
+                return;
+            }
         },
 
         createImageSlider(file) {

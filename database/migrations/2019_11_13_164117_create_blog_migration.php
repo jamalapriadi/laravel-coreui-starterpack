@@ -38,6 +38,7 @@ class CreateBlogMigration extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->string('slug',191)->nullable();
+            $table->string('heading_title',191)->nullable();
             $table->string('title',191)->nullable();
             $table->string('second_title',191)->nullable();
             $table->text('teaser',191)->nullable();

@@ -13,7 +13,7 @@
                                 <article class="single-column">
                                     <div class="img-box-s2">
                                         <div class="img-holder">
-                                            <img :src="l.feature_image_url" alt="">
+                                            <img :src="l.feature_image_url" alt="" style="width:770px; height:348px">
                                         </div>
                                         <div class="outer-box">
                                             <div class="content">

@@ -6,6 +6,16 @@ class Instansi extends Model
 {
     protected $table="instansi";
 
+    protected $appends = [
+        'logo_url'
+    ];
+
+    public function getLogoUrlAttribute(){
+        $url = asset('uploads/info/'.$this->logo);
+
+        return $url;
+    }
+
     public function video(){
         return $this->hasMany('App\Models\Cms\Instansivideo','instansi_id');
     }

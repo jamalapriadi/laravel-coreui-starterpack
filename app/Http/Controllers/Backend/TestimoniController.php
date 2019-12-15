@@ -8,6 +8,7 @@ use \App\Models\Cms\Headline;
 use App\Models\Cms\Post;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class TestimoniController extends Controller
 {   
@@ -29,7 +30,8 @@ class TestimoniController extends Controller
     {
         $rules=[
             'title'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -89,7 +91,8 @@ class TestimoniController extends Controller
     {
         $rules=[
             'title'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

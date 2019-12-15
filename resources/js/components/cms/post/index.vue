@@ -10,6 +10,12 @@
             </div>
         </div>
         <div class="card-body">
+            <code>News</code> digunakan untuk maintenance konten news yang ada dimenu <a href="https://kidsrepublic.sch.id" target="_blank">Home</a> frontend.<br>
+            file <code>images</code> untuk tampilan preview dibawah ini otomatis akan disetting ke 150x100 pixel.<br>
+            file <code>images</code> untuk tampilan preview di <a href="https://kidsrepublic.sch.id" target="_blank">Home</a> otomatis akan disetting ke 237x174 pixel.<br>
+            file <code>images</code> ditampilan details news frontend otomatis akan disetting ke 770x348 pixel.<br>
+            <hr>
+
             <div class="row">
                 <div class="col-lg-5">
                     <form class="form-inline">
@@ -30,6 +36,7 @@
                     <thead>
                         <tr>
                             <th width="5%">No.</th>
+                            <th>Images</th>
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Post Status</th>
@@ -40,7 +47,9 @@
                     <tbody>
                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                             <td>{{index+1}}</td>
-                            <!-- <td>{{l.id}}</td> -->
+                            <td>
+                                <img :src="l.feature_image_url" alt="" class="img-responsive" style="width:150px;height:100px;">
+                            </td>
                             <td>{{l.title}}</td>
                             <td>{{l.slug}}</td>
                             <td>{{l.post_status}}</td>

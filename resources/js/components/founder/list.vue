@@ -32,8 +32,8 @@
                     <thead class="thead-light">
                         <tr>
                             <th width="5%">No.</th>
-                            <th>Image</th>
-                            <th>Name</th>
+                            <th width="15%">Image</th>
+                            <th width="15%">Name</th>
                             <th>Description</th>
                             <th width="17%"></th>
                         </tr>
@@ -42,7 +42,9 @@
                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                             <td>{{index+1}}</td>
                             <td>
-                                <img :src="l.image_url" class="img-fluid" style="height:80px;">
+                                <center>
+                                    <img :src="l.image_url" class="img-fluid" style="height:80px;">
+                                </center>
                             </td>
                             <td>{{l.name}}</td>
                             <td>

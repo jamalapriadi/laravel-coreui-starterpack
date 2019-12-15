@@ -267,8 +267,22 @@
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
-                this.createImage(files[0]);
+
+                let ukuran = files[0].size;
+
+                if(ukuran > 1000000){
+                    this.$swal('Warning', 'Ukuran file image tidak boleh lebih dari 1 MB' , 'warning');
+                    return;
+                }
+
+                if(files[0]['type']==='image/jpeg' || files[0]['type']==='image/png' || files[0]['type']==='image/jpg'){
+                    this.createImage(files[0]);
+                }else{
+                    this.$swal('Warning', 'Format file tidak diketahui' , 'warning');
+                    return;
+                }
             },
+
             createImage(file) {
                 let reader = new FileReader();
                 let vm = this;

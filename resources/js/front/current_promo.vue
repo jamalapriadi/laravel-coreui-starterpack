@@ -11,7 +11,7 @@
                         <div class="img-holder">
                             <figure>
                                 <a :href="'/promo/'+l.slug" target="_blank">
-                                    <img :src="l.feature_image_url" alt="images">
+                                    <img :src="l.feature_image_url" alt="images" class="img-responsive"  style="width:770px; height:348px">
                                 </a>
                             </figure>
                             <div class="content bg-color-3" style="line-height: 1.5em; height: 6em; overflow: hidden;">

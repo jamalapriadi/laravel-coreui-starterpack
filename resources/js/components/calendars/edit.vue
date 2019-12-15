@@ -264,7 +264,13 @@ export default {
         saveForm(){
             this.loading=true;
 
-            axios.patch('data/promo/'+this.postId, this.state)
+            let formData = new FormData();
+            formData.append('kode',this.postId);
+            formData.append('title',this.state.title);
+            formData.append('desc', this.state.desc);
+            formData.append('file', this.state.file);
+
+            axios.post('data/calendar', formData)
                 .then(response => {
                     this.loading=false;
                     if(response.data.success==true){

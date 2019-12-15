@@ -15,7 +15,7 @@
                                         <div class="img-holder">
                                             <figure>
                                                 <a :href="'news/'+l.slug" target="_blank">
-                                                    <img :src="l.feature_image_url" alt="images">
+                                                    <img :src="l.feature_image_url" alt="images" class="img-responsive" style="width:237; height:107px">
                                                 </a>
                                             </figure>
                                             <div class="content bg-color-2" style="line-height: 1.5em; height: 9em; overflow: hidden;">

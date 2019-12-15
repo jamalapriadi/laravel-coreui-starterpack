@@ -90,6 +90,15 @@ class GalleryController extends Controller
 
     public function save_file_gallery(Request $request, $id)
     {
+        if($request->hasFile('file')){
+            $imageData = $request->file('file');
+            $fileName = time().'.'.$request->file->getClientOriginalExtension();
+
+            return $fileName;
+        }else{
+            return "Tidak ada file";
+        }
+        
         $model=Gallery::with('file')->find($id);
 
         $type=$request->input('type');

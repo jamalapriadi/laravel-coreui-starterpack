@@ -3,7 +3,7 @@
         <div class="container">
             <div class="logo pull-left">
                 <a href="/">
-                    <img src="https://kidsrepublic.sch.id/resizepng/logo/logo.png/null/82/100/0" alt="KR Logo">
+                    <img src="{{$instansi->logo_url}}" alt="KR Logo">
                 </a>
             </div>
 

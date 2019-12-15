@@ -7,11 +7,13 @@
 @endif
 
 @section('content')
-    <section class="page-title center">
-        <div class="container">
-            <h2>{{$page->title}} {{$page->second_title}}</h2>
-        </div>
-    </section>
+    @if($page->heading_title!=null)
+        <section class="page-title center">
+            <div class="container">
+                <h2>{{$page->heading_title}}</h2>
+            </div>
+        </section>
+    @endif
 
     @if($page->page_type == "component")
         @if($page->component_name == "founder-component")

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cms\Post;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class NewsletterController extends Controller
 {
@@ -47,7 +48,8 @@ class NewsletterController extends Controller
     public function store(Request $request){
         $rules=[
             'title'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

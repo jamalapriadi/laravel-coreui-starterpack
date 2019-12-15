@@ -8,6 +8,7 @@ use \App\Models\Cms\Headline;
 use App\Models\Cms\Post;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class EventController extends Controller
 {
@@ -51,7 +52,8 @@ class EventController extends Controller
             'teaser'=>'required',
             'jam_mulai'=>'required',
             'jam_selesai'=>'required',
-            'lokasi'=>'required'
+            'lokasi'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -126,7 +128,8 @@ class EventController extends Controller
             'teaser'=>'required',
             'jam_mulai'=>'required',
             'jam_selesai'=>'required',
-            'lokasi'=>'required'
+            'lokasi'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

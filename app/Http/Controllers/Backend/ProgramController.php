@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Cms\Post;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class ProgramController extends Controller
 {
@@ -49,7 +50,8 @@ class ProgramController extends Controller
         $rules=[
             'title'=>'required',
             'desc'=>'required',
-            'second_title'=>'required'
+            'second_title'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -61,7 +63,15 @@ class ProgramController extends Controller
                 'errors'=>$validasi->errors()->all()
             );
         }else{
-            $post=new Post;
+
+            if($request->has('kode') && $request->input('kode')!=""){
+                $kd=$request->input('kode');
+                $post=Post::find($kd);
+            }else{
+                $post=new Post;
+            }
+
+            
             $post->title=$request->input('title');
             $post->second_title=$request->input('second_title');
             $post->description=$request->input('desc');
@@ -84,7 +94,6 @@ class ProgramController extends Controller
                 if(!is_dir('uploads/program/')){
                     mkdir('uploads/program/', 0777, TRUE);
                 }
-
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                 Image::make($request->input('file'))->save(public_path('uploads/program/').$filename);
@@ -115,7 +124,8 @@ class ProgramController extends Controller
     public function update(Request $request,$id){
         $rules=[
             'title'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -146,15 +156,17 @@ class ProgramController extends Controller
             $post->post_status=$request->input('status');
             $post->author=\Auth::user()->id;
 
-            if($request->has('file') && $request->input('file')!=""){
+            if($request->hasFile('file')){
                 if(!is_dir('uploads/program/')){
                     mkdir('uploads/program/', 0777, TRUE);
                 }
 
-                $imageData = $request->input('file');
-                $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($request->input('file'))->save(public_path('uploads/program/').$filename);
-                $post->featured_image=$filename;
+                $imageData = $request->file('file');
+                $fileName = time().'.'.$request->file->getClientOriginalExtension();
+
+                if($imageData->move(public_path()."/uploads/program/",$fileName)){
+                    $post->featured_image=$fileName;
+                }
             }
 
             $simpan=$post->save();

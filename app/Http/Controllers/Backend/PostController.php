@@ -8,6 +8,7 @@ use App\Models\Cms\Post;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class PostController extends Controller
 {
@@ -18,8 +19,8 @@ class PostController extends Controller
                 'subcategory',
                 'penulis'
             ]
-        )->select('id','title','slug','description','updated_at','author','post_type','di_lihat',
-        'post_status');
+        )->select('id','heading_title','title','slug','description','updated_at','author','post_type','di_lihat',
+        'post_status','featured_image');
 
         if($request->has('type')){
             $type=$request->input('type');
@@ -61,7 +62,8 @@ class PostController extends Controller
         $rules=[
             'title'=>'required',
             'teaser'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -245,7 +247,8 @@ class PostController extends Controller
     public function update(Request $request,$id){
         $rules=[
             'title'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

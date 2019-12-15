@@ -30,6 +30,7 @@
                     <thead>
                         <tr>
                             <th width="5%">No.</th>
+                            <th>Heading Title</th>
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Post Status</th>
@@ -40,7 +41,7 @@
                     <tbody>
                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                             <td>{{index+1}}</td>
-                            <!-- <td>{{l.id}}</td> -->
+                            <td>{{l.heading_title}}</td>
                             <td>{{l.title}}</td>
                             <td>{{l.slug}}</td>
                             <td>{{l.post_status}}</td>

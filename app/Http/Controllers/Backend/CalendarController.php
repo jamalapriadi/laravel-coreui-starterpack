@@ -60,7 +60,13 @@ class CalendarController extends Controller
                 'errors'=>$validasi->errors()->all()
             );
         }else{
-            $post=new Post;
+            if($request->has('kode') && $request->input('kode')!=""){
+                $kd=$request->input('kode');
+                $post=Post::find($kd);
+            }else{
+                $post=new Post;
+            }
+            
             $post->title=$request->input('title');
             $post->description=$request->input('desc');
             $post->comment='open';
@@ -89,20 +95,23 @@ class CalendarController extends Controller
                     $imageData = $request->file('file');
                     $fileName = time().'.'.$request->file->getClientOriginalExtension();
 
-                    $imageData->move(public_path()."/uploads/file/",$fileName);
-                    
-    
-                    \DB::table('post_files')
-                                ->insert(
-                                    [
-                                        'post_id'=>$post->id,
-                                        'type_file'=>'file',
-                                        'file'=>$fileName,
-                                        'author'=>auth()->user()->id,
-                                        'created_at'=>date('Y-m-d H:i:s'),
-                                        'updated_at'=>date('Y-m-d H:i:s')
-                                    ]
-                                );
+                    if($imageData->move(public_path()."/uploads/file/",$fileName)){
+                        \DB::table('post_files')
+                            ->where('post_id',$post->id)
+                            ->delete();
+
+                        \DB::table('post_files')
+                            ->insert(
+                                [
+                                    'post_id'=>$post->id,
+                                    'type_file'=>'file',
+                                    'file'=>$fileName,
+                                    'author'=>auth()->user()->id,
+                                    'created_at'=>date('Y-m-d H:i:s'),
+                                    'updated_at'=>date('Y-m-d H:i:s')
+                                ]
+                            );
+                    }
                 }
             }
 
@@ -158,15 +167,33 @@ class CalendarController extends Controller
             $post->post_status=$request->input('status');
             $post->author=\Auth::user()->id;
 
-            if($request->has('file') && $request->input('file')!=""){
-                if(!is_dir('uploads/calendar/')){
-                    mkdir('uploads/calendar/', 0777, TRUE);
+            if($request->hasFile('file')){
+                if(!is_dir('uploads/file/')){
+                    mkdir('uploads/file/', 0777, TRUE);
                 }
 
-                $imageData = $request->input('file');
-                $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($request->input('file'))->save(public_path('uploads/calendar/').$filename);
-                $post->featured_image=$filename;
+                $imageData = $request->file('file');
+                $fileName = time().'.'.$request->file->getClientOriginalExtension();
+
+                if($imageData->move(public_path()."/uploads/file/",$fileName)){
+                    \DB::table('post_files')
+                        ->where('post_id',$post->id)
+                        ->delete();
+
+
+                    \DB::table('post_files')
+                        ->insert(
+                            [
+                                'post_id'=>$post->id,
+                                'type_file'=>'file',
+                                'file'=>$fileName,
+                                'author'=>auth()->user()->id,
+                                'created_at'=>date('Y-m-d H:i:s'),
+                                'updated_at'=>date('Y-m-d H:i:s')
+                            ]
+                        );
+                }
+
             }
 
             $simpan=$post->save();

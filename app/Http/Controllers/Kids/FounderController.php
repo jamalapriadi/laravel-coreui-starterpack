@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Kids\Founder;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Rules\ImageValidation;
 
 class FounderController extends Controller
 {
@@ -27,7 +28,8 @@ class FounderController extends Controller
     {
         $rules=[
             'name'=>'required',
-            'desc'=>'required'
+            'desc'=>'required',
+            'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -54,7 +56,6 @@ class FounderController extends Controller
                 if(!is_dir('uploads/founder/')){
                     mkdir('uploads/founder/', 0777, TRUE);
                 }
-
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                 Image::make($request->input('file'))->save(public_path('uploads/founder/').$filename);

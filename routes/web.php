@@ -14,6 +14,8 @@ Route::post('/simpan-info','WebController@simpan_info');
 
 Auth::routes();
 
+Route::get('template','WebController@template');
+
 Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('/','WebController@index');
     Route::get('gallery','WebController@gallery');
@@ -46,9 +48,6 @@ Route::group(['prefix'=>'proses'],function(){
     Route::post('kontak','WebController@save_kontak');
     Route::post('subscribe','WebController@save_subscribe');
 });
-
-
-
 
 
 Route::get('/home', 'HomeController@index')->name('home');
