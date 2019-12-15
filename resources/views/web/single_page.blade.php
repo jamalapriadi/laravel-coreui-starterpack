@@ -49,7 +49,7 @@
             <section class="filter" style="padding-top: 75px;">
                 <div class="container">
                     <div class="pull-left">
-                        <select class="col-md-4 col-sm-6 col-xs-12 btn-style-one" id="divSearchGallery">
+                        <select class="col-md-4 col-sm-6 col-xs-12 btn-style-one" id="pilihgallery">
                             <option value="">Select Album</option>
                             @foreach($component as $key=>$val)
                                 <option value="{{$val->id}}">{{$val->name}}</option>
@@ -69,6 +69,8 @@
                             <div id="lightbox" class="lightbox">
                                 <!--Default Portfolio Item-->
                                 <div id="tampilGalleryFile" data-url="{{URL::to('list/gallery-file')}}"></div>
+
+                                <div id="tampilLoadMore"></div>
                             </div>
                         </div>
                     </div>

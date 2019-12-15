@@ -145,11 +145,17 @@ class KidsController extends Controller
         if($request->ajax()){
             $model=\App\Models\Cms\Galleryfile::select('*');
 
-            if($request->has('kode')){
+            if($request->has('kode') && $request->input('kode')!=""){
                 $model=$model->where('gallery_id',$request->input('kode'));
             }
 
-            return $model->limit(6)->get();
+            if($request->has('per_page')){
+                $per_page=$request->input('per_page');
+            }else{
+                $per_page=6;
+            }
+
+            return $model->limit($per_page)->get();
         }
 
         return abort(404);

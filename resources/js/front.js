@@ -1,6 +1,6 @@
 require('./bootstrap');
 require('jquery');
-require('./front/jquery.prettyPhoto');
+require('simple-lightbox');
 require('./front/template');
 require('./front/gallery');
 require('./front/subscribe');

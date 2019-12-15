@@ -271,7 +271,12 @@
                         <div class="myIframe">
                             @if($calendar != null)
                                 @if(count($calendar->files) > 0)
-                                    <iframe src="{{$calendar->files[0]->image_url}}" frameborder="0" allowfullscreen></iframe>
+                                    {{-- <iframe src="{{$calendar->files[0]->image_url}}" frameborder="0" allowfullscreen></iframe> --}}
+                                    {{-- <iframe id="fred" src="{{$calendar->files[0]->image_url}}" 
+                                        frameborder="0" scrolling="auto" height="1100" width="850" ></iframe> --}}
+
+                                    <iframe src="https://docs.google.com/viewerng/viewer?url={{$calendar->files[0]->image_url}}&embedded=true" frameborder="0" height="100%" width="100%">
+                                        </iframe>
                                 @endif 
                             @endif
                         </div>

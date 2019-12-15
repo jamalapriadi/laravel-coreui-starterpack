@@ -8,12 +8,15 @@ $(function () {
     var per_page=6;
 
     function getFile(){
+        var pilihgallery=$("#pilihgallery").val();
+
         $.ajax({
-            url:dataTable.data('url')+"?per_page="+per_page,
+            url:dataTable.data('url')+"?per_page="+per_page+"&kode="+pilihgallery,
             type:"GET",
             beforeSend:function(){
                 // $('[role="status"]').show();
                 $("#tampilGalleryFile").empty().html("<div class='alert alert-info'>Please wait...</div>");
+                $("#tampilLoadMore").empty();
             },
             success:function(result){
                 // $('[role="status"]').hide();
@@ -27,9 +30,9 @@ $(function () {
                                     '<img style="height:321.73px; width:370px;" src="'+b.image_url+'" alt="">'+
                                 '</figure>'+
                                 '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
-                                    '<div class="inner-box">'+
+                                    '<div class="inner-box imageGallery1">'+
                                         '<h3>'+b.title+'</h3>'+
-                                        '<a href="'+b.image_url+'" rel="prettyPhoto[pp_gal]" class="bg-color-1">View Photo</a>'+
+                                        '<a href="'+b.image_url+'" rel="prettyPhoto[pp_gal]" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>';
@@ -41,7 +44,7 @@ $(function () {
                                 '<figure class="image-box">'+
                                     '<img style="height:321.73px; width:370px;" src="https://img.youtube.com/vi/'+b.video_url+'/mqdefault.jpg" alt="Kids Republic"></figure>'+
                                     '<div class="content">'+
-                                        '<div class="inner-box">'+
+                                        '<div class="inner-box imageGallery1">'+
                                             '<h3>'+b.title+'</h3>'+
                                             '<a testprety href="https://www.youtube.com/watch?v='+b.video_url+'" rel="prettyPhoto[gallery]" class="bg-color-1">View Video<span class=""></span></a>'+
                                         '</div>'+
@@ -52,17 +55,38 @@ $(function () {
                     el+='</div>';
                 })
 
+                var al="";
                 if(result.length > 0){
-                    el+='<div id="btnloadmore" class="link-btn center"><a href="javascript:void(0)" class="theme-btn btn-style-one">load more</a></div>';
+                    al+='<div id="btnloadmore" class="link-btn center"><a href="javascript:void(0)" class="theme-btn btn-style-one">load more</a></div>';
                 }
 
                 $("#tampilGalleryFile").empty().html(el);
+                $("#tampilLoadMore").empty().html(al);
 
-                $("a[rel^='prettyPhoto']").prettyPhoto();
+                $('.imageGallery1 a').simpleLightbox();
             }
         })
 
     }
+
+    $(document).on("click",".alamat",function(e){
+        
+    })
+
+    $(document).on("click","#btnloadmore",function(e){
+        e.preventDefault();
+        per_page=per_page+6;
+
+        getFile(per_page);
+
+    });
+
+    $(document).on("change","#pilihgallery",function(e){
+        e.preventDefault();
+        per_page=6;
+
+        getFile(per_page);
+    })
 
     getFile();
 })    
