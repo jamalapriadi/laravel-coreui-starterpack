@@ -41993,7 +41993,7 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/code/Documents/kids/resources/js/front.js */"./resources/js/front.js");
+module.exports = __webpack_require__(/*! /home/jamalapriadi/Projects/kids/resources/js/front.js */"./resources/js/front.js");
 
 
 /***/ })
