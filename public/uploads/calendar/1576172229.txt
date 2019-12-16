@@ -1,0 +1,24 @@
+client id : GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5
+client secret : HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH
+
+https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
+
+https://api.foursquare.com/v2/venues/412d2800f964a520df0c1fe3?client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
+
+get all categories :
+==========================
+ - https://api.foursquare.com/v2/venues/categories?client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
+
+get venue by id:
+=========================
+ - https://api.foursquare.com/v2/venues/412d2800f964a520df0c1fe3?client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
+
+- halal resto, halal supermarket
+
+get mosque :
+================================
+- https://api.foursquare.com/v2/venues/search?near=Jakarta&categoryId=4bf58dd8d48988d138941735&client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
+
+get halal restouran
+================================
+- https://api.foursquare.com/v2/venues/search?near=Jakarta&categoryId=52e81612bcbc57f1066b79ff&client_id=GOQXQ0QAXACVCNPDNVP2U0SXJ2XATHLRNAAYDXDYCDX5VZI5&client_secret=HUZIK4LUSSSY2ZLMO2XBMDOD3WEI0LR4D3TBACBHUYTVANVH&v=20190429
