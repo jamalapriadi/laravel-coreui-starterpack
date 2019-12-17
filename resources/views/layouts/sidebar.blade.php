@@ -7,6 +7,11 @@
                 </router-link>
             </li>
             <li class="nav-item nav-dropdown">
+                <li class="nav-item">
+                    <router-link to="/instansi" class="nav-link" active-class="active">
+                        <i class="nav-icon fa fa-building"></i> Instansi
+                    </router-link>
+                </li>
                 <a class="nav-link nav-dropdown-toggle" href="#">
                     <i class="nav-icon fa fa-users"></i> Founder & Teacher
                 </a>
@@ -120,11 +125,6 @@
             </li>
 
             <li class="nav-title">Settings</li>
-            <li class="nav-item">
-                <router-link to="/instansi" class="nav-link" active-class="active">
-                    <i class="nav-icon fa fa-building"></i> Instansi
-                </router-link>
-            </li>
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#">
                     <i class="nav-icon icon-user"></i> User

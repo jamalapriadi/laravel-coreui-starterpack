@@ -155,6 +155,14 @@ class MenuController extends Controller
     public function list_menu(Request $request){
         $model=Menu::with('parent')->select('*');
 
+        // $model=Menu::with(
+        //     [
+        //         'parent'
+        //     ]
+        // )->doesnthave('page')
+        // ->whereNotNull('parent_id')
+        // ->select('*');
+
         if($request->has('q')){
             $model=$model->where('menu','like','%'.$request->input('q').'%');
         }

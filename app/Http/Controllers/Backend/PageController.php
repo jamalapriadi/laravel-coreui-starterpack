@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Rules\ImageValidation;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -44,11 +45,15 @@ class PageController extends Controller
             'title'=>'required',
             'page_type'=>'required',
             'template'=>'required',
-            'menu'=>'required',
+            'menu'=>'required|unique:posts,menu_id',
             'file'=>['nullable',new ImageValidation]
         ];
 
-        $validasi=\Validator::make($request->all(),$rules);
+        $pesan=[
+            'menu.unique'=>'This Menu has already Page'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules,$pesan);
 
         if($validasi->fails()){
             $data=array(
@@ -231,6 +236,8 @@ class PageController extends Controller
     }
 
     public function update(Request $request,$id){
+        $post=Post::findOrFail($id);
+
         $rules=[
             'title'=>'required',
             'page_type'=>'required',
@@ -250,8 +257,6 @@ class PageController extends Controller
         }else{
             $page_type=$request->input('page_type');
 
-
-            $post=Post::find($id);
             $post->title=$request->input('title');
             $post->heading_title=$request->input('heading_title');
             $post->second_title=$request->input('second_title');

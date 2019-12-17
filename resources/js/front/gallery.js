@@ -6,6 +6,7 @@ $(function () {
     }
 
     var per_page=6;
+    $("a[rel^='prettyPhoto']").prettyPhoto();
 
     function getFile(){
         var pilihgallery=$("#pilihgallery").val();
@@ -63,7 +64,7 @@ $(function () {
                 $("#tampilGalleryFile").empty().html(el);
                 $("#tampilLoadMore").empty().html(al);
 
-                $('.imageGallery1 a').simpleLightbox();
+                $("a[rel^='prettyPhoto']").prettyPhoto();
             }
         })
 
