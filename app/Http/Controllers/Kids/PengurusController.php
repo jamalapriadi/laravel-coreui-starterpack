@@ -76,8 +76,8 @@ class PengurusController extends Controller
                     $model->posisi()->sync(
                         [
                             $model->id => [
-                                'position_id'=>$posisi,
-                                'tgl_menjabat'=>date('Y-m-d',strtotime($request->input('tgl_menjabat'))),
+                                'position_id'=>$posisi['id'],
+                                'tgl_menjabat'=>date('Y-m-d',strtotime($posisi['tgl_menjabat'])),
                                 'active'=>'Y'
                             ]
                         ]
