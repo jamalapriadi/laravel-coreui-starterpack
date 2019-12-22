@@ -19,15 +19,26 @@
                         <p><a href="{{URL::to('page/contact')}}">Email Us</a></p>
                     </div>
 
-                    <div class="contact">
-						<a href="https://web.facebook.com/kidsrepublicid?ref=hl" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                    </div>
-					<div class="contact">
-						<a href="https://www.instagram.com/kidsrepublicschool/" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a>
-                    </div>
-                    <div class="contact">
-						<a href="https://www.youtube.com/channel/UCbLZ_IwTxCaq8TzOny9dB4w" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                    </div>
+                    @foreach($instansi->sosmed as $row)
+                        @if($row->name == "Facebook")
+                            <div class="contact">
+                                <a href="{{$row->pivot->social_media_url}}" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                            </div>
+                        @endif
+
+                        @if($row->name == "Instagram")
+                            <div class="contact">
+                                <a href="{{$row->pivot->social_media_url}}" class="instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                            </div>
+                        @endif
+
+                        @if($row->name == "Youtube")
+                            <div class="contact">
+                                <a href="{{$row->pivot->social_media_url}}" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+                            </div>
+                        @endif
+
+                    @endforeach
                 </div>
                 <nav class="mainmenu-area">
                     <div class="navbar" role="navigation">
@@ -112,36 +123,53 @@
     </div>
 	<div class="socmed-samping">
         <ul class="social-icons text-center icons-design-colored icons-size-custom social-follow basel-sticky-social basel-sticky-social-right">
-            <li class="social-facebook">
-                <a rel="nofollow" style="background:#365493" href="https://www.facebook.com/solusidigitalindonesia/" target="_blank" class="">
-                    <i class="fa fa-facebook"></i>
-                    <span style="background:#365493" class="basel-social-icon-name">Facebook</span>
-                </a>
-            </li>
-            <li class="social-instagram">
-                <a rel="nofollow" style="background:#774430" href="https://www.instagram.com/solusidigital/" target="_blank" class="">
-                    <i class="fa fa-instagram"></i>
-                    <span style="background:#774430" class="basel-social-icon-name">Instagram</span>
-                </a>
-            </li>
-            <li class="social-youtube">
-                <a rel="nofollow" style="background:#c32f2b" href="https://www.youtube.com/channel/UCq-3TGh5xHjUOZm5dnedWbw" target="_blank" class="">
-                    <i class="fa fa-youtube"></i>
-                    <span style="background:#c32f2b" class="basel-social-icon-name">YouTube</span>
-                </a>
-            </li>
-            <li class="social-whatsapp whatsapp-desktop">
-                <a rel="nofollow" style="background:#3CF" href="https://wa.me/6281329623711" target="_blank" class="">
-                    <i class="fa fa-twitter"></i>
-                    <span style="background:#3CF" class="basel-social-icon-name">Twitter</span>
-                </a>
-            </li>
-            <li class="social-whatsapp whatsapp-mobile">
-                <a rel="nofollow" style="background:#1EBEA5" href="https://wa.me/6281329623711" target="_blank" class="">
-                    <i class="fa fa-whatsapp"></i>
-                    <span style="background:#1EBEA5" class="basel-social-icon-name">WhatsApp</span>
-                </a>
-            </li>
+            @foreach($instansi->sosmed as $row)
+                @if($row->name == "Facebook")
+                    <li class="social-facebook">
+                        <a rel="nofollow" style="background:#365493" href="{{$row->pivot->social_media_url}}" target="_blank" class="">
+                            <i class="fa fa-facebook"></i>
+                            <span style="background:#365493" class="basel-social-icon-name">{{$row->name}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if($row->name == "Instagram")
+                    <li class="social-instagram">
+                        <a rel="nofollow" style="background:#774430" href="{{$row->pivot->social_media_url}}" target="_blank" class="">
+                            <i class="fa fa-instagram"></i>
+                            <span style="background:#774430" class="basel-social-icon-name">{{$row->name}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if($row->name == "Youtube")
+                    <li class="social-youtube">
+                        <a rel="nofollow" style="background:#c32f2b" href="{{$row->pivot->social_media_url}}" target="_blank" class="">
+                            <i class="fa fa-youtube"></i>
+                            <span style="background:#c32f2b" class="basel-social-icon-name">{{$row->name}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if($row->name == "Twitter")
+                    <li class="social-whatsapp whatsapp-desktop">
+                        <a rel="nofollow" style="background:#3CF" href="{{$row->pivot->social_media_url}}" target="_blank" class="">
+                            <i class="fa fa-twitter"></i>
+                            <span style="background:#3CF" class="basel-social-icon-name">{{$row->name}}</span>
+                        </a>
+                    </li>
+                @endif
+
+                @if($row->name == "Whatsapp")
+                    <li class="social-whatsapp whatsapp-mobile">
+                        <a rel="nofollow" style="background:#1EBEA5" href="{{$row->pivot->social_media_url}}" target="_blank" class="">
+                            <i class="fa fa-whatsapp"></i>
+                            <span style="background:#1EBEA5" class="basel-social-icon-name">{{$row->name}}</span>
+                        </a>
+                    </li>
+                @endif
+
+            @endforeach
         </ul>
 	</div>
 </header>

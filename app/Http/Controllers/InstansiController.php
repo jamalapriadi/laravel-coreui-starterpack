@@ -17,7 +17,8 @@ class InstansiController extends Controller
                 'menu.child.child',
                 'menu.child.page',
                 'video',
-                'kontak'
+                'kontak',
+                'sosmed'
             ]
         )->first();
 

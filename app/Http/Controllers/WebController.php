@@ -23,7 +23,6 @@ class WebController extends Controller
     }
     
     public function index(){
-
         $overlay=Carouseloverlay::select('text')->first();
         $carousel=Carousel::select('caption','text','image')
             ->where('active','Y')
