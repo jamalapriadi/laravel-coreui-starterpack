@@ -28,7 +28,7 @@ $(function () {
                         if(b.file_type == "image"){
                             el+='<div class="inner-box">'+
                                 '<figure class="image-box">'+
-                                    '<img style="height:321.73px; width:370px;" src="'+b.image_url+'" alt="">'+
+                                    '<img style="height:270px; width:370px;" src="'+b.image_url+'" alt="">'+
                                 '</figure>'+
                                 '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
                                     '<div class="inner-box imageGallery1">'+
@@ -43,7 +43,7 @@ $(function () {
                         }else if(b.file_type == 'video'){
                             el+='<div class="inner-box">'+
                                 '<figure class="image-box">'+
-                                    '<img style="height:321.73px; width:370px;" src="https://img.youtube.com/vi/'+b.video_url+'/mqdefault.jpg" alt="Kids Republic"></figure>'+
+                                    '<img style="height:270px; width:370px;" src="https://img.youtube.com/vi/'+b.video_url+'/mqdefault.jpg" alt="Kids Republic"></figure>'+
                                     '<div class="content">'+
                                         '<div class="inner-box imageGallery1">'+
                                             '<h3>'+b.title+'</h3>'+

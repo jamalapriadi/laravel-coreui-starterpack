@@ -303,11 +303,11 @@
                             </div>
                         </div> 
 
-                        <div class="single-column col-md-6 col-sm-12" style="margin-top: 90px">
+                        <div class="single-column col-md-6 col-sm-12" style="margin-top: 90px;">
                             <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn; border: 0;border-radius: 10px;">
                                 <figure class="img-box">
                                     <a href="#">
-                                        <img src="{{$page->feature_image_url}}" alt="">
+                                        <img src="{{$page->feature_image_url}}" alt="" style="border-radius: 0 15px 0 15px;">
                                     </a>
                                 </figure>
                             </div> 
@@ -490,82 +490,82 @@
 
                                             <br>
 
-                                            <section class="home-video-hero">
-                                                <div id="myslider" class="carousel slide" data-ride="carousel" style="opacity: 0.9;">
-                                                    <ol class="carousel-indicators">
-                                                        <li data-target="#myslider" data-slide-to="0" class="active"> </li>
-                                                        <li data-target="#myslider" data-slide-to="1"> </li>
-                                                        <li data-target="#myslider" data-slide-to="2"> </li>
-                                                        <li data-target="#myslider" data-slide-to="3"> </li>
-                                                        <li data-target="#myslider" data-slide-to="4"> </li>
-                                                        <li data-target="#myslider" data-slide-to="5"> </li>
-                                                        <li data-target="#myslider" data-slide-to="6"> </li>
-                                                        <li data-target="#myslider" data-slide-to="7"> </li>
-                                                        <li data-target="#myslider" data-slide-to="8"> </li>
-                                                        <li data-target="#myslider" data-slide-to="9"> </li>
-                                                        <li data-target="#myslider" data-slide-to="10"> </li>
-                                                        <li data-target="#myslider" data-slide-to="11"> </li>
-                                                    </ol>
-                            
-                                                    <div class="carousel-inner">
-                                                        @foreach($page->files as $key=>$val)
-                                                            <div class="item @if($key == 0) active @endif">
-                                                                <img src="{{$val->image_url}}" width="100%">
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-                                        
-                                                    <a class="carousel-control left" href="#myslider" data-slide="prev">
-                                                        <span class="glyphicon glyphicon-chevron-left"></span>
-                                                    </a>
-                                                    <a class="carousel-control right" href="#myslider" data-slide="next">
-                                                        <span class="glyphicon glyphicon-chevron-right"></span>
-                                                    </a>
-                                                </div>
-                                            </section>
-
-                                            <p>
-                                                <br />
-                                                <br />
-                                                <span style="color:#333333;"><u><span style="font-size:18px;"><strong>Partnership with :</strong></span></u></span><br />
-                                                &nbsp;
-                                            </p>
-
-                                            <div class="btgrid">
-                                                <div class="row row-1">
-                                                    <div class="col col-md-3">
-                                                        <div class="content">
-                                                            <p>&nbsp;</p>
-                                                            <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_robotic.jpeg" style="width: 200px; height: 64px;" /></span></p>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col col-md-3">
-                                                        <div class="content">
-                                                            <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/RAFA%20LOGO%20(RGB)-01.png" style="width: 200px; height: 141px;" /></span></p>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col col-md-3">
-                                                        <div class="content">
-                                                            <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_haqiqi%281%29.jpeg" style="width: 200px; height: 155px;" /></span></p>
-                                                        </div>
-                                                    </div>
-                                                
-                                                    <div class="col col-md-3">
-                                                        <div class="content">
-                                                            <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_cerdik.jpeg" style="width: 200px; height: 146px;" /></span></p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
                                         @endif
                                     </div>
                                 </div>
                             </div>
 
                         </div> 
+                    </div>
+
+                    <section class="home-video-hero">
+                        <div id="myslider" class="carousel slide" data-ride="carousel" style="opacity: 0.9;">
+                            <ol class="carousel-indicators">
+                                <li data-target="#myslider" data-slide-to="0" class="active"> </li>
+                                <li data-target="#myslider" data-slide-to="1"> </li>
+                                <li data-target="#myslider" data-slide-to="2"> </li>
+                                <li data-target="#myslider" data-slide-to="3"> </li>
+                                <li data-target="#myslider" data-slide-to="4"> </li>
+                                <li data-target="#myslider" data-slide-to="5"> </li>
+                                <li data-target="#myslider" data-slide-to="6"> </li>
+                                <li data-target="#myslider" data-slide-to="7"> </li>
+                                <li data-target="#myslider" data-slide-to="8"> </li>
+                                <li data-target="#myslider" data-slide-to="9"> </li>
+                                <li data-target="#myslider" data-slide-to="10"> </li>
+                                <li data-target="#myslider" data-slide-to="11"> </li>
+                            </ol>
+    
+                            <div class="carousel-inner">
+                                @foreach($page->files as $key=>$val)
+                                    <div class="item @if($key == 0) active @endif">
+                                        <img src="{{$val->image_url}}" width="100%">
+                                    </div>
+                                @endforeach
+                            </div>
+                
+                            <a class="carousel-control left" href="#myslider" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="carousel-control right" href="#myslider" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </section>
+
+                    <p>
+                        <br />
+                        <br />
+                        <span style="color:#333333;"><u><span style="font-size:18px;"><strong>Partnership with :</strong></span></u></span><br />
+                        &nbsp;
+                    </p>
+
+                    <div class="btgrid">
+                        <div class="row row-1">
+                            <div class="col col-md-3">
+                                <div class="content">
+                                    <p>&nbsp;</p>
+                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_robotic.jpeg" style="width: 200px; height: 64px;" /></span></p>
+                                </div>
+                            </div>
+                        
+                            <div class="col col-md-3">
+                                <div class="content">
+                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/RAFA%20LOGO%20(RGB)-01.png" style="width: 200px; height: 141px;" /></span></p>
+                                </div>
+                            </div>
+                        
+                            <div class="col col-md-3">
+                                <div class="content">
+                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_haqiqi%281%29.jpeg" style="width: 200px; height: 155px;" /></span></p>
+                                </div>
+                            </div>
+                        
+                            <div class="col col-md-3">
+                                <div class="content">
+                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_cerdik.jpeg" style="width: 200px; height: 146px;" /></span></p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

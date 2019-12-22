@@ -2818,6 +2818,52 @@ body.popup-visible{
 ***/
 
 
+@media only screen and (max-width: 600px) {
+    .header-top .contact {
+        position: relative;
+        display: inline-block;
+        font-size: 15px;
+        color: #999;
+        font-family: 'dosis';
+        padding: 10px 10px;
+    
+    }
+
+    .footer-style-2 {
+        height: 800px;
+        position: relative;
+        background: #BDE6FB;
+        padding: 105px 0 30px;
+        margin-top: 20px;
+    }
+
+    .footer-style-2 .footer-upper {
+        position: relative;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f1fbff;
+    }
+
+    .footer-style-2:before {
+        content: '';
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 1032px;
+        background: url(../images/overly/footer-style2.png) center bottom no-repeat;
+        z-index: 0;
+    }
+
+    .footer-style-2 .column-title h2 {
+        position: relative;
+        text-transform: capitalize;
+        font-size: 14px;
+        color: #ec4f74;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+    }
+}
+
 
 
 

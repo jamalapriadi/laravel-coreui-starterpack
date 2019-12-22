@@ -40,33 +40,41 @@
                             </button>
                             
                         </div>
-
+                        
                         <div class="navbar-collapse collapse text-center">  
                             <ul>
                                 @foreach ($instansi->menu as $item)
                                     @if(count($item->child) > 0)
-                                        <li class="dropdown ">
+                                        <li class="dropdown {{ (request()->is('page/'.$item->slug.'/*')) ? 'current' : '' }}">
                                             <a href="" style="cursor: default">{{$item->menu}}</a>
                                             <ul class="submenu">
                                                 @foreach($item->child as $r)
                                                     @if(count($r->child) > 0)
-                                                        <li class="dropdown ">
+                                                        <li class="dropdown  {{ (request()->is('page/'.$r->slug.'/*')) ? 'current' : '' }}">
                                                             <a href="#" style="cursor: default">{{$r->menu}}</a>
                                                             <ul class="submenu">
                                                                 @foreach($r->child as $k)
                                                                     @if($k->page!=null)
-                                                                        <li><a href="{{URL::to('page/'.$k->page->slug)}}">{{$k->menu}}</a></li>
+                                                                        <li>
+                                                                            <a href="{{URL::to('page/'.$r->slug.'/'.$k->page->slug)}}">{{$k->menu}}</a>
+                                                                        </li>
                                                                     @else
-                                                                        <li><a href="#">{{$k->menu}}</a></li>
+                                                                        <li>
+                                                                            <a href="#">{{$k->menu}}</a>
+                                                                        </li>
                                                                     @endif
                                                                 @endforeach
                                                             </ul>
                                                         </li>
                                                     @else
                                                         @if($r->page!=null)
-                                                            <li><a href="{{URL::to('page/'.$r->page->slug)}}">{{$r->menu}}</a></li>
+                                                            <li class="{{ Request::path() == 'page/'.$item->slug.'/'.$r->page->slug ? 'current' : '' }}">
+                                                                <a href="{{URL::to('page/'.$item->slug.'/'.$r->page->slug)}}">{{$r->menu}}</a>
+                                                            </li>
                                                         @else
-                                                            <li><a href="#">{{$r->menu}}</a></li>
+                                                            <li>
+                                                                <a href="#">{{$r->menu}}</a>
+                                                            </li>
                                                         @endif
                                                     @endif
                                                 @endforeach
@@ -75,8 +83,8 @@
                                     @else
                                         @if($item->menu_url == "#")
                                             @if($item->page != null)
-                                                <li>
-                                                    <a href="{{URL::to('page/'.$item->page->slug)}}">{{$item->menu}}</a>
+                                                <li class="{{ Request::path() == 'page/'.$item->slug.'/'.$item->page->slug ? 'current' : '' }}">
+                                                    <a href="{{URL::to('page/'.$item->slug.'/'.$item->page->slug)}}">{{$item->menu}}</a>
                                                 </li>
                                             @else 
                                                 <li class="#">
@@ -84,7 +92,7 @@
                                                 </li>
                                             @endif
                                         @else
-                                            <li class="#">
+                                            <li class="{{ Request::path() == $item->menu_url ? 'current' : '' }}">
                                                 <a href="{{URL::to($item->menu_url)}}">{{$item->menu}}</a>
                                             </li>
                                         @endif    
@@ -103,12 +111,37 @@
 	
     </div>
 	<div class="socmed-samping">
-		<ul class="social">
-			<li><a href="https://web.facebook.com/kidsrepublicid?ref=hl" class="facebook" target="_blank">
-                <!-- <img src="public/uploads/socmed/logofb.png" width="30px"> --><span class="fa fa-facebook-square fa-2x"></span></a>
+        <ul class="social-icons text-center icons-design-colored icons-size-custom social-follow basel-sticky-social basel-sticky-social-right">
+            <li class="social-facebook">
+                <a rel="nofollow" style="background:#365493" href="https://www.facebook.com/solusidigitalindonesia/" target="_blank" class="">
+                    <i class="fa fa-facebook"></i>
+                    <span style="background:#365493" class="basel-social-icon-name">Facebook</span>
+                </a>
             </li>
-			<li><a href="https://www.instagram.com/kidsrepublicschool/" class="instagram" target="_blank"><span class="fa fa-instagram fa-2x"></span></a></li>
-			<li><a href="https://www.youtube.com/channel/UCbLZ_IwTxCaq8TzOny9dB4w" class="youtube" target="_blank"><span class="fa fa-youtube-square fa-2x"></span></a></li>
-		</ul>
+            <li class="social-instagram">
+                <a rel="nofollow" style="background:#774430" href="https://www.instagram.com/solusidigital/" target="_blank" class="">
+                    <i class="fa fa-instagram"></i>
+                    <span style="background:#774430" class="basel-social-icon-name">Instagram</span>
+                </a>
+            </li>
+            <li class="social-youtube">
+                <a rel="nofollow" style="background:#c32f2b" href="https://www.youtube.com/channel/UCq-3TGh5xHjUOZm5dnedWbw" target="_blank" class="">
+                    <i class="fa fa-youtube"></i>
+                    <span style="background:#c32f2b" class="basel-social-icon-name">YouTube</span>
+                </a>
+            </li>
+            <li class="social-whatsapp whatsapp-desktop">
+                <a rel="nofollow" style="background:#3CF" href="https://wa.me/6281329623711" target="_blank" class="">
+                    <i class="fa fa-twitter"></i>
+                    <span style="background:#3CF" class="basel-social-icon-name">Twitter</span>
+                </a>
+            </li>
+            <li class="social-whatsapp whatsapp-mobile">
+                <a rel="nofollow" style="background:#1EBEA5" href="https://wa.me/6281329623711" target="_blank" class="">
+                    <i class="fa fa-whatsapp"></i>
+                    <span style="background:#1EBEA5" class="basel-social-icon-name">WhatsApp</span>
+                </a>
+            </li>
+        </ul>
 	</div>
 </header>

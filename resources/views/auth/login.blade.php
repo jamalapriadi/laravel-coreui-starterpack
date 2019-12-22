@@ -71,7 +71,7 @@
         <div class="card text-white bg-primary py-5 d-md-down-none">
             <div class="card-body text-center">
                 <div>
-                    <img src="https://kidsrepublic.sch.id/resizepng/logo/logo.png/null/82/100/0" class="mb-5" width="150" alt="Modulr Logo">
+                    <img src="{{asset('img/logo.png')}}" class="mb-5" width="150" alt="Modulr Logo">
                     <h2>KIDS REPUBLIC</h2>
                     <p>Nurturing The Leaders of Tomorrow</p>
                     {{-- <a class="btn btn-primary active mt-2" href="{{ route('register') }}">{{ __('Register Now!') }}</a> --}}

@@ -153,6 +153,83 @@ class WebController extends Controller
             ->with('component', $component);
     }
 
+    public function single_slug_page(Request $request, $main="/", $slug="/")
+    {
+        if($slug=='home'){
+            if(\Auth::check()){
+                return view('home');
+            }else{
+                return view('web.404');    
+            }
+        }
+
+        if($slug=='login'){
+            return view('auth.login');
+        }
+
+        $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
+            ->where('post_type',"page")
+            ->whereSlug($slug)
+            ->first();
+
+        if($page == null){
+            return abort(404);
+        }
+
+        $program=array();
+        $photo=array();
+        $summary=array();
+
+        if($page->component_name == "program-component"){
+            $program=\App\Models\Cms\Post::where('post_type','program')
+                ->get();
+        }
+
+        $component=array();
+
+        if($page->page_type == "component"){
+            if($page->component_name == "founder-component"){
+                $component=\App\Models\Kids\Founder::orderBy('created_at','desc')->get();
+            }
+
+            if($page->component_name == "testimoni-component"){
+                $component=\App\Models\Cms\Post::where('post_type','testimoni')
+                    ->get();
+            }
+
+            if($page->component_name == "gallery-component"){
+                $component=\App\Models\Cms\Gallery::with(
+                    [
+                        'file'
+                    ]
+                )->get();
+            }
+
+            if($page->component_name == "newsletter-component"){
+                $component=\App\Models\Cms\Post::where('post_type','newsletter')
+                    ->get();
+
+                $summary=\App\Models\Cms\Post::where('post_type','newsletter')
+                    ->select(
+                        \DB::raw("date_format(created_at,'%M %Y') as periode"),
+                        \DB::raw("count(*) as jumlah")
+                    )->groupBy(\DB::raw("date_format(created_at,'%M %Y')"))
+                    ->get();
+
+                $photo=\App\Models\Cms\Galleryfile::orderBy('created_at','desc')
+                    ->limit(9)
+                    ->get();
+            }
+        }
+
+        return view('web.single_page')
+            ->with('page',$page)
+            ->with('program',$program)
+            ->with('photo',$photo)
+            ->with('summary',$summary)
+            ->with('component', $component);
+    }
+
     public function single_promo(Request $request, $slug='/')
     {
         $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
@@ -498,5 +575,28 @@ class WebController extends Controller
             ->with('event',$event)
             ->with('calendar',$calendar)
             ->with('promo',$promo);
+    }
+
+    public function download(Request $request)
+    {
+        $rules=[
+            'type'=>'required'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules);
+
+        if($validasi->fails()){
+            return abort(404);
+        }
+
+        $type=$request->input('type');
+
+        if($type == "calendar"){
+            $file=$request->input('file');
+
+            $postfile=\App\Models\Cms\Postfile::findOrFail($file);
+
+            return response()->download(public_path('uploads/file/'.$postfile->file), 'calendar.pdf', [], 'inline');
+        }
     }
 }

@@ -591,6 +591,700 @@ ul,li{
 .socmed-samping a[class="youtube"]:hover,
 .socmed-samping a[class="youtube"] { background: #cc2127; }  
 
+.icon-action-redo,
+    .icon-action-undo,
+    .icon-anchor,
+    .icon-arrow-down,
+    .icon-arrow-down-circle,
+    .icon-arrow-left,
+    .icon-arrow-left-circle,
+    .icon-arrow-right,
+    .icon-arrow-right-circle,
+    .icon-arrow-up,
+    .icon-arrow-up-circle,
+    .icon-badge,
+    .icon-bag,
+    .icon-ban,
+    .icon-basket,
+    .icon-basket-loaded,
+    .icon-bell,
+    .icon-book-open,
+    .icon-briefcase,
+    .icon-bubble,
+    .icon-bubbles,
+    .icon-bulb,
+    .icon-calculator,
+    .icon-calendar,
+    .icon-call-end,
+    .icon-call-in,
+    .icon-call-out,
+    .icon-camera,
+    .icon-camrecorder,
+    .icon-chart,
+    .icon-check,
+    .icon-chemistry,
+    .icon-clock,
+    .icon-close,
+    .icon-cloud-download,
+    .icon-cloud-upload,
+    .icon-compass,
+    .icon-control-end,
+    .icon-control-forward,
+    .icon-control-pause,
+    .icon-control-play,
+    .icon-control-rewind,
+    .icon-control-start,
+    .icon-credit-card,
+    .icon-crop,
+    .icon-cup,
+    .icon-cursor,
+    .icon-cursor-move,
+    .icon-diamond,
+    .icon-direction,
+    .icon-directions,
+    .icon-disc,
+    .icon-dislike,
+    .icon-doc,
+    .icon-docs,
+    .icon-drawar,
+    .icon-drop,
+    .icon-earphones,
+    .icon-earphones-alt,
+    .icon-emotsmile,
+    .icon-energy,
+    .icon-envelope,
+    .icon-envelope-letter,
+    .icon-envelope-open,
+    .icon-equalizer,
+    .icon-eye,
+    .icon-eyeglass,
+    .icon-feed,
+    .icon-film,
+    .icon-fire,
+    .icon-flag,
+    .icon-folder,
+    .icon-folder-alt,
+    .icon-frame,
+    .icon-game-controller,
+    .icon-ghost,
+    .icon-globe,
+    .icon-globe-alt,
+    .icon-graduation,
+    .icon-graph,
+    .icon-grid,
+    .icon-handbag,
+    .icon-heart,
+    .icon-home,
+    .icon-hourglass,
+    .icon-info,
+    .icon-key,
+    .icon-layers,
+    .icon-like,
+    .icon-link,
+    .icon-list,
+    .icon-location-pin,
+    .icon-lock,
+    .icon-lock-open,
+    .icon-login,
+    .icon-logout,
+    .icon-loop,
+    .icon-magic-wand,
+    .icon-magnet,
+    .icon-magnifier,
+    .icon-magnifier-add,
+    .icon-magnifier-remove,
+    .icon-map,
+    .icon-menu,
+    .icon-microphone,
+    .icon-mouse,
+    .icon-music-tone,
+    .icon-music-tone-alt,
+    .icon-mustache,
+    .icon-note,
+    .icon-notebook,
+    .icon-options,
+    .icon-options-vertical,
+    .icon-paper-clip,
+    .icon-paper-plane,
+    .icon-paypal,
+    .icon-pencil,
+    .icon-people,
+    .icon-phone,
+    .icon-picture,
+    .icon-pie-chart,
+    .icon-pin,
+    .icon-plane,
+    .icon-playlist,
+    .icon-plus,
+    .icon-power,
+    .icon-present,
+    .icon-printer,
+    .icon-puzzle,
+    .icon-question,
+    .icon-refresh,
+    .icon-reload,
+    .icon-rocket,
+    .icon-screen-desktop,
+    .icon-screen-smartphone,
+    .icon-screen-tablet,
+    .icon-settings,
+    .icon-share,
+    .icon-share-alt,
+    .icon-shield,
+    .icon-shuffle,
+    .icon-size-actual,
+    .icon-size-fullscreen,
+    .icon-social-behance,
+    .icon-social-dribbble,
+    .icon-social-dropbox,
+    .icon-social-facebook,
+    .icon-social-foursqare,
+    .icon-social-github,
+    .icon-social-gplus,
+    .icon-social-instagram,
+    .icon-social-linkedin,
+    .icon-social-pinterest,
+    .icon-social-reddit,
+    .icon-social-skype,
+    .icon-social-soundcloud,
+    .icon-social-spotify,
+    .icon-social-stumbleupon,
+    .icon-social-tumblr,
+    .icon-social-twitter,
+    .icon-social-youtube,
+    .icon-speech,
+    .icon-speedometer,
+    .icon-star,
+    .icon-support,
+    .icon-symble-female,
+    .icon-symbol-male,
+    .icon-tag,
+    .icon-target,
+    .icon-trash,
+    .icon-trophy,
+    .icon-umbrella,
+    .icon-user,
+    .icon-user-female,
+    .icon-user-follow,
+    .icon-user-following,
+    .icon-user-unfollow,
+    .icon-vector,
+    .icon-volume-1,
+    .icon-volume-2,
+    .icon-volume-off,
+    .icon-wallet,
+    .icon-wrench {
+        font-family: simple-line-icons;
+        speak: none;
+        font-style: normal;
+        font-weight: 400;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+    .icon-social-tumblr:before {
+        content: "\e00a"
+    }
+
+    .icon-social-twitter:before {
+        content: "\e009"
+    }
+
+    .icon-social-facebook:before {
+        content: "\e00b"
+    }
+
+    .icon-social-instagram:before {
+        content: "\e609"
+    }
+
+    .icon-social-linkedin:before {
+        content: "\e60a"
+    }
+
+    .icon-social-pinterest:before {
+        content: "\e60b"
+    }
+
+    .icon-social-github:before {
+        content: "\e60c"
+    }
+
+    .icon-social-gplus:before {
+        content: "\e60d"
+    }
+
+    .icon-social-reddit:before {
+        content: "\e60e"
+    }
+
+    .icon-social-skype:before {
+        content: "\e60f"
+    }
+
+    .icon-social-dribbble:before {
+        content: "\e00d"
+    }
+
+    .icon-social-behance:before {
+        content: "\e610"
+    }
+
+    .icon-social-foursqare:before {
+        content: "\e611"
+    }
+
+    .icon-social-soundcloud:before {
+        content: "\e612"
+    }
+
+    .icon-social-spotify:before {
+        content: "\e613"
+    }
+
+    .icon-social-stumbleupon:before {
+        content: "\e614"
+    }
+
+    .icon-social-youtube:before {
+        content: "\e008"
+    }
+
+    .icon-social-dropbox:before {
+        content: "\e00c"
+    }
+    .social-icons {
+        display: block
+    }
+
+    .social-icons a {
+        color: rgba(0, 0, 0, .6)
+    }
+
+    .social-icons a:hover {
+        color: rgba(0, 0, 0, .8)
+    }
+
+    .social-icons li {
+        display: inline-block;
+        margin: 5px 5px 0 5px;
+        padding: 0
+    }
+
+    .social-icons li a {
+        font-size: 0
+    }
+
+    .social-icons li i {
+        font-size: 18px
+    }
+
+    .social-icons li:first-child {
+        margin-left: 0;
+        padding-left: 0
+    }
+
+    .social-icons li:last-child {
+        margin-right: 0;
+        padding-right: 0
+    }
+
+    .social-icons.icons-design-circle li,
+    .social-icons.icons-design-colored li,
+    .social-icons.icons-design-colored-alt li {
+        width: 40px;
+        height: 40px;
+        background-color: #efefef;
+        border-radius: 50%;
+        text-align: center;
+        -webkit-transition: all .2s ease-in-out;
+        transition: all .2s ease-in-out
+    }
+
+    .social-icons.icons-design-circle li a,
+    .social-icons.icons-design-colored li a,
+    .social-icons.icons-design-colored-alt li a {
+        position: relative;
+        color: #8f8f8f;
+        width: 100%;
+        display: inline-block
+    }
+
+    .social-icons.icons-design-circle li i,
+    .social-icons.icons-design-colored li i,
+    .social-icons.icons-design-colored-alt li i {
+        line-height: 40px
+    }
+
+    .social-icons.icons-design-circle li:hover,
+    .social-icons.icons-design-colored li:hover,
+    .social-icons.icons-design-colored-alt li:hover {
+        background-color: #000
+    }
+
+    .social-icons.icons-design-circle li:hover a,
+    .social-icons.icons-design-colored li:hover a,
+    .social-icons.icons-design-colored-alt li:hover a {
+        color: #fff
+    }
+
+    .social-icons.icons-design-colored li {
+        background-color: #efefef
+    }
+
+    .social-icons.icons-design-colored li.social-facebook {
+        background-color: #365493
+    }
+
+    .social-icons.icons-design-colored li.social-twitter {
+        background-color: #3CF
+    }
+
+    .social-icons.icons-design-colored li.social-instagram {
+        background-color: #774430
+    }
+
+    .social-icons.icons-design-colored li.social-email {
+        background-color: #F89A1E
+    }
+
+    .social-icons.icons-design-colored li.social-pinterest {
+        background-color: #CB2027
+    }
+
+    .social-icons.icons-design-colored li.social-youtube {
+        background-color: #c32f2b
+    }
+
+    .social-icons.icons-design-colored li.social-tumblr {
+        background-color: #36465d
+    }
+
+    .social-icons.icons-design-colored li.social-linkedin {
+        background-color: #0274b3
+    }
+
+    .social-icons.icons-design-colored li.social-vimeo {
+        background-color: #1ab7ea
+    }
+
+    .social-icons.icons-design-colored li.social-flickr {
+        background-color: #fe0072
+    }
+
+    .social-icons.icons-design-colored li.social-github {
+        background-color: #171515
+    }
+
+    .social-icons.icons-design-colored li.social-dribbble {
+        background-color: #b2215a
+    }
+
+    .social-icons.icons-design-colored li.social-behance {
+        background-color: #1f6ffc
+    }
+
+    .social-icons.icons-design-colored li.social-soundcloud {
+        background-color: #f9490d
+    }
+
+    .social-icons.icons-design-colored li.social-spotify {
+        background-color: #2ebd59
+    }
+
+    .social-icons.icons-design-colored li.social-skype {
+        background-color: #00aff0
+    }
+
+    .social-icons.icons-design-colored li.social-ok {
+        background-color: #EE8208
+    }
+
+    .social-icons.icons-design-colored li.social-whatsapp {
+        background-color: #1EBEA5
+    }
+
+    .social-icons.icons-design-colored li.social-vk {
+        background-color: #4c75a3
+    }
+
+    .social-icons.icons-design-colored li.social-snapchat {
+        background-color: #fffc00
+    }
+
+    .social-icons.icons-design-colored li.social-tg {
+        background-color: #37aee2
+    }
+
+    .social-icons.icons-design-colored li a {
+        color: #fff
+    }
+
+    .social-icons.icons-design-colored li:hover {
+        opacity: .8
+    }
+
+    .social-icons.icons-design-colored li:hover a {
+        color: #fff
+    }
+
+    .social-icons.icons-design-colored-alt li {
+        background-color: #efefef
+    }
+
+    .social-icons.icons-design-colored-alt li.social-facebook:hover {
+        background-color: #365493
+    }
+
+    .social-icons.icons-design-colored-alt li.social-twitter:hover {
+        background-color: #3CF
+    }
+
+    .social-icons.icons-design-colored-alt li.social-instagram:hover {
+        background-color: #774430
+    }
+
+    .social-icons.icons-design-colored-alt li.social-email:hover {
+        background-color: #F89A1E
+    }
+
+    .social-icons.icons-design-colored-alt li.social-pinterest:hover {
+        background-color: #CB2027
+    }
+
+    .social-icons.icons-design-colored-alt li.social-youtube:hover {
+        background-color: #c32f2b
+    }
+
+    .social-icons.icons-design-colored-alt li.social-tumblr:hover {
+        background-color: #36465d
+    }
+
+    .social-icons.icons-design-colored-alt li.social-linkedin:hover {
+        background-color: #0274b3
+    }
+
+    .social-icons.icons-design-colored-alt li.social-vimeo:hover {
+        background-color: #1ab7ea
+    }
+
+    .social-icons.icons-design-colored-alt li.social-flickr:hover {
+        background-color: #fe0072
+    }
+
+    .social-icons.icons-design-colored-alt li.social-github:hover {
+        background-color: #171515
+    }
+
+    .social-icons.icons-design-colored-alt li.social-dribbble:hover {
+        background-color: #b2215a
+    }
+
+    .social-icons.icons-design-colored-alt li.social-behance:hover {
+        background-color: #1f6ffc
+    }
+
+    .social-icons.icons-design-colored-alt li.social-soundcloud:hover {
+        background-color: #f9490d
+    }
+
+    .social-icons.icons-design-colored-alt li.social-spotify:hover {
+        background-color: #2ebd59
+    }
+
+    .social-icons.icons-design-colored-alt li.social-skype:hover {
+        background-color: #00aff0
+    }
+
+    .social-icons.icons-design-colored-alt li.social-ok:hover {
+        background-color: #EE8208
+    }
+
+    .social-icons.icons-design-colored-alt li.social-whatsapp:hover {
+        background-color: #1EBEA5
+    }
+
+    .social-icons.icons-design-colored-alt li.social-vk:hover {
+        background-color: #4c75a3
+    }
+
+    .social-icons.icons-design-colored-alt li.social-snapchat:hover {
+        background-color: #fffc00
+    }
+
+    .social-icons.icons-design-colored-alt li.social-tg:hover {
+        background-color: #37aee2
+    }
+
+    .social-icons.icons-design-colored-alt li a {
+        color: #8f8f8f
+    }
+
+    .social-icons.icons-design-colored-alt li:hover a {
+        color: #fff
+    }
+
+    .social-icons.icons-size-small li i {
+        font-size: 14px
+    }
+
+    .social-icons.icons-size-small.icons-design-circle li,
+    .social-icons.icons-size-small.icons-design-colored li,
+    .social-icons.icons-size-small.icons-design-colored-alt li {
+        width: 30px;
+        height: 30px
+    }
+
+    .social-icons.icons-size-small.icons-design-circle li i,
+    .social-icons.icons-size-small.icons-design-colored li i,
+    .social-icons.icons-size-small.icons-design-colored-alt li i {
+        line-height: 30px
+    }
+
+    .social-icons.icons-size-large li i {
+        font-size: 22px
+    }
+
+    .social-icons.icons-size-large.icons-design-circle li,
+    .social-icons.icons-size-large.icons-design-colored li,
+    .social-icons.icons-size-large.icons-design-colored-alt li {
+        width: 60px;
+        height: 60px
+    }
+
+    .social-icons.icons-size-large.icons-design-circle li i,
+    .social-icons.icons-size-large.icons-design-colored li i,
+    .social-icons.icons-size-large.icons-design-colored-alt li i {
+        line-height: 60px
+    }
+
+    .color-scheme-light .social-icons.icons-design-colored li a {
+        color: #fff
+    }
+
+    .color-scheme-light .social-icons.icons-design-circle li a,
+    .color-scheme-light .social-icons.icons-design-colored-alt li a {
+        color: #8f8f8f
+    }
+
+    .color-scheme-light .social-icons.icons-design-circle li a:hover,
+    .color-scheme-light .social-icons.icons-design-colored-alt li a:hover {
+        color: #fff
+    }
+
+    .basel-sticky-social {
+        position: fixed;
+        top: 40%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        z-index: 399;
+        -webkit-transition: transform .3s ease;
+        transition: transform .3s ease
+    }
+
+    .basel-sticky-social .basel-social-icon-name {
+        white-space: nowrap;
+        max-width: 0;
+        padding: 0;
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: 600;
+        -webkit-transition: padding .4s cubic-bezier(.175, .885, .32, 1.15), max-width .4s cubic-bezier(.175, .885, .32, 1.15);
+        transition: padding .4s cubic-bezier(.175, .885, .32, 1.15), max-width .4s cubic-bezier(.175, .885, .32, 1.15)
+    }
+
+    .basel-sticky-social li[class^=social] {
+        display: block;
+        width: auto;
+        border-radius: 0;
+        margin: 0!important
+    }
+
+    .basel-sticky-social li[class^=social] a {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        width: auto;
+        min-width: 40px
+    }
+
+    .basel-sticky-social li[class^=social] a:hover {
+        text-decoration: none
+    }
+
+    .basel-sticky-social li[class^=social] i {
+        width: 40px
+    }
+
+    .basel-sticky-social li[class^=social]:hover .basel-social-icon-name {
+        max-width: 220px
+    }
+
+    .basel-sticky-social.icons-design-colored li[class^=social] a:hover {
+        opacity: 1
+    }
+
+    .basel-sticky-social:not(.icons-design-default) li[class^=social] a {
+        width: auto;
+        height: 40px
+    }
+
+    .basel-sticky-social:not(.icons-design-default) li[class^=social] i {
+        line-height: 40px
+    }
+
+    .document-ready .basel-sticky-social {
+        -webkit-transform: translate3d(0, -50%, 0);
+        transform: translate3d(0, -50%, 0)
+    }
+
+    .basel-sticky-social-right {
+        right: 0;
+        -webkit-box-align: end;
+        -ms-flex-align: end;
+        align-items: flex-end;
+        /* -webkit-transform: translate3d(100%, -50%, 0);
+        transform: translate3d(100%, -50%, 0) */
+    }
+
+    .basel-sticky-social-right li[class^=social] a {
+        flex-direction: row-reverse
+    }
+
+    .basel-sticky-social-right li[class^=social]:hover .basel-social-icon-name {
+        padding-left: 15px
+    }
+
+    .basel-sticky-social-left {
+        left: 0;
+        -webkit-box-align: start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-transform: translate3d(-100%, -50%, 0);
+        transform: translate3d(-100%, -50%, 0)
+    }
+
+    .basel-sticky-social-left li[class^=social]:hover .basel-social-icon-name {
+        padding-right: 15px
+    }
+
 
 
 

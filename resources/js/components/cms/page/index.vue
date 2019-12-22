@@ -127,7 +127,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('data/post?page='+page+"&type=page")
+            axios.get('/data/post?page='+page+"&type=page")
                 .then(response => {
                     this.loading=false;
                     this.list = response.data;
@@ -139,7 +139,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('data/post?q='+this.pencarian+"&type=page")
+            axios.get('/data/post?q='+this.pencarian+"&type=page")
                 .then(response => {
                     this.list = response.data;
                 })
@@ -161,7 +161,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('data/post/'+id)
+                    axios.delete('/data/post/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";

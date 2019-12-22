@@ -8,6 +8,7 @@ use App\Models\Kids\Founder;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Rules\ImageValidation;
+use Illuminate\Support\Facades\Storage;
 
 class FounderController extends Controller
 {
@@ -60,6 +61,11 @@ class FounderController extends Controller
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                 Image::make($request->input('file'))->save(public_path('uploads/founder/').$filename);
                 $model->images=$filename;
+
+                // $path = Storage::putFile(
+                //     'public/images',
+                //     $request->file('featured_image'),
+                // );
             }
 
             $model->save();

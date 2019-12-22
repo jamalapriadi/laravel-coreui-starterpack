@@ -258,7 +258,8 @@
                             @if($calendar != null)
                                 @if(count($calendar->files) > 0)
                                     <li>
-                                        <a href="{{$calendar->files[0]->image_url}}" target="_blank" rel="nofollow" title="Calendar Academic">
+                                        {{-- $calendar->files[0]->image_url --}}
+                                        <a href="{{URL::to('download?type=calendar&file='.$calendar->files[0]->id)}}" target="_blank" rel="nofollow" title="Calendar Academic">
                                             <button type="button" class="btn btn-primary" style="margin-bottom: 10px"> 
                                                 <i class="fa fa-download"></i> Download Calendar
                                             </button>
@@ -268,15 +269,22 @@
                             @endif
                         </ul>
 
-                        <div class="myIframe">
+                        <div class="myIframe" style="position: relative;
+                        padding-bottom: 100%;
+                        height: 0;
+                        overflow: hidden; 
+                        -webkit-overflow-scrolling:touch;">
                             @if($calendar != null)
                                 @if(count($calendar->files) > 0)
-                                    {{-- <iframe src="{{$calendar->files[0]->image_url}}" frameborder="0" allowfullscreen></iframe> --}}
+                                    <iframe src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf#zoom=170" style="position: absolute; top: -20%;
+                                    left:-25%;
+                                    width: 200%;
+                                    height: 100%;"></iframe>
                                     {{-- <iframe id="fred" src="{{$calendar->files[0]->image_url}}" 
                                         frameborder="0" scrolling="auto" height="1100" width="850" ></iframe> --}}
 
-                                    <iframe src="https://docs.google.com/viewerng/viewer?url={{$calendar->files[0]->image_url}}&embedded=true" frameborder="0" height="100%" width="100%">
-                                        </iframe>
+                                    {{-- <iframe src="https://docs.google.com/viewerng/viewer?url={{$calendar->files[0]->image_url}}&embedded=true" frameborder="0" height="100%" width="100%">
+                                        </iframe> --}}
                                 @endif 
                             @endif
                         </div>

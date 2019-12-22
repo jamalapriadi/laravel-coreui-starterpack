@@ -2,7 +2,7 @@
     <div class="container">
         <div class="footer-upper">
             <div class="row">
-                <div class="col-lg-3 col-sm-6 col-xs-12 column">
+                <div class="col-lg-3 col-sm-5 col-xs-5 column">
                     <div class="footer-widget-about">
                         <div class="column-title">
                             <h2>Contact Us</h2>
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2 col-sm-6">
+                <div class="col-md-2 col-sm-3 col-xs-3">
                     <div class="links-column">
                         <div class="column-title">
                             <h2>Useful Links</h2>
@@ -57,7 +57,7 @@
                         </ul>
                     </div>
                 </div> 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-3 col-xs-3">
                     <div class="links-column">
                         <div class="column-title">
                             <h2>Subscribe</h2>

@@ -20,11 +20,16 @@ Route::group(['middleware'=>['site-info','access-log']],function(){
     Route::get('/','WebController@index');
     Route::get('gallery','WebController@gallery');
     Route::get('page/{id}','WebController@single_page');
+    Route::get('page/{slug}/{id}','WebController@single_slug_page');
+    // Route::group(['prefix'=>'{slug}'],function(){
+    //     Route::get('/{id}','WebController@single_slug_page');
+    // });
     Route::get('promo/{slug}','WebController@single_promo');
     Route::get('news/{slug}','WebController@single_news');
     Route::get('event/{slug}','WebController@single_event');
     Route::get('subscribe','WebController@subscribe');
     Route::get('testimony','WebController@testimoni');
+    Route::get('download','WebController@download');
 });
 
 Route::group(['prefix'=>'list'],function(){
