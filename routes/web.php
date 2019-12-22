@@ -82,6 +82,8 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     /**================================== End User */
 
     /**================================== Instansi */
+    Route::get('dashboard','Backend\InfoController@dashboard');
+    Route::get('access-log','Backend\InfoController@access_log');
     Route::get('info','Backend\InfoController@index');
     Route::post('info','Backend\InfoController@save_info');
     Route::resource('fasilitas','Kids\FasilitasController');

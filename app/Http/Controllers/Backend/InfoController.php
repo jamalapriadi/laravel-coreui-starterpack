@@ -7,6 +7,8 @@ use App\Models\Cms\Instansi;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\Cms\Post;
+use App\Models\Cms\Menu;
 
 class InfoController extends Controller
 {
@@ -18,6 +20,47 @@ class InfoController extends Controller
         }else{
             return array();
         }
+    }
+
+    public function dashboard(Request $request)
+    {
+        $page=Post::where('post_type','page')->count();
+        $menu=Menu::select('*')->count();
+        $news=Post::where('post_type','artikel')->count();
+        $event=Post::where('post_type','event')->count();
+
+        return array(
+            'page'=>$page,
+            'menu'=>$menu,
+            'news'=>$news,
+            'event'=>$event
+        );
+    }
+
+    public function access_log(Request $request)
+    {
+        $sql=\DB::select("select date_format(ts.tanggal,'%d') as hari, count(*) as jumlah 
+                from (
+                select date_format(a.created_at,'%Y-%m-%d') as tanggal from access_logs a
+                where date_format(a.created_at,'%Y-%m')=date_format(curdate(), '%Y-%m')
+                ) as ts
+                group by ts.tanggal");
+
+        $label=array();
+        $data=array();
+        foreach($sql as $key=>$val){
+            $label[]=$val->hari;
+        }
+
+        $data[]=array('Hari','Jumlah');
+        foreach($sql as $key=>$val){
+            $data[]=array($label[$key], $val->jumlah);
+        }
+
+        return array(
+            'bulan'=>date('F Y'),
+            'data'=>$data
+        );
     }
 
     public function save_info(Request $request){
