@@ -25,4 +25,9 @@ class Galleryfile extends Model
 
         return $url;
     }
+
+    public function gallery()
+    {
+        return $this->belongsTo('App\Models\Cms\Gallery','gallery_id');
+    }
 }

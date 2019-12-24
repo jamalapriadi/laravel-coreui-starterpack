@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label for="" class="control-label">Jam Mulai</label>
                                     <div class="input-group">
-                                        <timeselector v-model="state.jam_mulai"></timeselector>
+                                        <input type="time" v-model="state.jam_mulai" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <label for="" class="control-label">Jam Selesai</label>
                                     <div class="input-group">
-                                        <timeselector v-model="state.jam_selesai"></timeselector>
+                                        <input type="time" v-model="state.jam_selesai" class="form-control">
                                     </div>
                                 </div>
                             </div>

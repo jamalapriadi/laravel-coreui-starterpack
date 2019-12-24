@@ -13,6 +13,10 @@
                             <textarea name="teaser" id="teaser" cols="30" rows="3" class="form-control" v-model="state.teaser"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control-label">Date Event</label>
+                            <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Full Text</label>
                             <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
@@ -198,6 +202,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { VueLoading } from 'vue-loading-template'
 import Multiselect from 'vue-multiselect'
 import Trumbowyg from 'vue-trumbowyg';
+import Datepicker from 'vuejs-datepicker';
+import moment from 'moment'
   
 // Import editor css
 import 'trumbowyg/dist/ui/trumbowyg.css';
@@ -207,6 +213,7 @@ export default {
         VueLoading,
         VoerroTagsInput,
         Multiselect,
+        Datepicker,
         Trumbowyg
     },
     data(){
@@ -217,6 +224,7 @@ export default {
                 topik:'',
                 teaser:'',
                 desc:'',
+                youtube:'',
                 youtube:'',
                 file:'',
                 file_preview:'',
@@ -259,6 +267,10 @@ export default {
         }
     },
     methods:{
+        tanggalFormatter(date) {
+            return moment(date).format('YYYY-MM-DD');
+        },
+
         getData(){
             let app=this;
             let id= app.$route.params.id;

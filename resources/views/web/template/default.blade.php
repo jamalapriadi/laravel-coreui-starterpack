@@ -33,17 +33,33 @@
 
         @yield('js')
 
-         <!-- jQuery js -->
-	<script src="{{asset('kids/assets/jquery/jquery-1.12.3.min.js')}}"></script>
-    <!-- bootstrap js -->
-    <script src="{{asset('kids/assets/bootstrap/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('kids/js/jquery.prettyPhoto.js')}}"></script>
-    <!-- owl carousel js -->
-    <!-- jquery.bxslider js -->
-    <script src="{{asset('kids/assets/wow.js')}}"></script>
-	<script src="{{asset('kids/assets/owl.carousel-2/owl.carousel.min.js')}}"></script>
+        <!-- jQuery js -->
+        <script src="{{asset('kids/assets/jquery/jquery-1.12.3.min.js')}}"></script>
+        <!-- bootstrap js -->
+        <script src="{{asset('kids/assets/bootstrap/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('kids/js/jquery.prettyPhoto.js')}}"></script>
+        <!-- owl carousel js -->
+        <!-- jquery.bxslider js -->
+        <script src="{{asset('kids/assets/wow.js')}}"></script>
+        <script src="{{asset('kids/assets/owl.carousel-2/owl.carousel.min.js')}}"></script>
 
-    <script src="{{asset('kids/js/script.js')}}"></script>
+        <script src="{{asset('kids/js/script.js')}}"></script>
+
+        <script type='text/javascript'>
+            msg = document.title;
+            msg ="Kids Republic - Nurturing The Leaders of Tomorrow - "+msg ;
+            position = 0;
+            
+            function scrolltitle() {
+              document.title = msg.substring(position, msg.length) + msg.substring(0, position);
+              position++;
+              if(position > msg.length) position = 0
+              window.setTimeout("scrolltitle()", 150);
+            }
+            
+            scrolltitle();
+            
+        </script>
 
     </div>
 </body>

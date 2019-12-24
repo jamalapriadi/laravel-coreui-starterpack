@@ -37,11 +37,12 @@
                         <tr>
                             <th width="5%">No.</th>
                             <th>Images</th>
+                            <th>Date Event</th>
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Post Status</th>
                             <th></th>
-                            <th width="17%"></th>
+                            <th width="10%"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,7 @@
                             <td>
                                 <img :src="l.feature_image_url" alt="" class="img-responsive" style="width:150px;height:100px;">
                             </td>
+                            <td>{{l.tanggal_indo}}</td>
                             <td>{{l.title}}</td>
                             <td>{{l.slug}}</td>
                             <td>{{l.post_status}}</td>

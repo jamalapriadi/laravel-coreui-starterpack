@@ -40,6 +40,7 @@ class WebController extends Controller
 
         
         $news=\App\Models\Cms\Post::where('post_type','artikel')
+            ->orderBy('tanggal','desc')
             ->get();
 
         $event=\App\Models\Cms\Post::where('post_type','event')

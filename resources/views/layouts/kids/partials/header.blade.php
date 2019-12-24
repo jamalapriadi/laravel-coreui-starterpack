@@ -13,7 +13,7 @@
                         <p><i class="fa fa-phone"></i> <font color="#2042DB"><b>&nbsp  {{$instansi->telp}}</b></font></p>
                     </div>
                     <div class="contact">
-                        <p><a href="https://simak.kidsrepublic.sch.id/dashboard/trialreqform/"class="btn-center" target="_blank">Trial Request</a></p>
+                        <p><a href="http://simak.kidsrepublic.sch.id/trial_request"class="btn-center" target="_blank">Trial Request</a></p>
                     </div>
                     <div class="contact">
                         <p><a href="{{URL::to('page/contact')}}">Email Us</a></p>

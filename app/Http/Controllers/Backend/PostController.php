@@ -20,7 +20,7 @@ class PostController extends Controller
                 'penulis'
             ]
         )->select('id','heading_title','title','slug','description','updated_at','author','post_type','di_lihat',
-        'post_status','featured_image');
+        'post_status','featured_image','tanggal');
 
         if($request->has('type')){
             $type=$request->input('type');
@@ -81,6 +81,10 @@ class PostController extends Controller
             $post->description=$request->input('desc');
             $post->comment='open';
             $post->teaser=$request->input('teaser');
+
+            if($request->has('tanggal')){
+                $post->tanggal=date('Y-m-d',strtotime($request->input('tanggal')));
+            }
 
 
             if($request->has('youtube')){
@@ -268,6 +272,10 @@ class PostController extends Controller
             $post->comment='open';
             $post->teaser=$request->input('teaser');
             $post->post_status=$request->input('status');
+
+            if($request->has('tanggal')){
+                $post->tanggal=date('Y-m-d',strtotime($request->input('tanggal')));
+            }
 
             if($request->has('youtube')){
                 $post->featured_youtube=$request->input('youtube');

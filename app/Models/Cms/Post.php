@@ -14,13 +14,63 @@ class Post extends Model
     protected $dates = ['created_at', 'updated_at'];
 
     protected $appends = [
-        'feature_image_url'
+        'feature_image_url',
+        'tanggal_indo',
+        'hari_indo'
     ];
 
     public function getFeatureImageUrlAttribute(){
         $url = asset('uploads/'.$this->post_type.'/'.$this->featured_image);
 
         return $url;
+    }
+
+    public function getTanggalIndoAttribute(){
+        if($this->tanggal !=null){
+            return date('d M Y',strtotime($this->tanggal));
+        }else{
+            return "-";
+        }
+    }
+
+    public function getHariIndoAttribute(){
+        $hari = date ("D", strtotime($this->tanggal));
+ 
+        switch($hari){
+            case 'Sun':
+                $hari_ini = "Minggu";
+            break;
+    
+            case 'Mon':			
+                $hari_ini = "Senin";
+            break;
+    
+            case 'Tue':
+                $hari_ini = "Selasa";
+            break;
+    
+            case 'Wed':
+                $hari_ini = "Rabu";
+            break;
+    
+            case 'Thu':
+                $hari_ini = "Kamis";
+            break;
+    
+            case 'Fri':
+                $hari_ini = "Jumat";
+            break;
+    
+            case 'Sat':
+                $hari_ini = "Sabtu";
+            break;
+            
+            default:
+                $hari_ini = "Tidak di ketahui";		
+            break;
+        }
+    
+        return $hari_ini;
     }
 
     public function penulis()

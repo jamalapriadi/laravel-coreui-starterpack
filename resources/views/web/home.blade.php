@@ -209,7 +209,7 @@
                                         <div class="content bg-color-2" style="line-height: 1.5em; height: 9em; overflow: hidden;">
                                             <div class="newsletter-home">
                                                 <h4><a href="{{URL::to('news/'.$val->slug)}}" target="_blank">{{$val->title}}</a></h4>
-                                                <p><span class="fa fa-clock-o"></span>{{date('d M Y',strtotime($val->updated_at))}}</p>
+                                                <p><span class="fa fa-clock-o"></span>{{$val->tanggal_indo}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -276,15 +276,19 @@
                         -webkit-overflow-scrolling:touch;">
                             @if($calendar != null)
                                 @if(count($calendar->files) > 0)
-                                    <iframe src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf#zoom=170" style="position: absolute; top: -20%;
+                                    {{-- <iframe src="https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf#zoom=170" style="position: absolute; top: -20%;
                                     left:-25%;
                                     width: 200%;
-                                    height: 100%;"></iframe>
+                                    height: 100%;"></iframe> --}}
                                     {{-- <iframe id="fred" src="{{$calendar->files[0]->image_url}}" 
                                         frameborder="0" scrolling="auto" height="1100" width="850" ></iframe> --}}
 
                                     {{-- <iframe src="https://docs.google.com/viewerng/viewer?url={{$calendar->files[0]->image_url}}&embedded=true" frameborder="0" height="100%" width="100%">
                                         </iframe> --}}
+
+                                    <iframe src="https://docs.google.com/viewerng/viewer?url=https://kidsrepublic.sch.id/uploads/Documents/Academic_Calendar_2019-2020_(Parents).pdf&embedded=true&zoom=9" style="position:absolute;right:0; top:0; bottom:0; width:100%;" frameborder="0" height="100%" width="1500px">
+                                        </iframe>
+
                                 @endif 
                             @endif
                         </div>
@@ -303,8 +307,8 @@
                                     <tr>
                                         <td>
                                             <h4><a href="{{URL::to('event/'.$val->slug)}}" target="_blank" style="font color: #000">{{$val->title}}</a></h4>
-                                            <p><span class="fa fa-calendar-o"></span> {{date('d M Y',strtotime($val->tanggal))}}</p>
-                                            <p><span class="fa fa-clock-o"></span> {{$val->jam_mulai}} - {{$val->jam_selesai}}</p>
+                                            <p><span class="fa fa-calendar-o"></span> {{$val->hari_indo}}, {{date('d M Y',strtotime($val->tanggal))}}</p>
+                                            <p><span class="fa fa-clock-o"></span> {{date('H:i',strtotime($val->jam_mulai))}} - {{date('H:i',strtotime($val->jam_selesai))}}</p>
                                             <p><span class="fa fa-map-marker"></span>{{$val->lokasi}}</p>
                                         </td>
                                     </tr>

@@ -47,6 +47,7 @@ class EventController extends Controller
     }
 
     public function store(Request $request){
+        return date('H:i:s',strtotime($request->input('jam_mulai')));
         $rules=[
             'title'=>'required',
             'teaser'=>'required',

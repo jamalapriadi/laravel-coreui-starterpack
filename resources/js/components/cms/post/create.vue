@@ -13,6 +13,10 @@
                             <textarea name="teaser" id="teaser" cols="30" rows="3" class="form-control" v-model="state.teaser"></textarea>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control-label">Date Event</label>
+                            <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label">Full Text</label>
                             <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
                         </div>
@@ -223,6 +227,8 @@ import Multiselect from 'vue-multiselect'
 import VueUploadMultipleImage from 'vue-upload-multiple-image'
 
 import Trumbowyg from 'vue-trumbowyg';
+import moment from 'moment'
+import Datepicker from 'vuejs-datepicker';
   
 // Import editor css
 import 'trumbowyg/dist/ui/trumbowyg.css';
@@ -233,6 +239,7 @@ export default {
         VoerroTagsInput,
         Multiselect,
         VueUploadMultipleImage,
+        Datepicker,
         Trumbowyg
     },
     data(){
@@ -243,6 +250,7 @@ export default {
                 teaser:'',
                 desc:'',
                 youtube:'',
+                tanggal: '',
                 file:'',
                 facebook:'',
                 category:'',
@@ -291,6 +299,10 @@ export default {
         }
     },
     methods:{
+        tanggalFormatter(date) {
+            return moment(date).format('YYYY-MM-DD');
+        },
+
         getCategory(){
             axios.get('data/list-category')
                 .then(response => {
@@ -395,6 +407,7 @@ export default {
                         desc:'',
                         youtube:'',
                         file:'',
+                        youtube:'',
                         facebook:'',
                         status:'publish',
                         relatednews:[],

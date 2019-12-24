@@ -143,7 +143,35 @@ class KidsController extends Controller
     public function list_gallery_file(Request $request)
     {
         if($request->ajax()){
-            $model=\App\Models\Cms\Galleryfile::select('*');
+            /** set untuk default gallery */
+            $gallery=\App\Models\Cms\Gallery::with(
+                [
+                    'file',
+                    'file.gallery'
+                ]
+            )
+            ->orderBy('id','asc');
+
+            if($request->has('kode') && $request->input('kode')!=""){
+                $gallery=$gallery->where('id',$request->input('kode'));
+            }
+
+            $gallery=$gallery->get();
+    
+            $listdefault=array();
+            $iddefault=array();
+    
+            foreach($gallery as $key=>$val){
+                $listdefault[]=$val->file[0];
+    
+                if(count($val->file) > 0){
+                    $iddefault[]=$val->file[0]->id;
+                }
+            }
+            /**end set default gallery */
+
+            $model=\App\Models\Cms\Galleryfile::select('*')
+                ->whereNotIn('id',$iddefault);
 
             if($request->has('kode') && $request->input('kode')!=""){
                 $model=$model->where('gallery_id',$request->input('kode'));
@@ -155,7 +183,10 @@ class KidsController extends Controller
                 $per_page=6;
             }
 
-            return $model->limit($per_page)->get();
+            return array(
+                'default'=>$listdefault,
+                'tambahan'=>$model->limit($per_page)->get()
+            );
         }
 
         return abort(404);

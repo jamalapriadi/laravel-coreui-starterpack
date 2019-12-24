@@ -34,9 +34,11 @@
                                 {!! $row->description !!}
                             </div>
                             <div class="teacher-profile-tab col-md-4"> 
-                                <a href="#10" aria-controls="10" role="tab" data-toggle="tab">
-                                    <img src="{{$row->image_url}}" alt="images">
-                                </a>
+                                <center>
+                                    <figure class="img-box">
+                                        <img src="{{$row->image_url}}" alt="images" style="width:210px; height:280px;">
+                                    </figure>
+                                </center>
                                 <hr>
                             </div> 
                         @endforeach
@@ -84,17 +86,17 @@
                 <div class="upper">
                     <div class="container">
                         <div class="row">
-                            <div class="single-column col-md-6">
+                            <div class="single-column col-md-6" style="margin-bottom:30px;">
                                 <div class="section-title">
                                     <h2>Find<span> Us</span> </h2>
                                 </div>
 
                                 <div class="map-responsive">
-                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.780692068041!2d106.889507!3d-6.237987!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc2aff6aaa55a9a49!2sKids%20Republic!5e0!3m2!1sid!2sid!4v1566739844103!5m2!1sid!2sid" width="100%" height="600" frameborder="0" style="border:0; border-radius: 30px; box-shadow: 10px 10px 5px grey;" allowfullscreen=""></iframe>
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15864.780692068041!2d106.889507!3d-6.237987!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xc2aff6aaa55a9a49!2sKids%20Republic!5e0!3m2!1sid!2sid!4v1566739844103!5m2!1sid!2sid" width="100%" height="530" frameborder="0" style="border:0; border-radius: 30px; box-shadow: 10px 10px 5px grey;" allowfullscreen=""></iframe>
                                 </div>
                             </div>
 
-                            <div class="single-column col-md-6">
+                            <div class="single-column col-md-6" style="margin-bottom:30px;">
                                 <div class="section-title">
                                     <h2>Get In<span> Touch</span> </h2>
                                 </div>    
@@ -216,7 +218,7 @@
                                     <article class="single-column">
                                         <div class="img-box-s2">
                                             <div class="img-holder">
-                                                <img src="{{$val->feature_image_url}}" alt="">
+                                                <img src="{{$val->feature_image_url}}" alt="" style="border-radius: 0 15px 0 15px;">
                                             </div>
                                             <div class="outer-box">
                                                 <div class="content">
@@ -364,7 +366,7 @@
                                             <div class="img-holder">
                                                 <figure>
                                                     <a href="#">
-                                                        <img src="{{$val->image_url}}" alt="images">
+                                                        <img src="{{$val->image_url}}" alt="images" style="border-radius: 0 15px 0 15px;">
                                                     </a>
                                                 </figure>
                                                 <div class="content bg-color-1">
@@ -499,74 +501,69 @@
                     </div>
 
                     <section class="home-video-hero">
-                        <div id="myslider" class="carousel slide" data-ride="carousel" style="opacity: 0.9;">
+                        <div id="myslider" class="carousel slide" data-ride="carousel" style="opacity: 0.9;background:transparent;">
                             <ol class="carousel-indicators">
-                                <li data-target="#myslider" data-slide-to="0" class="active"> </li>
-                                <li data-target="#myslider" data-slide-to="1"> </li>
-                                <li data-target="#myslider" data-slide-to="2"> </li>
-                                <li data-target="#myslider" data-slide-to="3"> </li>
-                                <li data-target="#myslider" data-slide-to="4"> </li>
-                                <li data-target="#myslider" data-slide-to="5"> </li>
-                                <li data-target="#myslider" data-slide-to="6"> </li>
-                                <li data-target="#myslider" data-slide-to="7"> </li>
-                                <li data-target="#myslider" data-slide-to="8"> </li>
-                                <li data-target="#myslider" data-slide-to="9"> </li>
-                                <li data-target="#myslider" data-slide-to="10"> </li>
-                                <li data-target="#myslider" data-slide-to="11"> </li>
+                                @foreach($page->files as $key=>$val)
+                                    <li data-target="#myslider" data-slide-to="{{$key}}" @if($key == 0) class="active" @endif> </li>
+                                @endforeach
                             </ol>
     
-                            <div class="carousel-inner">
+                            <div class="carousel-inner" style="background:transparent">
                                 @foreach($page->files as $key=>$val)
-                                    <div class="item @if($key == 0) active @endif">
-                                        <img src="{{$val->image_url}}" width="100%">
+                                    <div class="item @if($key == 0) active @endif" style="background:transparent">
+                                        <img src="{{$val->image_url}}" width="100%" style="border-radius:0 15px 0 15px;">
                                     </div>
                                 @endforeach
                             </div>
                 
-                            <a class="carousel-control left" href="#myslider" data-slide="prev">
+                            <a class="carousel-control left" href="#myslider" data-slide="prev" style="background:transparent">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
                             </a>
-                            <a class="carousel-control right" href="#myslider" data-slide="next">
+                            <a class="carousel-control right" href="#myslider" data-slide="next" style="background:transparent">
                                 <span class="glyphicon glyphicon-chevron-right"></span>
                             </a>
                         </div>
                     </section>
 
-                    <p>
-                        <br />
-                        <br />
-                        <span style="color:#333333;"><u><span style="font-size:18px;"><strong>Partnership with :</strong></span></u></span><br />
-                        &nbsp;
-                    </p>
+                    @if($page->slug == "extracuriculer")
+                        <p>
+                            <br />
+                            <br />
+                            <span style="color:#333333;"><u><span style="font-size:18px;"><strong>Partnership with :</strong></span></u></span><br />
+                            &nbsp;
+                        </p>
 
-                    <div class="btgrid">
-                        <div class="row row-1">
-                            <div class="col col-md-3">
-                                <div class="content">
-                                    <p>&nbsp;</p>
-                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_robotic.jpeg" style="width: 200px; height: 64px;" /></span></p>
+                        <div class="btgrid">
+                            <div class="row row-1">
+                                <div class="col col-md-3">
+                                    <div class="content">
+                                        <p>&nbsp;</p>
+                                        <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_robotic.jpeg" style="width: 200px; height: 64px;border-radius: 0 15px 0 15px;" /></span></p>
+                                    </div>
                                 </div>
-                            </div>
-                        
-                            <div class="col col-md-3">
-                                <div class="content">
-                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/RAFA%20LOGO%20(RGB)-01.png" style="width: 200px; height: 141px;" /></span></p>
+                            
+                                <div class="col col-md-3">
+                                    <div class="content">
+                                        <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/RAFA%20LOGO%20(RGB)-01.png" style="width: 200px; height: 141px;border-radius: 0 15px 0 15px;" /></span></p>
+                                    </div>
                                 </div>
-                            </div>
-                        
-                            <div class="col col-md-3">
-                                <div class="content">
-                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_haqiqi%281%29.jpeg" style="width: 200px; height: 155px;" /></span></p>
+                            
+                                <div class="col col-md-3">
+                                    <div class="content">
+                                        <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_haqiqi%281%29.jpeg" style="width: 200px; height: 155px;border-radius: 0 15px 0 15px;" /></span></p>
+                                    </div>
                                 </div>
-                            </div>
-                        
-                            <div class="col col-md-3">
-                                <div class="content">
-                                    <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_cerdik.jpeg" style="width: 200px; height: 146px;" /></span></p>
+                            
+                                <div class="col col-md-3">
+                                    <div class="content">
+                                        <p><span style="color:#333333;"><img alt="" src="https://kidsrepublic.sch.id/uploads/images/Extra_cerdik.jpeg" style="width: 200px; height: 146px;border-radius: 0 15px 0 15px;" /></span></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @else   
+                        <br><br>
+                    @endif
                 </div>
             </section>
         @endif
@@ -614,7 +611,7 @@
                                                     <div style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
                                                         <span style="color:#333333;">
                                                             <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
-                                                                <img alt="Crawler" src="{{$file->feature_image_url}}" style="width: 150px; height: 150px;" />
+                                                                <img alt="Crawler" src="{{$file->feature_image_url}}" style="width: 150px; height: 150px;border-radius: 0 15px 0 15px;" />
                                                             </span>
                                                         </span>
                                                     </div>
