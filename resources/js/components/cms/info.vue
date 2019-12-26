@@ -135,7 +135,7 @@
                                     <div class="card-body">
                                         <div id="pesan"></div>
 
-                                        <button class="btn btn-primary pull-right">
+                                        <button class="btn btn-primary float-right">
                                             <i class="icon-floppy-disk"></i>
                                             Simpan
                                         </button>
@@ -181,7 +181,7 @@
                                     <div class="card-body">
                                         <div id="pesan"></div>
 
-                                        <button class="btn btn-primary pull-right">
+                                        <button class="btn btn-primary float-right">
                                             <i class="icon-floppy-disk"></i>
                                             Simpan
                                         </button>
@@ -227,7 +227,7 @@
                                     <div class="card-body">
                                         <div id="pesan"></div>
 
-                                        <button class="btn btn-primary pull-right">
+                                        <button class="btn btn-primary float-right">
                                             <i class="icon-floppy-disk"></i>
                                             Simpan
                                         </button>

@@ -101,7 +101,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-default"@click.prevent="bataladdNewImages">Batal</a>
+                                    <a href="#" class="btn btn-default" @click.prevent="bataladdNewImages">Batal</a>
 
                                     <button class="btn btn-primary">
                                         <i class="fa fa-save"></i> Save
@@ -125,7 +125,7 @@
                                 </div>
                                 <hr>
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-default"@click.prevent="bataladdNewVideo">Batal</a>
+                                    <a href="#" class="btn btn-default" @click.prevent="bataladdNewVideo">Batal</a>
 
                                     <button class="btn btn-primary">
                                         <i class="fa fa-save"></i> Save

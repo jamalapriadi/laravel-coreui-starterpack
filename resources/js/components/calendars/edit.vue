@@ -10,7 +10,7 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>
-                            <trumbowyg v-model="state.desc" class="form-control" name="content"></trumbowyg>
+                            <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
@@ -39,7 +39,7 @@
                             <i class="icon-arrow-left7"></i> Back
                         </router-link>
 
-                        <button class="btn btn-primary pull-right">
+                        <button class="btn btn-primary float-right">
                             <i class="icon-floppy-disk"></i>
                             Save
                         </button>
@@ -102,6 +102,8 @@ import Trumbowyg from 'vue-trumbowyg';
   
 // Import editor css
 import 'trumbowyg/dist/ui/trumbowyg.css';
+import 'trumbowyg/plugins/fontsize/trumbowyg.fontsize';
+import 'trumbowyg/plugins/fontfamily/trumbowyg.fontfamily';
 
 export default {
     components: {
@@ -148,7 +150,49 @@ export default {
             tmpshowPreview:false,
             imagePreview: '',
             tag: '',
-            selectedTags:{}
+            selectedTags:{},
+            configText:{
+                btns: [
+                    ['viewHTML'],
+                    ['fontfamily'],
+                    ['fontsize'],
+                    ['undo', 'redo'], // Only supported in Blink browsers
+                    ['formatting'],
+                    ['strong', 'em', 'del'],
+                    ['superscript', 'subscript'],
+                    ['link'],
+                    ['insertImage'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
+                    ['horizontalRule'],
+                    ['removeformat'],
+                    ['fullscreen'],
+                ],
+                plugins: {
+                    fontsize: {
+                        sizeList: [
+                            '5px',
+                            '9px',
+                            '10px',
+                            '11px',
+                            '12px',
+                            '14px',
+                            '16px',
+                            '18px',
+                            '20px',
+                            '22px',
+                            '24px',
+                            '26px',
+                            '28px',
+                            '36px',
+                            '48px',
+                        ],
+                        allowCustomSize: false
+                    }
+                },
+                autogrow: true,
+                changeActiveDropdownIcon: true
+            }
         }
     },
     mounted() {

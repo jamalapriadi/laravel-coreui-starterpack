@@ -44,7 +44,7 @@
                                 <div class="sidebar-title"><h2>Peri<span>ode</span></h2></div>
                                 
                                 <ul class="list catagories">
-                                    <!-- <li ng-repeat="row in data.newsletterperperiode" ng-click="periode(row.periode)"><a href="javascript:void(0)" >{{row.periode}}<span class="pull-right">({{row.jml}})</span></a></li> -->
+                                    <!-- <li ng-repeat="row in data.newsletterperperiode" ng-click="periode(row.periode)"><a href="javascript:void(0)" >{{row.periode}}<span class="float-right">({{row.jml}})</span></a></li> -->
                                 </ul>
                             </div>
                             

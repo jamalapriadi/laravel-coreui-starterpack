@@ -45,7 +45,7 @@
                             <td>{{l.guard_name}}</td>
                             <td>
                                 <div class="btn-group">
-                                    <router-link :to="{ name: 'role-view', params: {id: l.id}}" class="btn btn-warning">
+                                    <router-link :to="{ name: 'permission-view', params: {id: l.id}}" class="btn btn-warning">
                                         <i class="fa fa-edit text-white"></i>
                                     </router-link>
 

@@ -254,7 +254,7 @@
                                     <ul class="list catagories">
                                         @foreach($summary as $key=>$val)
                                             <li>
-                                                <a href="javascript:void(0)" >{{$val->periode}}<span class="pull-right">({{$val->jumlah}})</span></a>
+                                                <a href="javascript:void(0)" >{{$val->periode}}<span class="float-right">({{$val->jumlah}})</span></a>
                                             </li>
                                         @endforeach
                                     </ul>

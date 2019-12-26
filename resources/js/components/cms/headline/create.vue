@@ -144,7 +144,7 @@
                             <i class="icon-arrow-left7"></i> Back
                         </router-link>
 
-                        <button class="btn btn-primary pull-right">
+                        <button class="btn btn-primary float-right">
                             <i class="icon-floppy-disk"></i>
                             Save
                         </button>

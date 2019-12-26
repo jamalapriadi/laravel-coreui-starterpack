@@ -17,14 +17,14 @@
                     <input type="text" class="form-control" :class="{ 'is-invalid': errors.name }" v-model="state.name">
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary">
+                    <router-link to="/role" class="btn btn-default">
+                        <i class="fa fa-backward"></i> Batal
+                    </router-link>      
+
+                    <button class="btn btn-primary float-right">
                         <i class="fa fa-save"></i>
                         Simpan
-                    </button>
-
-                    <router-link to="/role" class="btn btn-warning text-white">
-                        <i class="fa fa-backward"></i> Batal
-                    </router-link>                    
+                    </button>              
                 </div>
             </form>
         </div>

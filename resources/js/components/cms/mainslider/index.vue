@@ -11,7 +11,7 @@
 
                     <div class="form-group">
                         <label for="" class="control-label">Text Overlay</label>
-                        <trumbowyg v-model="overlay.desc" :config="config" class="form-control" name="content"></trumbowyg>
+                        <trumbowyg v-model="overlay.desc"  :config="configText" class="form-control" name="content"></trumbowyg>
                     </div>
 
                     <hr>
@@ -152,6 +152,8 @@
   
     // Import editor css
     import 'trumbowyg/dist/ui/trumbowyg.css';
+    import 'trumbowyg/plugins/fontsize/trumbowyg.fontsize';
+    import 'trumbowyg/plugins/fontfamily/trumbowyg.fontfamily';
 
     export default {
         components: {
@@ -186,9 +188,47 @@
                     // The configuration of the editor.
                 },
                 showPreview:false,
-                config: {
-                    // Get options from 
-                    // https://alex-d.github.io/Trumbowyg/documentation
+                configText:{
+                    btns: [
+                        ['viewHTML'],
+                        ['fontfamily'],
+                        ['fontsize'],
+                        ['undo', 'redo'], // Only supported in Blink browsers
+                        ['formatting'],
+                        ['strong', 'em', 'del'],
+                        ['superscript', 'subscript'],
+                        ['link'],
+                        ['insertImage'],
+                        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                        ['unorderedList', 'orderedList'],
+                        ['horizontalRule'],
+                        ['removeformat'],
+                        ['fullscreen'],
+                    ],
+                    plugins: {
+                        fontsize: {
+                            sizeList: [
+                                '5px',
+                                '9px',
+                                '10px',
+                                '11px',
+                                '12px',
+                                '14px',
+                                '16px',
+                                '18px',
+                                '20px',
+                                '22px',
+                                '24px',
+                                '26px',
+                                '28px',
+                                '36px',
+                                '48px',
+                            ],
+                            allowCustomSize: false
+                        }
+                    },
+                    autogrow: true,
+                    changeActiveDropdownIcon: true
                 }   
             }
         },
