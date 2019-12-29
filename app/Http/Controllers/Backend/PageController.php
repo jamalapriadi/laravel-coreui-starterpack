@@ -46,7 +46,7 @@ class PageController extends Controller
             'page_type'=>'required',
             'template'=>'required',
             'menu'=>'required|unique:posts,menu_id',
-            'file'=>['nullable',new ImageValidation]
+            // 'file'=>['nullable',new ImageValidation]
         ];
 
         $pesan=[
@@ -243,7 +243,7 @@ class PageController extends Controller
             'page_type'=>'required',
             'template'=>'required',
             'menu'=>'required',
-            'file'=>['nullable',new ImageValidation]
+            // 'file'=>['nullable',new ImageValidation]
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

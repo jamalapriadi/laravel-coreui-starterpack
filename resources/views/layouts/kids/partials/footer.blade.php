@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-2 col-sm-3 col-xs-3">
+                <div class="col-lg-3 col-md-2 col-sm-3 col-xs-6">
                     <div class="links-column">
                         <div class="column-title">
                             <h2>Useful Links</h2>
@@ -57,7 +57,7 @@
                         </ul>
                     </div>
                 </div> 
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
                     <div class="links-column">
                         <div class="column-title">
                             <h2>Subscribe</h2>
