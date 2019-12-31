@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>KIDS Republic - Nurturing The Leaders of Tomorrow</title>
+    <title>{{$instansi->nama_instansi}} - {{$instansi->tagline}}</title>
     <link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/common-style.css')}}">
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/responsive.css')}}">
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/prettyPhoto.css')}}">
@@ -38,7 +38,7 @@
 
     <script type='text/javascript'>
         msg = document.title;
-        msg ="Kids Republic - Nurturing The Leaders of Tomorrow - "+msg ;
+        msg ="{{$instansi->nama_instansi}} - {{$instansi->tagline}} - "+msg ;
         position = 0;
         
         function scrolltitle() {

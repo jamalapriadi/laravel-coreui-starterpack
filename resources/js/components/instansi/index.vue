@@ -35,22 +35,7 @@
                             <label for="" class="control-label">Tagline</label>
                             <input type="text" class="form-control" v-model="state.tagline">
                         </div>
-                        <div class="form-group">
-                            <label for="" class="control-label">Teaser Instansi</label>
-                            <ckeditor :editor="editor" v-model="state.teaser" :config="editorConfig"></ckeditor>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="control-label">Tentang Instansi</label>
-                            <ckeditor :editor="editor" v-model="state.tentang" :config="editorConfig"></ckeditor>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="control-label">Visi Instansi</label>
-                            <ckeditor :editor="editor" v-model="state.visi" :config="editorConfig"></ckeditor>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="control-label">Misi Instansi</label>
-                            <ckeditor :editor="editor" v-model="state.misi" :config="editorConfig"></ckeditor>
-                        </div>
+                        
                         <div class="form-group">
                             <label for="" class="control">Alamat</label>
                             <input type="text" class="form-control" v-model="state.alamat">

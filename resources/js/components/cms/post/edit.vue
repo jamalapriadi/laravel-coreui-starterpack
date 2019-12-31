@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <div class="card card-flat">
+                <!-- <div class="card card-flat">
                     <div class="card-header">
                         <h6 class="card-title">Category</h6>
                     </div>
@@ -87,7 +87,7 @@
                             placeholder="Pilih Category" label="text" track-by="text" :preselect-first="true">
                         </multiselect>
                     </div>  
-                </div>
+                </div> -->
 
                 <div class="card card-flat">
                     <div class="card-header">

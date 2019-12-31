@@ -94,7 +94,7 @@
                     </div>
                 </div>
 
-                <div class="card card-flat">
+                <!-- <div class="card card-flat">
                     <div class="card-header">
                         <h6 class="card-title">Category</h6>
                     </div>
@@ -103,14 +103,10 @@
                             :close-on-select="false" :clear-on-select="false" :preserve-search="true" 
                             placeholder="Pilih Category" label="text" track-by="text" :preselect-first="true">
                         </multiselect>
-                        <!-- <div class="form-group form-check" v-for="(l,index) in categories" v-bind:key="index">
-                            <input class="form-check-input" id="inline-checkbox1" type="checkbox"  v-model="state.categories[index]" :value="l.id" :checked="l.id">
-                            <label class="form-check-label" for="inline-checkbox1">{{l.text}}</label>
-                        </div> -->
                         
                         <div id="showSubCategory"></div>
                     </div>  
-                </div>
+                </div> -->
 
                 <div class="card card-flat">
                     <div class="card-header">

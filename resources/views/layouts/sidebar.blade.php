@@ -73,19 +73,21 @@
                     </router-link>
                 </li>
             @endif
-            @if(auth()->user()->can('News'))
+            @if(auth()->user()->can('Testimoni'))
+                <li class="nav-item">
+                    <router-link to="/testimoni" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-comments"></i> Testimoni
+                    </router-link>
+                </li>
+            @endif
+
+            {{-- @if(auth()->user()->can('News'))
                 <li class="nav-item nav-dropdown">
                     <a class="nav-link nav-dropdown-toggle" href="#">
                         <i class="nav-icon icon-blog"></i> News
                     </a>
                     <ul class="nav-dropdown-items">
-                        @if(auth()->user()->can('All Post'))
-                            <li class="nav-item">
-                                <router-link to="/all-post" class="nav-link" active-class="active">
-                                    <i class="nav-icon icon-arrow-right22"></i> All Post
-                                </router-link>
-                            </li>
-                        @endif
+                        
                         @if(auth()->user()->can('Category'))
                             <li class="nav-item">
                                 <router-link to="/category" class="nav-link" active-class="active">
@@ -93,16 +95,10 @@
                                 </router-link>
                             </li>
                         @endif
-                        @if(auth()->user()->can('Testimoni'))
-                            <li class="nav-item">
-                                <router-link to="/testimoni" class="nav-link" active-class="active">
-                                    <i class="nav-icon icon-arrow-right22"></i> Testimoni
-                                </router-link>
-                            </li>
-                        @endif
+                        
                     </ul>
                 </li>
-            @endif
+            @endif --}}
 
             @if(auth()->user()->can('Gallery'))
                 <li class="nav-item">
@@ -121,6 +117,14 @@
             @endif
 
             <li class="nav-title">MANAGE FILE</li>
+            @if(auth()->user()->can('All Post'))
+                <li class="nav-item">
+                    <router-link to="/all-post" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-newspaper"></i> News
+                    </router-link>
+                </li>
+            @endif
+
             @if(auth()->user()->can('Event'))
                 <li class="nav-item">
                     <router-link to="/event" class="nav-link" active-class="active">
