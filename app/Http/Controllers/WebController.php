@@ -516,7 +516,6 @@ class WebController extends Controller
 
             if($simpan){
                 \Mail::to('info@kidsrepublic.sch.id')
-                    ->cc('jamal.apriadi@gmail.com')
                     ->send(new SendContactUs($first_name,$last_name,$email,$phone,$pesan));
 
                 $data=array(
