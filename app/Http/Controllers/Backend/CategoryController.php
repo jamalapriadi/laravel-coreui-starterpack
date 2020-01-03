@@ -46,7 +46,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'name'=>'required',
+            'name'=>'required|max:125',
             'desc'=>'required'
         ];
 
@@ -122,7 +122,7 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $rules=[
-            'category'=>'required',
+            'category'=>'required|max:125',
             'desc'=>'required'
         ];
 

@@ -101,7 +101,7 @@ class NewsletterController extends Controller
                     }
 
                     $imageData = $request->input('attachment');
-                    $ext_file=$file->getClientOriginalExtension();
+                    // $ext_file=$file->getClientOriginalExtension();
                     $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
                     // $request->input('attachment')->save(public_path('uploads/newsletter/').$filename);
                     // $file->move(public_path('uploads/newsletter/'),$file->getClientOriginalName());

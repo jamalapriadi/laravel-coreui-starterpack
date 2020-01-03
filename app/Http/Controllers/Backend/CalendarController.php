@@ -47,7 +47,7 @@ class CalendarController extends Controller
 
     public function store(Request $request){
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'desc'=>'required'
         ];
 
@@ -136,7 +136,7 @@ class CalendarController extends Controller
 
     public function update(Request $request,$id){
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'desc'=>'required'
         ];
 

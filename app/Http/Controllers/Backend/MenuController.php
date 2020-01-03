@@ -46,7 +46,7 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'name'=>'required'
+            'name'=>'required|max:125'
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

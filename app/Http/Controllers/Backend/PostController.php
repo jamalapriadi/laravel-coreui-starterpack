@@ -60,7 +60,7 @@ class PostController extends Controller
 
     public function store(Request $request){
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'teaser'=>'required',
             'desc'=>'required',
             'file'=>['nullable',new ImageValidation]
@@ -250,7 +250,7 @@ class PostController extends Controller
 
     public function update(Request $request,$id){
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'desc'=>'required',
             'file'=>['nullable',new ImageValidation]
         ];

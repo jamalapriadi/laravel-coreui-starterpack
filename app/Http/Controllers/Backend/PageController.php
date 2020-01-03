@@ -42,7 +42,7 @@ class PageController extends Controller
 
     public function store(Request $request){
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'page_type'=>'required',
             'template'=>'required',
             'menu'=>'required|unique:posts,menu_id',
@@ -239,7 +239,7 @@ class PageController extends Controller
         $post=Post::findOrFail($id);
 
         $rules=[
-            'title'=>'required',
+            'title'=>'required|max:125',
             'page_type'=>'required',
             'template'=>'required',
             'menu'=>'required',

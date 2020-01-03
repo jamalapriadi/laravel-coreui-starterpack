@@ -65,8 +65,16 @@ class InfoController extends Controller
 
     public function save_info(Request $request){
         $rules=[
-            'nama_instansi'=>'required',
-            'nama_lengkap_instansi'=>'required'
+            'nama_instansi'=>'required|max:50',
+            'nama_lengkap_instansi'=>'required|max:65',
+            'tagline'=>'max:191',
+            'alamat'=>'max:191',
+            'visi'=>'max:191',
+            'misi'=>'max:191',
+            'telp'=>'max:15',
+            'email'=>'max:30',
+            'fax'=>'max:15',
+            'website'=>'max:30'
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -75,7 +83,7 @@ class InfoController extends Controller
             $data=array(
                 'success'=>false,
                 'pesan'=>'Validasi error',
-                'erros'=>$validasi->errors()->all()
+                'errors'=>$validasi->errors()->all()
             );
         }else{
             if($request->has('id') && $request->input('id')!=""){
@@ -116,6 +124,54 @@ class InfoController extends Controller
                 'pesan'=>'Data berhasil disimpan',
                 'errors'=>array()
             );
+        }
+
+        return $data;
+    }
+
+    public function save_carousel(Request $request){
+        $rules=[
+            'file'=>'required'
+        ];
+
+        $validasi=\Validator::make($request->all(),$rules);
+
+        if($validasi->fails()){
+            $data=array(
+                'success'=>false,
+                'pesan'=>'Validasi Error',
+                'errors'=>$validasi->errors()->all()
+            );
+        }else{
+            $model=new \App\Models\Carousel;
+
+            if($request->has('file') && $request->input('file')!=""){
+                if(!is_dir('uploads/carousel/')){
+                    mkdir('uploads/carousel/', 0777, TRUE);
+                }
+
+                $imageData = $request->input('file');
+                $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+                Image::make($request->input('file'))->save(public_path('uploads/carousel/').$filename);
+                $model->image=$filename;
+            }
+
+            $simpan=$model->save();
+
+            if($simpan){
+
+                $data=array(
+                    'success'=>true,
+                    'pesan'=>'Data berhasil disimpan',
+                    'error'=>''
+                );
+            }else{
+                $data=array(
+                    'success'=>false,
+                    'pesan'=>'Data gagal disimpan',
+                    'error'=>''
+                );
+            }
         }
 
         return $data;

@@ -24,7 +24,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'name'=>'required'
+            'name'=>'required|max:191'
         ];
 
         $validasi=\Validator::make($request->all(),$rules);

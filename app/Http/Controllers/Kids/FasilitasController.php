@@ -49,7 +49,7 @@ class FasilitasController extends Controller
     public function store(Request $request)
     {
         $rules=[
-            'name'=>'required',
+            'name'=>'required|max:191',
             'desc'=>'required'
         ];
 
