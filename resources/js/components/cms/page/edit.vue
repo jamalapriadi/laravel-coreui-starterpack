@@ -102,6 +102,7 @@
 
             <div class="col-lg-8">
                 <div class="card card-flat">
+                    <div class="card-header">Edit Page</div>
                     <div class="card-body">
                         <div class="form-group">
                             <label for="" class="control-label">Heading Title</label>
@@ -151,14 +152,14 @@
                                 <label class="control-label">Full Text</label>
                                 <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label class="control-label">Youtube URL</label>
                                 <input type="text" name="youtube" id="youtube" class="form-control" v-model="state.youtube">
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Facebook URL</label>
                                 <input type="text" name="facebook" id="facebook" class="form-control" v-model="state.facebook">
-                            </div>
+                            </div> -->
 
                             <!-- <div class="form-group" v-show="state.template != 'column-two-with-slider'">
                                 <label for="">Gallery Image</label>

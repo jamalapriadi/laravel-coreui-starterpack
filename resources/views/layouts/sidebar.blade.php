@@ -51,62 +51,6 @@
                     </ul>
                 </li>
             @endif
-            @if(auth()->user()->can('Our Program'))
-                <li class="nav-item">
-                    <router-link to="/our-program" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-globe-alt"></i> Our Program
-                    </router-link>
-                </li>
-            @endif
-            <li class="nav-title">MANAGE PORTAL</li>
-            @if(auth()->user()->can('Page'))
-                <li class="nav-item">
-                    <router-link to="/page" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-docs"></i> Page
-                    </router-link>
-                </li>
-            @endif
-            @if(auth()->user()->can('Menu'))
-                <li class="nav-item">
-                    <router-link to="/menu" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-menu"></i> Menu
-                    </router-link>
-                </li>
-            @endif
-            @if(auth()->user()->can('Testimoni'))
-                <li class="nav-item">
-                    <router-link to="/testimoni" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-comments"></i> Testimoni
-                    </router-link>
-                </li>
-            @endif
-
-            {{-- @if(auth()->user()->can('News'))
-                <li class="nav-item nav-dropdown">
-                    <a class="nav-link nav-dropdown-toggle" href="#">
-                        <i class="nav-icon icon-blog"></i> News
-                    </a>
-                    <ul class="nav-dropdown-items">
-                        
-                        @if(auth()->user()->can('Category'))
-                            <li class="nav-item">
-                                <router-link to="/category" class="nav-link" active-class="active">
-                                    <i class="nav-icon icon-arrow-right22"></i> Category
-                                </router-link>
-                            </li>
-                        @endif
-                        
-                    </ul>
-                </li>
-            @endif --}}
-
-            @if(auth()->user()->can('Gallery'))
-                <li class="nav-item">
-                    <router-link to="/gallery" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-images2"></i> Gallery</a>
-                    </router-link>
-                </li>
-            @endif
 
             @if(auth()->user()->can('Main Slider'))
                 <li class="nav-item">
@@ -116,7 +60,14 @@
                 </li>
             @endif
 
-            <li class="nav-title">MANAGE FILE</li>
+            @if(auth()->user()->can('Promo'))
+                <li class="nav-item">
+                    <router-link to="/promo" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-tag"></i> Promo</a>
+                    </router-link>
+                </li>
+            @endif
+
             @if(auth()->user()->can('All Post'))
                 <li class="nav-item">
                     <router-link to="/all-post" class="nav-link" active-class="active">
@@ -129,14 +80,6 @@
                 <li class="nav-item">
                     <router-link to="/event" class="nav-link" active-class="active">
                         <i class="nav-icon icon-calendar"></i> Event
-                    </router-link>
-                </li>
-            @endif
-
-            @if(auth()->user()->can('Promo'))
-                <li class="nav-item">
-                    <router-link to="/promo" class="nav-link" active-class="active">
-                        <i class="nav-icon icon-tag"></i> Promo</a>
                     </router-link>
                 </li>
             @endif
@@ -157,6 +100,73 @@
                 </li>
             @endif
 
+            @if(auth()->user()->can('Gallery'))
+                <li class="nav-item">
+                    <router-link to="/gallery" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-images2"></i> Gallery</a>
+                    </router-link>
+                </li>
+            @endif
+
+            @if(auth()->user()->can('Testimoni'))
+                <li class="nav-item">
+                    <router-link to="/testimoni" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-comments"></i> Testimoni
+                    </router-link>
+                </li>
+            @endif
+
+            
+            {{-- <li class="nav-title">MANAGE PORTAL</li> --}}
+
+            @if(auth()->user()->can('Menu'))
+                <li class="nav-item">
+                    <router-link to="/menu" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-menu"></i> Menu
+                    </router-link>
+                </li>
+            @endif
+
+            @if(auth()->user()->can('Page'))
+                <li class="nav-item">
+                    <router-link to="/page" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-docs"></i> Page
+                    </router-link>
+                </li>
+            @endif
+
+            @if(auth()->user()->can('Our Program'))
+                <li class="nav-item">
+                    <router-link to="/our-program" class="nav-link" active-class="active">
+                        <i class="nav-icon icon-globe-alt"></i> Our Program
+                    </router-link>
+                </li>
+            @endif
+            
+            
+
+            {{-- @if(auth()->user()->can('News'))
+                <li class="nav-item nav-dropdown">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                        <i class="nav-icon icon-blog"></i> News
+                    </a>
+                    <ul class="nav-dropdown-items">
+                        
+                        @if(auth()->user()->can('Category'))
+                            <li class="nav-item">
+                                <router-link to="/category" class="nav-link" active-class="active">
+                                    <i class="nav-icon icon-arrow-right22"></i> Category
+                                </router-link>
+                            </li>
+                        @endif
+                        
+                    </ul>
+                </li>
+            @endif --}}
+
+            
+
+            {{-- <li class="nav-title">MANAGE FILE</li> --}}
             @if(auth()->user()->can('Message'))
                 <li class="nav-item">
                     <router-link to="/messages" class="nav-link" active-class="active">

@@ -18,7 +18,7 @@ class CarouselController extends Controller
             $model=$model->where('caption','like','%'.$request->input('q').'%');
         }
 
-        $model=$model->paginate(10);
+        $model=$model->orderBy('updated_at','desc')->paginate(10);
 
         return $model;
     }

@@ -41,7 +41,7 @@ class ProgramController extends Controller
             $post=$post->where('title','like','%'.$request->input('q').'%');
         }
 
-        $post=$post->paginate(10);
+        $post=$post->orderBy('updated_at','desc')->paginate(10);
 
         return $post;
     }

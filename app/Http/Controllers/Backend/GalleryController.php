@@ -19,7 +19,7 @@ class GalleryController extends Controller
             $model=$model->where('name','like','%'.$request->input('q').'%');
         }
 
-        $model=$model->paginate(25);
+        $model=$model->orderBy('updated_at','desc')->paginate(25);
 
         return $model;
     }

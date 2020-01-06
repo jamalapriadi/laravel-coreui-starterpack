@@ -1,7 +1,7 @@
 <template>
     <div class="card card-default">
         <div class="card-header">
-            Current Promo
+            Newsletter
             
             <div class="card-header-actions">
                 <router-link to="/newsletter/create" class="btn btn-primary">

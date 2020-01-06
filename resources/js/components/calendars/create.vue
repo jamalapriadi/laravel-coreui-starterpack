@@ -1,8 +1,10 @@
 <template>
     <form @submit.prevent="store" action="data/calendar" method="post" enctype="multipart/form-data">
+        
         <div class="row">
             <div class="col-lg-12">
                 <div class="card card-flat">
+                    <div class="card-header">Create Calendar</div>
                     <div class="card-body">
                         <div class="form-group">
                             <label class="control-label">Title</label>

@@ -1,7 +1,7 @@
 <template>
     <div class="card card-default">
         <div class="card-header">
-            All Post
+            All News
             
             <div class="card-header-actions">
                 <router-link to="/post/create" class="btn btn-primary">

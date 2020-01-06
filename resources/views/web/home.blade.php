@@ -72,7 +72,7 @@
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$val->video_id}}" 
                                         frameborder="0" 
-                                        @if($key==0) style="border:17px solid #FDFD66; border-radius: 30px" @else style="border:17px solid #ACE1FA; border-radius: 30px" @endif
+                                        @if($key % 2==0) style="border:17px solid #FDFD66; border-radius: 30px" @else style="border:17px solid #ACE1FA; border-radius: 30px" @endif
                                         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                     </div>
                                 </div>

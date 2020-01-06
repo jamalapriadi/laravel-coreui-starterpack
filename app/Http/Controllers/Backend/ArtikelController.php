@@ -40,7 +40,7 @@ class ArtikelController extends Controller
             $category=$category->where('title','like','%'.$request->input('q').'%');
         }
 
-        $category=$category->paginate(25);
+        $category=$category->orderBy('updated_at','desc')->paginate(25);
 
         return $category;
     }
