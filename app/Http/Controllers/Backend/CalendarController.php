@@ -40,9 +40,15 @@ class CalendarController extends Controller
             $post=$post->where('title','like','%'.$request->input('q').'%');
         }
 
-        $post=$post->orderBy('updated_at','desc')->paginate(10);
+        $post=$post->orderBy('updated_at','desc');
 
-        return $post;
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        return $post->paginate($halaman);
     }
 
     public function store(Request $request){

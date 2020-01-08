@@ -20,7 +20,13 @@ class FounderController extends Controller
             $model=$model->where('name','like','%'.$request->input('q').'%');
         }
 
-        $model=$model->paginate(25);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        $model=$model->paginate($halaman);
 
         return $model;
     }

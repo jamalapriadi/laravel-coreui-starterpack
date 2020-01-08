@@ -13,6 +13,7 @@
             <code>Event</code> digunakan untuk maintenance konten event yang ada dimenu <a href="https://kidsrepublic.sch.id" target="_blank">Home</a> frontend.<br>
             file <code>images</code> untuk tampilan preview dibawah ini otomatis akan disetting ke 150x100 pixel.<br>
             file <code>images</code> ditampilan details event frontend otomatis akan disetting ke 770x348 pixel.<br>
+            file <code>images</code> maksimal 1 Mb.<br>
             <hr>
 
             <div class="row">
@@ -25,6 +26,14 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-group float-right">
+                        <select name="page" id="page" class="form-control" v-model="halaman" @change="ubahHalaman">
+                            <option v-for="(l,index) in pages" :key="index" :value="l">{{l}}</option>    
+                        </select>     
+                    </div>
                 </div>
             </div>
 
@@ -100,6 +109,8 @@ export default {
             pesankelas:'',
             message:'',
             loading:true,
+            halaman:10,
+            pages:[5,10,15,20,25,50,100]
         }
     },
     mounted() {
@@ -122,12 +133,16 @@ export default {
                 })
         },
 
+        ubahHalaman(){
+            this.showData()
+        },
+
         showData(page){
             if(typeof page === 'undefined'){
                 page = 1;
             }
 
-            axios.get('data/event?page='+page)
+            axios.get('data/event?page='+page+'&halaman='+this.halaman)
                 .then(response => {
                     this.loading=false;
                     this.list = response.data;
@@ -139,7 +154,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('data/event?q='+this.pencarian)
+            axios.get('data/event?q='+this.pencarian+'&halaman='+this.halaman)
                 .then(response => {
                     this.list = response.data;
                 })

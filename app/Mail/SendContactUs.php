@@ -38,7 +38,7 @@ class SendContactUs extends Mailable
      */
     public function build()
     {
-        return $this->subject('Message form Web Visitor')
+        return $this->subject('Message from Web Visitor')
             ->from($this->email, $this->first_name." ".$this->last_name)
             ->view('emails.send_contact_us');
     }

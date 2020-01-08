@@ -8,6 +8,7 @@
             <code>Step 1</code> buat album dengan button <code>Add Album</code>.<br>
             <code>Step 2</code> klik nama album yang sudah dibuat -&gt; upload file images atau video(youtube) dengan  album dengan button <code>Add Images atau Add Video</code>.<br>
             Urutkan Album atau File agar tampilan file yang ingin dihighlight ada di urutan atas dimenu <a href="https://kidsrepublic.sch.id/gallery" target="_blank">Gallery</a> frontend.<br>
+            file <code>images</code> maksimal 1 Mb.<br>
             <hr>
 
             <div class="row" v-show="tampilForm == false">

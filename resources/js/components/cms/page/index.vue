@@ -21,6 +21,14 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="col-lg-7">
+                    <div class="form-group float-right">
+                        <select name="page" id="page" class="form-control" v-model="halaman" @change="ubahHalaman">
+                            <option v-for="(l,index) in pages" :key="index" :value="l">{{l}}</option>    
+                        </select>     
+                    </div>
+                </div>
             </div>
 
             <br>
@@ -96,6 +104,8 @@ export default {
             pesankelas:'',
             message:'',
             loading:true,
+            halaman:10,
+            pages:[5,10,15,20,25,50,100]
         }
     },
     mounted() {
@@ -122,12 +132,16 @@ export default {
                 })
         },
 
+        ubahHalaman(){
+            this.showData()
+        },
+
         showData(page){
             if(typeof page === 'undefined'){
                 page = 1;
             }
 
-            axios.get('/data/post?page='+page+"&type=page")
+            axios.get('/data/post?page='+page+"&type=page&halaman="+this.halaman)
                 .then(response => {
                     this.loading=false;
                     this.list = response.data;
@@ -139,7 +153,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('/data/post?q='+this.pencarian+"&type=page")
+            axios.get('/data/post?q='+this.pencarian+"&type=page&halaman="+this.halaman)
                 .then(response => {
                     this.list = response.data;
                 })

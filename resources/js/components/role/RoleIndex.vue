@@ -23,6 +23,14 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="col-lg-7">
+                    <div class="form-group float-right">
+                        <select name="page" id="page" class="form-control" v-model="halaman" @change="ubahHalaman">
+                            <option v-for="(l,index) in pages" :key="index" :value="l">{{l}}</option>    
+                        </select>     
+                    </div>
+                </div>
             </div>
 
             <br>
@@ -85,7 +93,9 @@
                 list:[],
                 listData:{},
                 pencarian:'',
-                loading:true
+                loading:true,
+                halaman:10,
+                pages:[5,10,15,20,25,50,100]
             }
         },
         mounted() {
@@ -110,12 +120,16 @@
                     })
             },
 
+            ubahHalaman(){
+                this.showData()
+            },
+
             showData(page){
                 if(typeof page === 'undefined'){
                     page = 1;
                 }
 
-                axios.get('data/roles?page='+page)
+                axios.get('data/roles?page='+page+'&halaman='+this.halaman)
                     .then(response => {
                         this.loading=false;
                         this.list = response.data;
@@ -128,7 +142,7 @@
                     page = 1;
                 }
 
-                axios.get('data/roles?q='+this.pencarian)
+                axios.get('data/roles?q='+this.pencarian+'&halaman='+this.halaman)
                     .then(response => {
                         this.list = response.data;
                     })

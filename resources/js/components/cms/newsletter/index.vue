@@ -13,6 +13,8 @@
             <code>Newsletter</code> digunakan untuk maintenance konten yang ada dimenu <a href="https://kidsrepublic.sch.id/newsletter" target="_blank">Newsletter</a> frontend.<br>
             file <code>images</code> untuk tampilan preview dibawah ini otomatis akan disetting ke 150x100 pixel.<br>
             file <code>images</code> dimenu <a href="https://kidsrepublic.sch.id/newsletter" target="_blank">Newsletter</a> frontend akan otomatis disetting ke 770x348 pixel.<br>
+            file <code>images</code> maksimal 1 Mb.<br>
+            file <code>attachment</code> maksimal 2 Mb.<br>
             <hr>
 
             <div class="row">
@@ -25,6 +27,14 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-group float-right">
+                        <select name="page" id="page" class="form-control" v-model="halaman" @change="ubahHalaman">
+                            <option v-for="(l,index) in pages" :key="index" :value="l">{{l}}</option>    
+                        </select>     
+                    </div>
                 </div>
             </div>
 
@@ -102,6 +112,8 @@ export default {
             pesankelas:'',
             message:'',
             loading:true,
+            halaman:10,
+            pages:[5,10,15,20,25,50,100]
         }
     },
     mounted() {
@@ -124,12 +136,16 @@ export default {
                 })
         },
 
+        ubahHalaman(){
+            this.showData()
+        },
+
         showData(page){
             if(typeof page === 'undefined'){
                 page = 1;
             }
 
-            axios.get('data/newsletter?page='+page+'&type=promo')
+            axios.get('data/newsletter?page='+page+'&type=promo&halaman='+this.halaman)
                 .then(response => {
                     this.loading=false;
                     this.list = response.data;
@@ -141,7 +157,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('data/newsletter?q='+this.pencarian+'&type=promo')
+            axios.get('data/newsletter?q='+this.pencarian+'&type=promo&halaman='+this.halaman)
                 .then(response => {
                     this.list = response.data;
                 })

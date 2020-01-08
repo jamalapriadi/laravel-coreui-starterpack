@@ -21,9 +21,13 @@ class UserController extends Controller
             $user=$user->where('name','like','%'.request('q').'%');
         }
 
-        $user=$user->paginate(25);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
 
-        return $user;
+        return $user->paginate($halaman);
 
     }
 

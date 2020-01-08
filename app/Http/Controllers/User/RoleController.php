@@ -18,7 +18,13 @@ class RoleController extends Controller
             $role=$role->where('name','like','%'.$request->input('q').'%');
         }
 
-        $role=$role->paginate(25);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        $role=$role->paginate($halaman);
 
         return $role;
     }

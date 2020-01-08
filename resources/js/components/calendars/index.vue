@@ -10,7 +10,9 @@
             </div>
         </div>
         <div class="card-body">
-
+            file <code>images</code> maksimal 1 Mb.<br>
+            <!-- file <code>attachment</code> maksimal 2 Mb.<br> -->
+            <hr>
             <div class="row">
                 <div class="col-lg-5">
                     <form class="form-inline">
@@ -21,6 +23,14 @@
                             </div>
                         </div>
                     </form>
+                </div>
+
+                <div class="col-lg-7">
+                    <div class="form-group float-right">
+                        <select name="page" id="page" class="form-control" v-model="halaman" @change="ubahHalaman">
+                            <option v-for="(l,index) in pages" :key="index" :value="l">{{l}}</option>    
+                        </select>     
+                    </div>
                 </div>
             </div>
 
@@ -95,6 +105,8 @@ export default {
             pesankelas:'',
             message:'',
             loading:true,
+            halaman:10,
+            pages:[5,10,15,20,25,50,100]
         }
     },
     mounted() {
@@ -117,12 +129,16 @@ export default {
                 })
         },
 
+        ubahHalaman(){
+            this.showData()
+        },
+
         showData(page){
             if(typeof page === 'undefined'){
                 page = 1;
             }
 
-            axios.get('data/calendar?page='+page+'&type=promo')
+            axios.get('data/calendar?page='+page+'&type=promo&halaman='+this.halaman)
                 .then(response => {
                     this.loading=false;
                     this.list = response.data;
@@ -134,7 +150,7 @@ export default {
                 page = 1;
             }
 
-            axios.get('data/calendar?q='+this.pencarian+'&type=promo')
+            axios.get('data/calendar?q='+this.pencarian+'&type=promo&halaman='+this.halaman)
                 .then(response => {
                     this.list = response.data;
                 })

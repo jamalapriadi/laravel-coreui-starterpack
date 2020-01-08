@@ -22,9 +22,15 @@ class MenuController extends Controller
             $model=$model->where('menu','like','%'.$request->input('q').'%');
         }
 
-        $model=$model->orderBy('updated_at','desc')->paginate(25);
+        $model=$model->orderBy('updated_at','desc');
 
-        return $model;
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        return $model->paginate($halaman);
     }
 
     /**

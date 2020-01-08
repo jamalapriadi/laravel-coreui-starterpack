@@ -34,9 +34,15 @@ class PostController extends Controller
             $post=$post->where('title','like','%'.$request->input('q').'%');
         }
 
-        $post=$post->orderBy('updated_at','desc')->paginate(10);
+        $post=$post->orderBy('updated_at','desc');
 
-        return $post;
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        return $post->paginate($halaman);
     }
 
     public function page(){
@@ -513,15 +519,19 @@ class PostController extends Controller
 
     public function subscribe(Request $request)
     {
-        $post=\App\Models\Cms\Subscribe::select('*');
+        $post=\App\Models\Cms\Subscribe::select('*')->orderBy('updated_at','desc');
 
         if($request->has('q')){
             $post=$post->where('first_name','like','%'.$request->input('q').'%');
         }
 
-        $post=$post->paginate(10);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
 
-        return $post;
+        return $post->paginate($halaman);
     }
 
     public function subscribe_delete(Request $request, $id)
@@ -549,15 +559,19 @@ class PostController extends Controller
 
     public function messages(Request $request)
     {
-        $post=\App\Models\Cms\Message::select('*');
+        $post=\App\Models\Cms\Message::select('*')->orderBy('updated_at','desc');
 
         if($request->has('q')){
             $post=$post->where('first_name','like','%'.$request->input('q').'%');
         }
 
-        $post=$post->paginate(10);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
 
-        return $post;
+        return $post->paginate($halaman);
     }
 
     public function message_delete(Request $request,$id)

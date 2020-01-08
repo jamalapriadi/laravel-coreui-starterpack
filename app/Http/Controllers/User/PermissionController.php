@@ -38,7 +38,13 @@ class PermissionController extends Controller
             $permission=$permission->where('name','like','%'.$request->input('q').'%');
         }
 
-        $permission=$permission->paginate(25);
+        if($request->has('halaman')){
+            $halaman=$request->input('halaman');
+        }else{
+            $halaman=25;
+        }
+
+        $permission=$permission->paginate($halaman);
 
         return $permission;
     }
