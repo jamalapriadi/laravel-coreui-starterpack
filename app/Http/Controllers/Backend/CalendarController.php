@@ -99,7 +99,7 @@ class CalendarController extends Controller
                     }
     
                     $imageData = $request->file('file');
-                    $fileName = time().'.'.$request->file->getClientOriginalExtension();
+                    $fileName = $request->file->getClientOriginalName();
 
                     if($imageData->move(public_path()."/uploads/file/",$fileName)){
                         \DB::table('post_files')

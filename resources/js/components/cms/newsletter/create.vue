@@ -360,7 +360,8 @@ export default {
                 return;
             }
             
-            this.createFile(files[0]);
+            // this.createFile(files[0]);
+            this.state.attachment = e.target.files[0];
         },
 
         createFile(file) {
@@ -375,8 +376,15 @@ export default {
         store(e) {
             this.loading=true;
 
-
-            axios.post(e.target.action, this.state).then(response => {
+            let formData = new FormData();
+            formData.append('title',this.state.title);
+            formData.append('desc', this.state.desc);
+            formData.append('file', this.state.file);
+            formData.append('status', this.state.status);
+            formData.append('comment', this.state.comment)
+            formData.append('attachment', this.state.attachment);
+            
+            axios.post(e.target.action, formData).then(response => {
                 this.loading=false;
                 if(response.data.success==true){
                     this.errors = [];

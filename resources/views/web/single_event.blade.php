@@ -55,7 +55,13 @@
                             <div class="sidebar-title"><h2>Recent <span>Photo</span></h2></div>
                             
                             <div class="instagram">
-                                {{-- <figure class="img-box" ng-repeat="row in data.gallerylimit"><a href="https://kidsrepublic.sch.id/urlfile/4/{{row.file}}" target="_blank"><img src="https://kidsrepublic.sch.id/fitjpg/4/{{row.file}}/83/83" alt=""></a></figure> --}}
+                                @foreach($photo as $key=>$val)
+                                    <figure class="img-box">
+                                        <a href="{{$val->image_url}}" target="_blank">
+                                            <img src="{{$val->image_url}}" alt="" style="width:83px; height:83px;">
+                                        </a>
+                                    </figure>
+                                @endforeach
                             </div>                   
                         </div>
                     </aside>

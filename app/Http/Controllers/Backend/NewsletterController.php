@@ -16,7 +16,8 @@ class NewsletterController extends Controller
             [
                 'category',
                 'subcategory',
-                'penulis'
+                'penulis',
+                'files'
             ]
         )->where('post_type','newsletter')
         ->select(
@@ -55,7 +56,7 @@ class NewsletterController extends Controller
         $rules=[
             'title'=>'required',
             'desc'=>'required',
-            'file'=>['nullable',new ImageValidation]
+            'file'=>['nullable',new ImageValidation],
         ];
 
         $validasi=\Validator::make($request->all(),$rules);
@@ -67,7 +68,13 @@ class NewsletterController extends Controller
                 'errors'=>$validasi->errors()->all()
             );
         }else{
-            $post=new Post;
+            if($request->has('kode') && $request->input('kode')!=""){
+                $kd=$request->input('kode');
+                $post=Post::find($kd);
+            }else{
+                $post=new Post;
+            }
+            
             $post->title=$request->input('title');
             $post->description=$request->input('desc');
             $post->comment=$request->input('comment');
@@ -100,27 +107,34 @@ class NewsletterController extends Controller
 
             if($simpan){
 
-                if($request->has('attachment') && $request->input('attachment')!="")
+                if($request->hasFile('attachment'))
                 {
                     if(!is_dir('uploads/newsletter/')){
                         mkdir('uploads/newsletter/', 0777, TRUE);
                     }
 
-                    $imageData = $request->input('attachment');
-                    // $ext_file=$file->getClientOriginalExtension();
-                    $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                    // $request->input('attachment')->save(public_path('uploads/newsletter/').$filename);
-                    // $file->move(public_path('uploads/newsletter/'),$file->getClientOriginalName());
-                    // $post->featured_image=$filename;
+                    $imageData = $request->file('attachment');
+                    $fileName = $request->attachment->getClientOriginalName();
 
-                    $post->files()->sync(
-                        [
-                            $post->id=>[
-                                'file'=>$filename,
-                                'author'=>auth()->user()->id
-                            ]
-                        ]
-                    );
+                    if($imageData->move(public_path()."/uploads/newsletter/",$fileName)){
+                        \DB::table('post_files')
+                            ->where('post_id',$post->id)
+                            ->delete();
+
+                        \DB::table('post_files')
+                            ->insert(
+                                [
+                                    'post_id'=>$post->id,
+                                    'type_file'=>'file',
+                                    'file'=>$fileName,
+                                    'author'=>auth()->user()->id,
+                                    'created_at'=>date('Y-m-d H:i:s'),
+                                    'updated_at'=>date('Y-m-d H:i:s')
+                                ]
+                            );
+                    }
+
+                    
                 }
 
                 $data=array(

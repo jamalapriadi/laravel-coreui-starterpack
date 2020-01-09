@@ -295,6 +295,10 @@ class WebController extends Controller
             return abort(404);
         }
 
+        $photo=\App\Models\Cms\Galleryfile::orderBy('created_at','desc')
+            ->limit(9)
+            ->get();
+
         $other=Post::where('slug','<>',$slug)
             ->with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
             ->where('post_type',"event")
@@ -303,6 +307,7 @@ class WebController extends Controller
 
         return view('web.single_event')
             ->with('page',$page)
+            ->with('photo',$photo)
             ->with('other',$other);
     }
 

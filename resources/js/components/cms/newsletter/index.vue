@@ -63,9 +63,11 @@
                                 <div v-html="l.description"></div>
                             </td>
                             <td>
-                                <a href="#">
-                                    Attachment
-                                </a>
+                                <label v-for="(k,idx) in l.files" :key="idx" class="label-info">
+                                    <a :href="'uploads/newsletter/'+k.file" target="_blank">
+                                        Attachment
+                                    </a>
+                                </label>
                             </td>
                             <td>
                                 <div class="btn-group">
