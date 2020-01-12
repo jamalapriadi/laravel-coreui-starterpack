@@ -30,7 +30,9 @@
                 </div>
                 <div class="form-group">
                     <label for="" class="control-label">Description</label>
-                    <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
+                    <!-- <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg> -->
+                    <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
+                    <!-- <Myeditor v-model="state.desc"></Myeditor> -->
                 </div>
                 <div class="form-group">
                     <router-link to="/founder" class="btn btn-default">
@@ -57,11 +59,18 @@ import Trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/plugins/fontsize/trumbowyg.fontsize';
 import 'trumbowyg/plugins/fontfamily/trumbowyg.fontfamily';
+import 'trumbowyg/dist/plugins/colors/trumbowyg.colors';
+import 'trumbowyg/plugins/table/trumbowyg.table';
+import 'trumbowyg/dist/plugins/table/trumbowyg.table';
+
+import Myeditor from '../template/myeditor'
+
 
 export default {
     components: {
         VueLoading,
-        Trumbowyg
+        Trumbowyg,
+        Myeditor
     },
     data() {
         return {
@@ -77,7 +86,15 @@ export default {
             errors: [],
             editor: ClassicEditor,
             editorConfig: {
-                // The configuration of the editor.
+                plugins: [
+                    // EssentialsPlugin,
+                    // BoldPlugin,
+                    // ItalicPlugin,
+                    // LinkPlugin,
+                    // ParagraphPlugin
+                    // FontFamily
+                    // Font
+                ]   
             },
             showPreview: false,
             imagePreview: '',
@@ -97,6 +114,8 @@ export default {
                     ['horizontalRule'],
                     ['removeformat'],
                     ['fullscreen'],
+                    ['foreColor', 'backColor'],
+                    ['table']
                 ],
                 plugins: {
                     fontsize: {
@@ -118,6 +137,9 @@ export default {
                             '48px',
                         ],
                         allowCustomSize: false
+                    },
+                    table: {
+                        // Some table plugin options, see details below
                     }
                 },
                 autogrow: true,
@@ -125,8 +147,38 @@ export default {
             }
         }
     },
+    mounted(){
+        this.getCKeditor()
+    },
     methods: {
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+        },
+
         store(e) {
+            var desc = CKEDITOR.instances.desc.getData();
+            this.state.desc = desc;
             this.loading = true;
 
             axios.post(e.target.action, this.state).then(response => {

@@ -101,15 +101,24 @@ $(function () {
                 $("#tampilGalleryFile").empty().html(el);
                 $("#tampilLoadMore").empty().html(al);
 
-                $("a[rel^='prettyPhoto']").prettyPhoto();
+                // $("a[rel^='prettyPhoto']").prettyPhoto();
+                $("[rel^='prettyPhoto']").prettyPhoto({
+                    animation_speed: 'normal',
+                    opacity: 1,
+                    show_title: true,
+                    allow_resize: true,
+                    counter_separator_label: '/',
+                    theme: 'light_square',
+                });
             }
         })
 
     }
 
-    $(document).on("click",".alamat",function(e){
-        
-    })
+    // $(document).on("click","a[rel^='prettyPhoto']",function(e){
+    //     jQuery.prettyPhoto.open(jQuery(this).attr("href"),"","");
+    //     return false;
+    // })
 
     $(document).on("click","#btnloadmore",function(e){
         e.preventDefault();

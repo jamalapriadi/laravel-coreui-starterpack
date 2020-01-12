@@ -436,8 +436,24 @@ class UserController extends Controller
     public function login_info(){
         $id=auth()->user()->id;
 
-        $user=\App\User::find($id);
+        $user=\App\User::with('roles')->find($id);
 
         return $user;
+    }
+
+    public function reset_password_user(Request $request, $id)
+    {
+        $password_default='welcome'.date('Y');
+
+        $user=\App\User::findOrFail($id);
+        $user->password=bcrypt($password_default);
+        $user->save();
+
+
+        return array(
+            'success'=>true,
+            'message'=>'Password sudah di reset, passwordnya adalah '.$password_default,
+            'error'=>array()
+        );
     }
 }

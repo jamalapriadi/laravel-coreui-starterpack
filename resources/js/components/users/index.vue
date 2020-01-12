@@ -34,6 +34,11 @@
             </div>
 
             <br>
+
+            <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
+            <div class="col-lg-12" v-if="message" v-bind:class="pesankelas">
+                {{ message }}
+            </div>
             
             <div class="table-responsive">
                 <table class="table table-striped">
@@ -48,6 +53,7 @@
                             <th>Status Login</th>
                             <th>Role</th>
                             <th>Active</th>
+                            <th v-show="user.roles!=null">Reset Password</th>
                             <th width="8%"></th>
                         </tr>
                     </thead>
@@ -85,6 +91,11 @@
                                         @change="aktifUser(l.id)"/>
                                 </span>
                             </td>
+                            <td v-show="user.roles!=null">
+                                <span v-show="user.roles[0].name == 'Super Admin'">
+                                    <a href="#" @click.prevent="resetPassword(l.id)" class="btn btn-primary">Reset Password</a>
+                                </span>
+                            </td>
                             <td>
                                 <div class="btn-group">
                                     <router-link :to="{ name: 'hasAksesUser', params: {id: l.id}}" class="btn btn-sm btn-success text-white" title="Ubah Role">
@@ -101,7 +112,7 @@
                 </table>
             </div>
 
-            <vue-loading v-if="loading" type="bars" color="#d9544e" :size="{ width: '50px', height: '50px' }"></vue-loading>    
+            
             <div align="right">
                 <pagination :data="listData" @pagination-change-page="showData" :show-disabled="true"></pagination>
             </div>
@@ -123,10 +134,14 @@
                 pencarian:'',
                 loading:true,
                 halaman:10,
-                pages:[5,10,15,20,25,50,100]
+                pages:[5,10,15,20,25,50,100],
+                user:{},
+                pesankelas:'',
+                message:'',
             }
         },
         mounted() {
+            this.getUser();
             this.showData();
         },
         watch: {
@@ -139,6 +154,12 @@
             }
         },
         methods: {
+            getUser(){
+                axios.get('data/user')
+                    .then(response =>{
+                        this.user = response.data
+                    })
+            },
             nonAktifUser(id){
                 this.$swal({
                     title: 'Non Aktif User?',
@@ -169,6 +190,23 @@
                         this.showData();
                     }
                 })
+            },
+
+            resetPassword(id){
+                this.loading = true
+
+                axios.post('data/reset-password/'+id+'/user')
+                    .then(response => {
+                        if(response.data.success==true){
+                            this.message = response.data.message;
+                            this.pesankelas='alert alert-success';
+                        }else{
+                            this.pesankelas='alert alert-danger';
+                            this.message = response.data.errors;
+                        }
+
+                        this.loading=false;
+                    })
             },
 
             aktifUser(id){

@@ -150,7 +150,8 @@
                         <div v-show="state.page_type == 'text' || state.page_type=='text and component'">
                             <div class="form-group">
                                 <label class="control-label">Full Text</label>
-                                <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
+                                <!-- <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg> -->
+                                <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                             </div>
                             <!-- <div class="form-group">
                                 <label class="control-label">Youtube URL</label>
@@ -459,6 +460,31 @@ export default {
                 })
         },
 
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+        },
+
         getData(){
             let app=this;
             let id= app.$route.params.id;
@@ -504,6 +530,8 @@ export default {
                             status:'old'
                         })
                     }
+
+                    this.getCKeditor()
                 })
                 .catch( error => {
                     alert('data tidak dapat di load');
@@ -688,6 +716,7 @@ export default {
 
         saveForm(){
             this.loading=true;
+            this.state.desc = CKEDITOR.instances.desc.getData();
 
             axios.patch('data/page/'+this.postId, this.state)
                 .then(response => {

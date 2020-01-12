@@ -58,6 +58,35 @@ Vue.use(Vue2Editor)
 Vue.use(VueCarousel);
 Vue.use(VueLazyLoad)
 
+
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+// import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
+// import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
+// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+
+ClassicEditor
+  .create(document.querySelector("#editor"),{
+    plugins: [ ],
+    fontFamily: {
+      options: [
+          'default',
+          'Ubuntu, Arial, sans-serif',
+          'Ubuntu Mono, Courier New, Courier, monospace'
+      ]
+    },
+    toolbar: [
+      'heading', 'bulletedList', 'numberedList', 'fontFamily', 'undo', 'redo'
+    ]
+  })
+  .then( editor => {
+    console.log('sukses')
+  })
+  .catch( error => {
+    console.log(error.stack)
+  });
+
+
 // register plugin component
 Vue.component('multiselect', Multiselect);
 Vue.component('tags-input', VoerroTagsInput);

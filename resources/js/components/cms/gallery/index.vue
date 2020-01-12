@@ -211,7 +211,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label">Deskripsi</label>
-                                    <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor>
+                                    <!-- <ckeditor :editor="editor" v-model="state.desc" :config="editorConfig"></ckeditor> -->
+                                    <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="control-label">Related Event</label>
@@ -303,6 +304,7 @@ export default {
     },
     mounted() {
         this.showData();
+        this.getCKeditor()
     },
     watch: {
         pencarian: function(q) {
@@ -317,9 +319,11 @@ export default {
         addNew(){
             this.tampilForm=true
         },
+
         batalForm(){
             this.tampilForm=false
         },
+
         changeRelated(){
             this.event=[]
 
@@ -329,6 +333,31 @@ export default {
                         this.event = response.data
                     })
             }
+        },
+
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
         },
 
         editGallery(l){
@@ -539,7 +568,7 @@ export default {
 
         store(e) {
             this.loading=true;
-
+            this.state.desc = CKEDITOR.instances.desc.getData();
 
             axios.post(e.target.action, this.state).then(response => {
                 this.loading=false;

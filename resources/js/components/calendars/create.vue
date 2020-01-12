@@ -12,7 +12,8 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>
-                            <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
+                            <!-- <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg> -->
+                            <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
@@ -199,6 +200,7 @@ export default {
     mounted() {
         // this.getCategory();
         // this.getTag();
+        this.getCKeditor()
     },
     watch: {
         pencarian: function(q) {
@@ -279,8 +281,34 @@ export default {
             this.state.file = e.target.files[0];
         },
 
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+        },
+
         store(e) {
             this.loading=true;
+            this.state.desc = CKEDITOR.instances.desc.getData();
 
             let formData = new FormData();
             formData.append('title',this.state.title);

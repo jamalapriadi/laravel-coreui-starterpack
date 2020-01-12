@@ -79,6 +79,7 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::get('notifications', 'User\UserController@notifications');
     Route::get('status-user/{id}','User\UserController@status_user');
     Route::post('update-role-user/{id}','User\UserController@update_role_user');
+    Route::post('reset-password/{id}/user','User\UserController@reset_password_user');
     /**================================== End User */
 
     /**================================== Instansi */

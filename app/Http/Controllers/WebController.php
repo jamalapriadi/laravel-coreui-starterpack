@@ -28,14 +28,16 @@ class WebController extends Controller
             ->where('active','Y')
             ->get();
 
-        $video=\App\Models\Cms\Instansivideo::orderBy('created_at','desc')->get();
+        $video=\App\Models\Cms\Instansivideo::orderBy('updated_at','desc')->get();
 
         $fasilitas=\App\Models\Cms\Fasilitas::all();
 
         $promo=\App\Models\Cms\Post::where('post_type','promo')
+            ->orderBy('updated_at','desc')
             ->get();
 
         $testimoni=\App\Models\Cms\Post::where('post_type','testimoni')
+            ->orderBy('updated_at','desc')
             ->get();
 
         
@@ -44,6 +46,7 @@ class WebController extends Controller
             ->get();
 
         $event=\App\Models\Cms\Post::where('post_type','event')
+            ->orderBy('updated_at','desc')
             ->get();
 
         $calendar=\App\Models\Cms\Post::where('post_type','calendar')

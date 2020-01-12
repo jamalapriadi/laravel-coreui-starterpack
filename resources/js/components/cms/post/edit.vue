@@ -19,7 +19,8 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Full Text</label>
-                            <trumbowyg v-model="state.desc" class="form-control" name="content" :config="configText"></trumbowyg>
+                            <!-- <trumbowyg v-model="state.desc" class="form-control" name="content" :config="configText"></trumbowyg> -->
+                            <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                         </div>
                         <!-- <div class="form-group">
                             <label class="control-label">Youtube URL</label>
@@ -317,6 +318,31 @@ export default {
             return moment(date).format('YYYY-MM-DD');
         },
 
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+        },
+
         getData(){
             let app=this;
             let id= app.$route.params.id;
@@ -346,6 +372,8 @@ export default {
                     for(var a=0; a<response.data.tags.length; a++){
                         this.state.tags.push(response.data.tags[a].tag_name);
                     }
+
+                    this.getCKeditor()
                 })
                 .catch( error => {
                     alert('data tidak dapat di load');
@@ -432,6 +460,7 @@ export default {
 
         saveForm(){
             this.loading=true;
+            this.state.desc = CKEDITOR.instances.desc.getData();
 
             axios.patch('data/post/'+this.postId, this.state)
                 .then(response => {

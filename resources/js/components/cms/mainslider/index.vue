@@ -11,7 +11,8 @@
 
                     <div class="form-group">
                         <label for="" class="control-label">Text Overlay</label>
-                        <trumbowyg v-model="overlay.desc"  :config="configText" class="form-control" name="content"></trumbowyg>
+                        <!-- <trumbowyg v-model="overlay.desc"  :config="configText" class="form-control" name="content"></trumbowyg> -->
+                        <textarea name="desc" id="desc" v-model="overlay.desc" cols="30" rows="10"></textarea>
                     </div>
 
                     <hr>
@@ -251,6 +252,31 @@
                 this.state.desc = '';
             },
 
+            getCKeditor(){
+                CKEDITOR.replace( 'desc',{
+                    extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                    language: 'en',
+                    allowedContent: true,
+                    entities: false,
+                    enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                    toolbar :
+                        [
+                            [ 'Font', 'FontSize','Styles' ],        
+                            [ 'Bold', 'Italic', 'Underline'],
+                            [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                            ['TextColor','BGColor'],
+                            [ 'Paste', 'PasteText', 'PasteFromWord'],
+                            '/',
+                            [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                            [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                        ],
+                    toolbarGroupsCanCollapse:true,
+                    filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                    filebrowserWindowWidth: '1000',
+                    filebrowserWindowHeight: '700'
+                });
+            },
+
             getOverlay(){
                 axios.get('data/carousel-overlay')
                     .then(response => {
@@ -258,6 +284,8 @@
                             this.overlay.kode = response.data.id
                             this.overlay.desc = response.data.text
                         }
+
+                        this.getCKeditor()
                         
                     })
             },
@@ -426,6 +454,9 @@
 
             storeOverlay(e) {
                 this.loading3=true;
+
+                this.overlay.desc = CKEDITOR.instances.desc.getData();
+
                 axios.post(e.target.action, this.overlay).then(response => {
                     this.loading3=false;
                     if(response.data.success==true){

@@ -11,7 +11,8 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>
-                            <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg>
+                            <!-- <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg> -->
+                            <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
@@ -214,6 +215,31 @@ export default {
             return moment(date).format('DD-MM-YYYY');
         },
 
+        getCKeditor(){
+            CKEDITOR.replace( 'desc',{
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                language: 'en',
+                allowedContent: true,
+                entities: false,
+                enterMode:2,forceEnterMode:false,shiftEnterMode:1,
+                toolbar :
+                    [
+                        [ 'Font', 'FontSize','Styles' ],        
+                        [ 'Bold', 'Italic', 'Underline'],
+                        [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ],
+                        ['TextColor','BGColor'],
+                        [ 'Paste', 'PasteText', 'PasteFromWord'],
+                        '/',
+                        [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                    ],
+                toolbarGroupsCanCollapse:true,
+                filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+                filebrowserWindowWidth: '1000',
+                filebrowserWindowHeight: '700'
+            });
+        },
+
         getData(){
             let app=this;
             let id= app.$route.params.id;
@@ -235,6 +261,8 @@ export default {
                     this.state.comment=response.data.comment,
                     this.state.lokasi=response.data.lokasi;
                     this.state.file="";
+
+                    this.getCKeditor()
                     
                 })
                 .catch( error => {
@@ -308,6 +336,8 @@ export default {
 
         saveForm(){
             this.loading=true;
+
+            this.state.desc = CKEDITOR.instances.desc.getData();
 
             let formData = new FormData();
             formData.append('kode',this.postId);

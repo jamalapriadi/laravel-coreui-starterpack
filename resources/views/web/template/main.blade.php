@@ -38,7 +38,7 @@
 
     <script type='text/javascript'>
         msg = document.title;
-        msg ="{{$instansi->nama_instansi}} - {{$instansi->tagline}} - "+msg ;
+        msg ="{{$instansi->nama_instansi}} - {{$instansi->tagline}} - "+msg+" " ;
         position = 0;
         
         function scrolltitle() {
