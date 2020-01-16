@@ -30,7 +30,7 @@
             <div class="card-header">Slide Carousel</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-12">
                         <div class="card card-default">
                             <div class="card-header">Add New Carousel</div>
                             <div class="card-body">
@@ -50,10 +50,98 @@
                                         <input type="text" class="form-control" v-model="state.text">
                                     </div>  
 
+                                    <div class="card card-default" v-show="showPreview">
+                                        <div class="card-header">Images Info</div>
+                                        <div class="card-body">
+                                            <img v-bind:src="state.filepreview" class="img-fluid" v-bind:style="{ 'height': state.height+'px', 'width': state.width+'px', 'border-top-left-radius': state.border_radius.top_left+'px', 'border-top-right-radius': state.border_radius.top_right+'px', 'border-bottom-left-radius': state.border_radius.bottom_left+'px', 'border-bottom-right-radius': state.border_radius.bottom_right+'px'}">
+                                            
+                                            <br><br>
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <label for="" class="control-label">Width</label>
+                                                            <div class="input-group">
+                                                                <input type="number" class="form-control" v-model="state.width">
+                                                                <span class="input-group-append">
+                                                                    <button class="btn btn-secondary" type="button">px</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="" class="control-label">Height</label>
+                                                            <div class="input-group">
+                                                                <input type="number" class="form-control" v-model="state.height">
+                                                                <span class="input-group-append">
+                                                                    <button class="btn btn-secondary" type="button">px</button>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="" class="control-label">Border Radius</label>
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-append">
+                                                                            <button class="btn btn-secondary" type="button">Top Left</button>
+                                                                        </span>
+                                                                        <input type="text" class="form-control" v-model="state.border_radius.top_left">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-6">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-append">
+                                                                            <button class="btn btn-secondary" type="button">Top Right</button>
+                                                                        </span>
+                                                                        <input type="text" class="form-control" v-model="state.border_radius.top_right">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-append">
+                                                                            <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                        </span>
+                                                                        <input type="text" class="form-control" v-model="state.border_radius.bottom_left">
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-lg-6">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-append">
+                                                                            <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                        </span>
+                                                                        <input type="text" class="form-control" v-model="state.border_radius.bottom_right">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="" class="control-label">Alignment</label>
+                                                            <select name="alignment" id="alignment" v-model="state.alignment" class="form-control">
+                                                                <option value="left">Left</option>
+                                                                <option value="right">Right</option>
+                                                                <option value="center">Center</option>
+                                                            </select>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="control-label">Choose File</label><br>
-                                            <img v-bind:src="state.filepreview" v-show="showPreview" class="img-fluid"/>
-                                        <br><br>
+                                            
                                         <div class="input-group">
                                             <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
                                             <span class="input-group-addon" id="removeFeaturedImage">
@@ -168,6 +256,15 @@
                     text:'',
                     file:'',
                     filepreview:'',
+                    height:720,
+                    width:1280,
+                    border_radius:{
+                        top_left:0,
+                        top_right:0,
+                        bottom_left:0,
+                        bottom_right:0
+                    },
+                    alignment:'left'
                 },
                 overlay:{
                     desc:'',
@@ -332,6 +429,23 @@
             },
 
             onFileChange(e) {
+                let file = this.$refs.file.files[0];
+                if(!file || file.type.indexOf('image/') !== 0) return;
+                
+                let reader = new FileReader();
+                
+                reader.readAsDataURL(file);
+                reader.onload = evt => {
+                    let img = new Image();
+                    img.onload = () => {
+                        this.state.width = img.width
+                        this.state.height = img.height
+                        console.log(img.width+' - '+img.height)
+                    }
+                    img.src = evt.target.result;
+                }
+                
+
                 let files = e.target.files || e.dataTransfer.files;
                 if (!files.length)
                     return;
@@ -381,6 +495,7 @@
                                     this.message="";
                                     this.$swal('Deleted', response.data.pesan , 'success');
                                     this.showData();
+                                    this.kosong()
                                 }else{
                                     this.$swal('Deleted', response.data.pesan , 'error');
                                 }
@@ -402,8 +517,18 @@
                             caption:'',
                             text:'',
                             file:'',
-                            filepreview:''
+                            filepreview:'',
+                            height:720,
+                            width:1280,
+                            border_radius:{
+                                top_left:0,
+                                top_right:0,
+                                bottom_left:0,
+                                bottom_right:0
+                            },
+                            alignment:'left'
                         }
+                        this.showPreview=false
                         this.message = 'Data berhasil disimpan';
                         this.pesankelas='alert alert-success';
                         this.showData();
@@ -431,6 +556,15 @@
                         this.state.kode = response.data.id;
                         this.state.caption = response.data.caption;
                         this.state.text=response.data.text;
+                        this.state.width = response.data.image_width;
+                        this.state.height = response.data.image_height;
+                        this.state.alignment = response.data.image_alignment;
+                        this.state.border_radius={
+                            top_left: response.data.image_border_top_left_radius,
+                            top_right: response.data.image_border_top_right_radius,
+                            bottom_left: response.data.image_border_bottom_left_radius,
+                            bottom_right: response.data.image_border_bottom_right_radius
+                        }
                         
                         if(response.data.image!=null){
                             this.state.filepreview=response.data.image_url;
@@ -444,11 +578,21 @@
 
             kosong(){
                 this.state={
-                    kode:'',
-                    name:'',
-                    desc:'',
-                    parent:''
-                },
+                    caption:'',
+                    text:'',
+                    file:'',
+                    filepreview:'',
+                    height:720,
+                    width:1280,
+                    border_radius:{
+                        top_left:0,
+                        top_right:0,
+                        bottom_left:0,
+                        bottom_right:0
+                    },
+                    alignment:'left'
+                }
+                this.showPreview=false
                 this.message=''
             },
 

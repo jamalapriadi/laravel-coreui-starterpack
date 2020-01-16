@@ -65,12 +65,101 @@
                         <h6 class="card-title">Featured Image</h6>
                     </div>
                     <div class="card-body">
+
+                        <div class="card card-default" v-show="showPreview">
+                            <div class="card-header">Images Info</div>
+                            <div class="card-body">
+                                <img v-bind:src="state.file" class="img-fluid" v-bind:style="{ 'height': state.height+'px', 'width': state.width+'px', 'border-top-left-radius': state.border_radius.top_left+'px', 'border-top-right-radius': state.border_radius.top_right+'px', 'border-bottom-left-radius': state.border_radius.bottom_left+'px', 'border-bottom-right-radius': state.border_radius.bottom_right+'px'}">
+                                
+                                <br><br>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Width</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" v-model="state.width">
+                                                    <span class="input-group-append">
+                                                        <button class="btn btn-secondary" type="button">px</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Height</label>
+                                                <div class="input-group">
+                                                    <input type="number" class="form-control" v-model="state.height">
+                                                    <span class="input-group-append">
+                                                        <button class="btn btn-secondary" type="button">px</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Border Radius</label>
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">Top Left</button>
+                                                            </span>
+                                                            <input type="text" class="form-control" v-model="state.border_radius.top_left">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">Top Right</button>
+                                                            </span>
+                                                            <input type="text" class="form-control" v-model="state.border_radius.top_right">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">Bottom</button>
+                                                            </span>
+                                                            <input type="text" class="form-control" v-model="state.border_radius.bottom_left">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-6">
+                                                        <div class="input-group">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">Bottom</button>
+                                                            </span>
+                                                            <input type="text" class="form-control" v-model="state.border_radius.bottom_right">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="" class="control-label">Alignment</label>
+                                                <select name="alignment" id="alignment" v-model="state.alignment" class="form-control">
+                                                    <option value="left">Left</option>
+                                                    <option value="right">Right</option>
+                                                    <option value="center">Center</option>
+                                                </select>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="form-group">
                             <label class="control-label">Choose File</label><br>
-                                <img v-bind:src="state.file" v-show="showPreview" class="img-fluid"/>
-                            <br><br>
                             <div class="input-group">
-                                <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
+                                <input type="file" id="file" ref="filex" accept="image/*" v-on:change="onFileChange" class="form-control"/>
                                 <span class="input-group-addon" id="removeFeaturedImage">
                                     <i class=" icon-cross3"></i>
                                 </span>
@@ -190,11 +279,98 @@
                                             <label for="" class="control-label">File Name</label>
                                             <input type="text" class="form-control" v-model="slider.title">
                                         </div>
+                                        <div class="card card-default" v-show="showPreviewSlider">
+                                            <div class="card-header">Images Info</div>
+                                            <div class="card-body">
+                                                <img v-bind:src="slider.file" class="img-fluid" v-bind:style="{ 'height': slider.height+'px', 'width': slider.width+'px', 'border-top-left-radius': slider.border_radius.top_left+'px', 'border-top-right-radius': slider.border_radius.top_right+'px', 'border-bottom-left-radius': slider.border_radius.bottom_left+'px', 'border-bottom-right-radius': slider.border_radius.bottom_right+'px'}">
+                                                
+                                                <br><br>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <fieldset>
+                                                            <div class="form-group">
+                                                                <label for="" class="control-label">Width</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" class="form-control" v-model="slider.width">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">px</button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="" class="control-label">Height</label>
+                                                                <div class="input-group">
+                                                                    <input type="number" class="form-control" v-model="slider.height">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">px</button>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="" class="control-label">Border Radius</label>
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-append">
+                                                                                <button class="btn btn-secondary" type="button">Top Left</button>
+                                                                            </span>
+                                                                            <input type="text" class="form-control" v-model="slider.border_radius.top_left">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-append">
+                                                                                <button class="btn btn-secondary" type="button">Top Right</button>
+                                                                            </span>
+                                                                            <input type="text" class="form-control" v-model="slider.border_radius.top_right">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-append">
+                                                                                <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                            </span>
+                                                                            <input type="text" class="form-control" v-model="slider.border_radius.bottom_left">
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-append">
+                                                                                <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                            </span>
+                                                                            <input type="text" class="form-control" v-model="slider.border_radius.bottom_right">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <label for="" class="control-label">Alignment</label>
+                                                                <select name="alignment" id="alignment" v-model="slider.alignment" class="form-control">
+                                                                    <option value="left">Left</option>
+                                                                    <option value="right">Right</option>
+                                                                    <option value="center">Center</option>
+                                                                </select>
+                                                            </div>
+                                                        </fieldset>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="" class="control-label">Images</label>
-                                            <img v-bind:src="slider.file" v-show="showPreviewSlider" class="img-fluid"/>
-                                            <br><br>
-                                            <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChangeSlider" class="form-control"/>
+                                            <input type="file" id="file" ref="filey" accept="image/*" v-on:change="onFileChangeSlider" class="form-control"/>
                                         </div>
                                         <div class="form-group">
                                             <a class="btn btn-primary text-white" @click.prevent="tambahSlider">
@@ -355,13 +531,31 @@ export default {
                 sidebar_layout:'left-sidebar',
                 sidebar_content:'latest-news',
                 url:'',
-                slider:[]
+                slider:[],
+                height:770,
+                width:384,
+                border_radius:{
+                    top_left:0,
+                    top_right:0,
+                    bottom_left:0,
+                    bottom_right:0
+                },
+                alignment:'left'
             },
             slider:{
                 title:'',
                 file:'',
                 file_preview:'',
-                status:''
+                status:'',
+                height:770,
+                width:384,
+                border_radius:{
+                    top_left:0,
+                    top_right:0,
+                    bottom_left:0,
+                    bottom_right:0
+                },
+                alignment:'left'
             },
             showPreviewSlider:false,
             pencarian:'',
@@ -522,6 +716,22 @@ export default {
         },
 
         onFileChange(e) {
+            let filex = this.$refs.filex.files[0];
+            if(!filex || filex.type.indexOf('image/') !== 0) return;
+            
+            let reader = new FileReader();
+            
+            reader.readAsDataURL(filex);
+            reader.onload = evt => {
+                let img = new Image();
+                img.onload = () => {
+                    this.state.width = img.width
+                    this.state.height = img.height
+                    console.log(img.width+' - '+img.height)
+                }
+                img.src = evt.target.result;
+            }
+
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
@@ -552,6 +762,22 @@ export default {
         },
 
         onFileChangeSlider(e){
+            let filey = this.$refs.filey.files[0];
+            if(!filey || filey.type.indexOf('image/') !== 0) return;
+            
+            let reader = new FileReader();
+            
+            reader.readAsDataURL(filey);
+            reader.onload = evt => {
+                let img = new Image();
+                img.onload = () => {
+                    this.slider.width = img.width
+                    this.slider.height = img.height
+                    console.log(img.width+' - '+img.height)
+                }
+                img.src = evt.target.result;
+            }
+
             let files = e.target.files || e.dataTransfer.files;
             if (!files.length)
                 return;
@@ -634,8 +860,18 @@ export default {
                         category:[],
                         subcategory:[],
                         tags:[],
-                        images:[]
+                        images:[],
+                        height:770,
+                        width:384,
+                        border_radius:{
+                            top_left:0,
+                            top_right:0,
+                            bottom_left:0,
+                            bottom_right:0
+                        },
+                        alignment:'left'
                     },
+                    this.showPreview=false
                     this.message = 'Data has been saved.';
                     this.pesankelas='alert alert-success';
                 }else{

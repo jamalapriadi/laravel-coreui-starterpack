@@ -51,6 +51,7 @@
                             <td>
                                 <center>
                                     <img :src="l.image_url" class="img-fluid" style="height:80px;">
+                                    <!-- <img :src="l.image_url" class="img-fluid" v-bind:style="{ 'height': l.image_height+'px', 'width': l.image_width+'px', 'border-top-left-radius': l.image_border_top_left_radius+'px', 'border-top-right-radius': l.image_border_top_right_radius+'px', 'border-bottom-left-radius': l.image_border_bottom_left_radius+'px', 'border-bottom-right-radius': l.image_border_bottom_right_radius+'px'}"> -->
                                 </center>
                             </td>
                             <td>{{l.name}}</td>

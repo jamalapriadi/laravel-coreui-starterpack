@@ -61,9 +61,98 @@
                         <div class="card card-default">
                             <div class="card-header">Images</div>
                             <div class="card-body">
+
+                                <div class="card card-default" v-show="showPreview">
+                                    <div class="card-header">Images Info</div>
+                                    <div class="card-body">
+                                        <img v-bind:src="imagePreview" class="img-fluid" v-bind:style="{ 'height': state.height+'px', 'width': state.width+'px', 'border-top-left-radius': state.border_radius.top_left+'px', 'border-top-right-radius': state.border_radius.top_right+'px', 'border-bottom-left-radius': state.border_radius.bottom_left+'px', 'border-bottom-right-radius': state.border_radius.bottom_right+'px'}">
+                                        
+                                        <br><br>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <label for="" class="control-label">Width</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" v-model="state.width">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">px</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="" class="control-label">Height</label>
+                                                        <div class="input-group">
+                                                            <input type="number" class="form-control" v-model="state.height">
+                                                            <span class="input-group-append">
+                                                                <button class="btn btn-secondary" type="button">px</button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="" class="control-label">Border Radius</label>
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">Top Left</button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" v-model="state.border_radius.top_left">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">Top Right</button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" v-model="state.border_radius.top_right">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" v-model="state.border_radius.bottom_left">
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-lg-6">
+                                                                <div class="input-group">
+                                                                    <span class="input-group-append">
+                                                                        <button class="btn btn-secondary" type="button">Bottom</button>
+                                                                    </span>
+                                                                    <input type="text" class="form-control" v-model="state.border_radius.bottom_right">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="" class="control-label">Alignment</label>
+                                                        <select name="alignment" id="alignment" v-model="state.alignment" class="form-control">
+                                                            <option value="left">Left</option>
+                                                            <option value="right">Right</option>
+                                                            <option value="center">Center</option>
+                                                        </select>
+                                                    </div>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
-                                    <img v-bind:src="imagePreview" v-show="showPreview" class="img-fluid"/>
-                                    <br>
+
                                     <div class="input-group">
                                         <input type="file" id="file" ref="file" accept="image/*" v-on:change="onFileChange" class="form-control"/>
                                         <span class="input-group-addon" id="removeFeaturedImage">
@@ -81,14 +170,16 @@
                 <hr>
 
                 <div class="form-group">
-                    <button class="btn btn-primary">
+                    
+
+                    <router-link to="/pengurus" class="btn btn-default">
+                        <i class="fa fa-backward"></i> Batal
+                    </router-link>      
+
+                    <button class="btn btn-primary float-right">
                         <i class="fa fa-save"></i>
                         Simpan
-                    </button>
-
-                    <router-link to="/pengurus" class="btn btn-warning text-white">
-                        <i class="fa fa-backward"></i> Batal
-                    </router-link>                    
+                    </button>              
                 </div>
             </form>
         </div>
@@ -126,7 +217,16 @@ export default {
                 file:'',
                 jabatan_id:'',
                 posisi_id:'',
-                tgl_menjabat:''
+                tgl_menjabat:'',
+                height:324,
+                width:210,
+                border_radius:{
+                    top_left:0,
+                    top_right:0,
+                    bottom_left:0,
+                    bottom_right:0
+                },
+                alignment:'left'
             },
             message:'',
             loading:false,
@@ -197,11 +297,20 @@ export default {
 
             axios.get('data/pengurus/'+id)
                 .then(response => {
-                    this.state= {
-                        name:response.data.name,
-                        email:response.data.email,
-                        hp:response.data.no_hp,
-                        desc:response.data.description
+                    this.state.name=response.data.name
+                    this.state.email=response.data.email
+                    this.state.hp=response.data.no_hp,
+                    this.state.desc=response.data.description
+                    
+
+                    this.state.width = response.data.image_width;
+                    this.state.height = response.data.image_height;
+                    this.state.alignment = response.data.image_alignment;
+                    this.state.border_radius={
+                        top_left: response.data.image_border_top_left_radius,
+                        top_right: response.data.image_border_top_right_radius,
+                        bottom_left: response.data.image_border_bottom_left_radius,
+                        bottom_right: response.data.image_border_bottom_right_radius
                     }
 
                     if(response.data.images!=null){

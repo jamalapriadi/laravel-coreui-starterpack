@@ -59,6 +59,14 @@ class CarouselController extends Controller
                 $model->image=$filename;
             }
 
+            $model->image_width=$request->input('width');
+            $model->image_height=$request->input('height');
+            $model->image_border_top_left_radius=$request->input('border_radius')['top_left'];
+            $model->image_border_top_right_radius=$request->input('border_radius')['top_right'];
+            $model->image_border_bottom_left_radius=$request->input('border_radius')['bottom_left'];
+            $model->image_border_bottom_right_radius=$request->input('border_radius')['bottom_right'];
+            $model->image_alignment=$request->input('alignment');
+
             $simpan=$model->save();
 
             if($simpan){

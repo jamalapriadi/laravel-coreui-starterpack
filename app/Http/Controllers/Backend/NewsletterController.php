@@ -103,6 +103,14 @@ class NewsletterController extends Controller
                 $post->featured_image=$filename;
             }
 
+            $post->image_width=$request->input('width');
+            $post->image_height=$request->input('height');
+            $post->image_border_top_left_radius=$request->input('top_left');
+            $post->image_border_top_right_radius=$request->input('top_right');
+            $post->image_border_bottom_left_radius=$request->input('bottom_left');
+            $post->image_border_bottom_right_radius=$request->input('bottom_right');
+            $post->image_alignment=$request->input('alignment');
+
             $simpan=$post->save();
 
             if($simpan){
