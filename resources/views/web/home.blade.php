@@ -203,13 +203,13 @@
                                     <div class="img-holder">
                                         <figure>
                                             <a href="{{URL::to('news/'.$val->slug)}}" target="_blank">
-                                                <img src="{{$val->feature_image_url}}" alt="images">
+                                                <img src="{{$val->feature_image_url}}" style="width:236px;height:106px;" alt="images">
                                             </a>
                                         </figure>
                                         <div class="content bg-color-2" style="line-height: 1.5em; height: 9em; overflow: hidden;">
                                             <div class="newsletter-home">
                                                 <h4><a href="{{URL::to('news/'.$val->slug)}}" target="_blank">{{$val->title}}</a></h4>
-                                                <p><span class="fa fa-clock-o"></span>{{$val->tanggal_indo}}</p>
+                                                <p>Date Event <span class="fa fa-clock-o"></span> {{$val->tanggal_indo}}</p>
                                             </div>
                                         </div>
                                     </div>

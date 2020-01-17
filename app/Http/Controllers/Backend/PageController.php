@@ -154,10 +154,10 @@ class PageController extends Controller
                                 'file'=>$filename,
                                 'image_width'=>$val['width'],
                                 'image_height'=>$val['height'],
-                                'image_border_top_left_radius'=>$val['border_radius']['top_left'],
-                                'image_border_top_right_radius'=>$val['border_radius']['top_right'],
-                                'image_border_bottom_left_radius'=>$val['border_radius']['bottom_left'],
-                                'image_border_bottom_right_radius'=>$val['border_radius']['bottom_right'],
+                                'image_border_top_left_radius'=>$val['top_left'],
+                                'image_border_top_right_radius'=>$val['top_right'],
+                                'image_border_bottom_left_radius'=>$val['bottom_left'],
+                                'image_border_bottom_right_radius'=>$val['bottom_right'],
                                 'image_alignment'=>$val['alignment'],
                                 'author'=>auth()->user()->id
                             ]
@@ -326,6 +326,14 @@ class PageController extends Controller
                 $post->featured_image=$filename;
             }
 
+            $post->image_width=$request->input('width');
+            $post->image_height=$request->input('height');
+            $post->image_border_top_left_radius=$request->input('border_radius')['top_left'];
+            $post->image_border_top_right_radius=$request->input('border_radius')['top_right'];
+            $post->image_border_bottom_left_radius=$request->input('border_radius')['bottom_left'];
+            $post->image_border_bottom_right_radius=$request->input('border_radius')['bottom_right'];
+            $post->image_alignment=$request->input('alignment');
+
             $simpan=$post->save();
 
             if($simpan){
@@ -352,6 +360,13 @@ class PageController extends Controller
                                     'type_file'=>'image',
                                     'title'=>$val['title'],
                                     'file'=>$filename,
+                                    'image_width'=>$val['width'],
+                                    'image_height'=>$val['height'],
+                                    'image_border_top_left_radius'=>$val['top_left'],
+                                    'image_border_top_right_radius'=>$val['top_right'],
+                                    'image_border_bottom_left_radius'=>$val['bottom_left'],
+                                    'image_border_bottom_right_radius'=>$val['bottom_right'],
+                                    'image_alignment'=>$val['alignment'],
                                     'author'=>auth()->user()->id
                                 ]
                             );

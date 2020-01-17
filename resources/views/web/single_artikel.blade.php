@@ -26,6 +26,7 @@
                                     <div class="outer-box">
                                         <div class="content">
                                             <h3><a href="#">{{$page->title}}</a></h3>
+                                            <div class="date">Date Event <span class="icon-clock"> {{date('d M Y',strtotime($page->tanggal_indo))}}</span></div>
                                             {!! $page->description !!}
                                         </div>
                                     </div>

@@ -823,13 +823,30 @@ export default {
             this.state.slider.push({
                 title:this.slider.title,
                 file:this.slider.file,
-                status:'new'
+                status:'new',
+                height:this.slider.height,
+                width:this.slider.width,
+                top_left: this.slider.border_radius.top_left,
+                top_right: this.slider.border_radius.top_right,
+                bottom_left: this.slider.border_radius.bottom_left,
+                bottom_right: this.slider.border_radius.bottom_right,
+                alignment:this.slider.alignment
             });
 
             this.slider={
                 title:'',
                 file:'',
-                file_preview:''
+                file_preview:'',
+                status:'',
+                height:770,
+                width:384,
+                border_radius:{
+                    top_left:0,
+                    top_right:0,
+                    bottom_left:0,
+                    bottom_right:0
+                },
+                alignment:'left'
             }
 
             this.showPreviewSlider=false
