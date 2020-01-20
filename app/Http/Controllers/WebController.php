@@ -24,6 +24,8 @@ class WebController extends Controller
     }
     
     public function index(){
+        $agent = new Agent();
+
         $overlay=Carouseloverlay::select('text')->first();
         $carousel=Carousel::select('caption','text','image')
             ->where('active','Y')
@@ -64,7 +66,8 @@ class WebController extends Controller
             ->with('news',$news)
             ->with('event',$event)
             ->with('calendar',$calendar)
-            ->with('promo',$promo);
+            ->with('promo',$promo)
+            ->with('agent',$agent);
     }
 
     public function gallery(Request $request)

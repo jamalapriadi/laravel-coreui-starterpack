@@ -68,14 +68,28 @@
                     <div class="col-sm-12">
                         <div class="videoWrapper">
                             @foreach($video as $key=>$val)
-                                <div class="col-sm-6" style="margin-top: 35px">
-                                    <div class="embed-responsive embed-responsive-16by9">
-                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$val->video_id}}" 
-                                        frameborder="0" 
-                                        @if($key % 2==0) style="border:17px solid #FDFD66; border-radius: 30px" @else style="border:17px solid #ACE1FA; border-radius: 30px" @endif
-                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                @if($agent->isDesktop())
+                                    <div class="col-sm-6" style="margin-top: 35px">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$val->video_id}}" 
+                                            frameborder="0" 
+                                            @if($key % 2==0) style="border:17px solid #FDFD66; border-radius: 30px" @else style="border:17px solid #ACE1FA; border-radius: 30px" @endif
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
                                     </div>
-                                </div>
+                                @endif
+
+                                @if($agent->isPhone())
+                                    <div class="col-sm-6" style="margin-top:15px;margin-left:-15px;margin-right:-15px;">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{$val->video_id}}" 
+                                            frameborder="0" 
+                                            @if($key % 2==0) style="border:10px solid #FDFD66; border-radius: 30px" @else style="border:10px solid #ACE1FA; border-radius: 30px" @endif
+                                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        </div>
+                                    </div>
+                                @endif
+                                
                             @endforeach
                         </div>
                     </div>
@@ -203,7 +217,13 @@
                                     <div class="img-holder">
                                         <figure>
                                             <a href="{{URL::to('news/'.$val->slug)}}" target="_blank">
-                                                <img src="{{$val->feature_image_url}}" style="width:236px;height:106px;" alt="images">
+                                                @if($agent->isDesktop())
+                                                    <img src="{{$val->feature_image_url}}" style="width:236px;height:106px;" alt="images">
+                                                @endif
+
+                                                @if($agent->isPhone())
+                                                    <img src="{{$val->feature_image_url}}" style="width:384px;height:173px;" class="img-responsive" alt="images">
+                                                @endif
                                             </a>
                                         </figure>
                                         <div class="content bg-color-2" style="line-height: 1.5em; height: 9em; overflow: hidden;">
