@@ -36,8 +36,13 @@
                             <div class="teacher-profile-tab col-md-4"> 
                                 <center>
                                     <figure class="img-box">
-                                        {{-- <img src="{{$row->image_url}}" alt="images" style="width:210px; height:280px;"> --}}
-                                        <img src="{{$row->image_url}}" alt="images" style="width:{{$row->image_width}}px; height:{{$row->image_height}}px;border-radius: {{$row->image_border_top_left_radius}}px {{$row->image_border_top_right_radius}}px {{$row->image_border_bottom_right_radius}}px {{$row->image_border_bottom_left_radius}}px ;">
+                                        @if($agent->isDesktop())
+                                            <img src="{{$row->image_url}}" alt="images" style="width:{{$row->image_width}}px; height:{{$row->image_height}}px;border-radius: {{$row->image_border_top_left_radius}}px {{$row->image_border_top_right_radius}}px {{$row->image_border_bottom_right_radius}}px {{$row->image_border_bottom_left_radius}}px ;">
+                                        @endif
+
+                                        @if($agent->isPhone())
+                                            <img src="{{$row->image_url}}" alt="images" style="width:210px; height:280px;">
+                                        @endif
                                     </figure>
                                 </center>
                                 <hr>
@@ -221,8 +226,13 @@
                                     <article class="single-column">
                                         <div class="img-box-s2">
                                             <div class="img-holder">
-                                                {{-- <img src="{{$val->feature_image_url}}" alt="" style="border-radius: 0 15px 0 15px;"> --}}
-                                                <img src="{{$val->feature_image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                @if($agent->isDesktop())
+                                                    <img src="{{$val->feature_image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                @endif
+
+                                                @if($agent->isPhone())
+                                                    <img src="{{$val->feature_image_url}}" class="img-responsive" alt="" style="border-radius: 0 15px 0 15px;">
+                                                @endif
                                             </div>
                                             <div class="outer-box">
                                                 <div class="content">
@@ -272,8 +282,8 @@
                                         @foreach($photo as $key=>$val)
                                             <figure class="img-box">
                                                 <a href="{{$val->image_url}}" target="_blank">
-                                                    {{-- <img src="{{$val->image_url}}" alt="" style="width:83px; height:83px;"> --}}
-                                                    <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                    <img src="{{$val->image_url}}" alt="" style="width:83px; height:83px;">
+                                                    {{-- <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;"> --}}
                                                 </a>
                                             </figure>
                                         @endforeach
@@ -314,8 +324,13 @@
                             <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn; border: 0;border-radius: 10px;">
                                 <figure class="img-box">
                                     <a href="#">
-                                        {{-- <img src="{{$page->feature_image_url}}" alt="" style="border-radius: 0 15px 0 15px;"> --}}
-                                        <img src="{{$page->feature_image_url}}" alt="images" style="width:{{$page->image_width}}px; height:{{$page->image_height}}px;border-radius: {{$page->image_border_top_left_radius}}px {{$page->image_border_top_right_radius}}px {{$page->image_border_bottom_right_radius}}px {{$page->image_border_bottom_left_radius}}px ;">
+                                        @if($agent->isDesktop())
+                                            <img src="{{$page->feature_image_url}}" alt="images" style="width:{{$page->image_width}}px; height:{{$page->image_height}}px;border-radius: {{$page->image_border_top_left_radius}}px {{$page->image_border_top_right_radius}}px {{$page->image_border_bottom_right_radius}}px {{$page->image_border_bottom_left_radius}}px ;">
+                                        @endif
+
+                                        @if($agent->isPhone())
+                                        <img src="{{$page->feature_image_url}}" class="img-responsive" alt="" style="border-radius: 0 15px 0 15px;">
+                                        @endif
                                     </a>
                                 </figure>
                             </div> 
@@ -372,8 +387,13 @@
                                             <div class="img-holder">
                                                 <figure>
                                                     <a href="#">
-                                                        {{-- <img src="{{$val->image_url}}" alt="images" style="border-radius: 0 15px 0 15px;"> --}}
-                                                        <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                        @if($agent->isDesktop())
+                                                            <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                        @endif
+
+                                                        @if($agent->isPhone())
+                                                            <img src="{{$val->image_url}}" alt="images" style="border-radius: 0 15px 0 15px;">
+                                                        @endif
                                                     </a>
                                                 </figure>
                                                 <div class="content bg-color-1">
@@ -416,8 +436,13 @@
                                         <div class="content">
                                             <p>{{$val->title}}</p>
                                             <p>
-                                                {{-- <img alt="" src="{{$val->image_url}}" style="width: 100%; border-radius: 10px;" /> --}}
-                                                <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                @if($agent->isDesktop())
+                                                    <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                @endif
+
+                                                @if($agent->isPhone())
+                                                    <img alt="" src="{{$val->image_url}}" style="width: 100%; border-radius: 10px;" />
+                                                @endif
                                             </p>
                                             <p>&nbsp;</p>
                                         </div>
@@ -521,8 +546,14 @@
                             <div class="carousel-inner" style="background:transparent">
                                 @foreach($page->files as $key=>$val)
                                     <div class="item @if($key == 0) active @endif" style="background:transparent">
-                                        {{-- <img src="{{$val->image_url}}" width="100%" style="border-radius:0 15px 0 15px;"> --}}
-                                        <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                        
+                                        @if($agent->isDesktop())
+                                            <img src="{{$val->image_url}}" class="img-responsive" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                        @endif
+
+                                        @if($agent->isPhone())
+                                            <img src="{{$val->image_url}}" class="img-responsive" width="100%" style="border-radius:0 15px 0 15px;">
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
@@ -622,8 +653,13 @@
                                                     <div style="background: rgb(238, 238, 238); border: 1px solid rgb(204, 204, 204); padding: 5px 10px; text-align: center;">
                                                         <span style="color:#333333;">
                                                             <span style="font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;">
-                                                                {{-- <img alt="Crawler" src="{{$file->feature_image_url}}" style="width: 150px; height: 150px;border-radius: 0 15px 0 15px;" /> --}}
-                                                                <img src="{{$file->feature_image_url}}" alt="images" style="width:{{$file->image_width}}px; height:{{$file->image_height}}px;border-radius: {{$file->image_border_top_left_radius}}px {{$file->image_border_top_right_radius}}px {{$file->image_border_bottom_right_radius}}px {{$file->image_border_bottom_left_radius}}px ;">
+                                                                @if($agent->isDesktop())
+                                                                    <img src="{{$file->feature_image_url}}" alt="images" style="width:{{$file->image_width}}px; height:{{$file->image_height}}px;border-radius: {{$file->image_border_top_left_radius}}px {{$file->image_border_top_right_radius}}px {{$file->image_border_bottom_right_radius}}px {{$file->image_border_bottom_left_radius}}px ;">
+                                                                @endif 
+
+                                                                @if($agent->isPhone())
+                                                                    <img alt="Crawler" src="{{$file->feature_image_url}}" style="width: 150px; height: 150px;border-radius: 0 15px 0 15px;" />
+                                                                @endif
                                                             </span>
                                                         </span>
                                                     </div>

@@ -12,6 +12,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendContactUs;
+use Jenssegers\Agent\Agent;
 
 class WebController extends Controller
 {
@@ -93,6 +94,8 @@ class WebController extends Controller
             return view('auth.login');
         }
 
+        $agent = new Agent();
+
         $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
             ->where('post_type',"page")
             ->whereSlug($slug)
@@ -153,7 +156,8 @@ class WebController extends Controller
             ->with('program',$program)
             ->with('photo',$photo)
             ->with('summary',$summary)
-            ->with('component', $component);
+            ->with('component', $component)
+            ->with('agent',$agent);
     }
 
     public function single_slug_page(Request $request, $main="/", $slug="/")
@@ -170,6 +174,8 @@ class WebController extends Controller
             return view('auth.login');
         }
 
+        $agent = new Agent();
+
         $page = Post::with('category','tags','tags.tagnya','penulis','comment','comment.child','files')
             ->where('post_type',"page")
             ->whereSlug($slug)
@@ -230,7 +236,8 @@ class WebController extends Controller
             ->with('program',$program)
             ->with('photo',$photo)
             ->with('summary',$summary)
-            ->with('component', $component);
+            ->with('component', $component)
+            ->with('agent',$agent);
     }
 
     public function single_promo(Request $request, $slug='/')
