@@ -282,7 +282,7 @@
                                         <div class="card card-default" v-show="showPreviewSlider">
                                             <div class="card-header">Images Info</div>
                                             <div class="card-body">
-                                                <img v-bind:src="slider.file" class="img-fluid" v-bind:style="{ 'height': slider.height+'px', 'width': slider.width+'px', 'border-top-left-radius': slider.border_radius.top_left+'px', 'border-top-right-radius': slider.border_radius.top_right+'px', 'border-bottom-left-radius': slider.border_radius.bottom_left+'px', 'border-bottom-right-radius': slider.border_radius.bottom_right+'px'}">
+                                                <img v-bind:src="slider.file_preview" class="img-fluid" v-bind:style="{ 'height': slider.height+'px', 'width': slider.width+'px', 'border-top-left-radius': slider.border_radius.top_left+'px', 'border-top-right-radius': slider.border_radius.top_right+'px', 'border-bottom-left-radius': slider.border_radius.bottom_left+'px', 'border-bottom-right-radius': slider.border_radius.bottom_right+'px'}">
                                                 
                                                 <br><br>
                                                 <div class="row">
@@ -374,7 +374,11 @@
                                             <input type="file" id="file" ref="filey" accept="image/*" v-on:change="onFileChangeSlider" class="form-control"/>
                                         </div>
                                         <div class="form-group">
-                                            <a class="btn btn-primary text-white" @click.prevent="tambahSlider">
+                                            <a href="#" v-show="tampilBatalSlide" @click.prevent="batalNambahSlide" class="btn btn-danger text-white">
+                                                <i class="fa fa-backward"></i>
+                                                Batal
+                                            </a>
+                                            <a class="btn btn-primary text-white float-right" @click.prevent="tambahSlider">
                                                 <i class="fa fa-plus"></i> Add 
                                             </a>
                                         </div>
@@ -397,7 +401,7 @@
                                             <td>
                                                 <img v-bind:src="l.file" class="img-fluid" style="width:120px"/>
                                             </td>
-                                            <td>
+                                            <td width="15%">
                                                 <span v-if="l.status == 'new'">
                                                     <a href="#" class="btn btn-danger" @click.prevent="hapusSlider(index)">
                                                         <i class="fa fa-trash"></i>
@@ -405,9 +409,14 @@
                                                 </span>
 
                                                 <span v-if="l.status == 'old'">
-                                                    <a href="#" class="btn btn-danger" @click.prevent="hapusSliderFromDB(index,l.id)">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>    
+                                                    <div class="btn btn-group">
+                                                        <a href="#" class="btn btn-warning text-white" @click.prevent="editSliderDb(l)">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>
+                                                        <a href="#" class="btn btn-danger" @click.prevent="hapusSliderFromDB(index,l.id)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>    
+                                                    </div>
                                                 </span>
                                             </td>
                                         </tr>
@@ -555,6 +564,7 @@ export default {
 
             },
             slider:{
+                kode:'',
                 title:'',
                 file:'',
                 file_preview:'',
@@ -629,7 +639,8 @@ export default {
                 },
                 autogrow: true,
                 changeActiveDropdownIcon: true
-            }
+            },
+            tampilBatalSlide:false
         }
     },
     mounted() {
@@ -740,6 +751,13 @@ export default {
                             id: response.data.files[a].id,
                             title:response.data.files[a].title,
                             file:response.data.files[a].image_url,
+                            image_height: response.data.files[a].image_height,
+                            image_width: response.data.files[a].image_width,
+                            image_border_top_left_radius: response.data.files[a].image_border_top_left_radius,
+                            image_border_top_right_radius: response.data.files[a].image_border_top_right_radius,
+                            image_border_bottom_left_radius: response.data.files[a].image_border_bottom_left_radius,
+                            image_border_bottom_right_radius: response.data.files[a].image_border_bottom_right_radius,
+                            image_alignment: response.data.files[a].image_alignment,
                             status:'old'
                         })
                     }
@@ -890,9 +908,40 @@ export default {
             let vm = this;
             reader.onload = (e) => {
                 vm.slider.file = e.target.result;
+                vm.slider.file_preview = e.target.result;
                 vm.showPreviewSlider = true;
             };
             reader.readAsDataURL(file);
+        },
+
+        getFilePost(){
+            let app=this;
+            let id= app.$route.params.id;
+            this.postId = id;
+
+            axios.get('data/page/'+id)
+                .then(response => {
+                    this.state.slider=[]
+
+                    for(var a=0; a<response.data.files.length; a++){
+                        this.state.slider.push({
+                            id: response.data.files[a].id,
+                            title:response.data.files[a].title,
+                            file:response.data.files[a].image_url,
+                            image_height: response.data.files[a].image_height,
+                            image_width: response.data.files[a].image_width,
+                            image_border_top_left_radius: response.data.files[a].image_border_top_left_radius,
+                            image_border_top_right_radius: response.data.files[a].image_border_top_right_radius,
+                            image_border_bottom_left_radius: response.data.files[a].image_border_bottom_left_radius,
+                            image_border_bottom_right_radius: response.data.files[a].image_border_bottom_right_radius,
+                            image_alignment: response.data.files[a].image_alignment,
+                            status:'old'
+                        })
+                    }
+                })
+                .catch( error => {
+                    alert('data tidak dapat di load');
+                })
         },
 
         tambahSlider(){
@@ -900,30 +949,48 @@ export default {
                 alert('Text Harus diisi');
 
                 return false;
-            }  
-
-            if(this.slider.file==""){
-                alert('File harus diisi');
-
-                return false;
             }
 
-            this.state.slider.push({
-                title:this.slider.title,
-                file:this.slider.file,
-                status:'new',
-                height:this.slider.height,
-                width:this.slider.width,
-                top_left: this.slider.border_radius.top_left,
-                top_right: this.slider.border_radius.top_right,
-                bottom_left: this.slider.border_radius.bottom_left,
-                bottom_right: this.slider.border_radius.bottom_right,
-                alignment:this.slider.alignment
-            });
+            if(this.slider.status == 'new'){
+                if(this.slider.file==""){
+                    alert('File harus diisi');
 
+                    return false;
+                }
+
+                this.state.slider.push({
+                    title:this.slider.title,
+                    file:this.slider.file,
+                    status:'new',
+                    height:this.slider.height,
+                    width:this.slider.width,
+                    top_left: this.slider.border_radius.top_left,
+                    top_right: this.slider.border_radius.top_right,
+                    bottom_left: this.slider.border_radius.bottom_left,
+                    bottom_right: this.slider.border_radius.bottom_right,
+                    alignment:this.slider.alignment
+                });
+            }else if(this.slider.status == 'edit'){
+                axios.post('data/update-post-file/'+this.slider.kode, this.slider)
+                    .then(response => {
+                        if(response.data.success == true){
+                            this.$swal('Success', response.data.pesan , 'success');
+                            this.getFilePost()
+                        }else{
+                            this.$swal('Failed', response.data.pesan , 'success');
+                        }
+                    })
+            }
+
+            this.batalNambahSlide()
+        },
+
+        batalNambahSlide(){
             this.slider={
+                kode:'',
                 title:'',
                 file:'',
+                status:'new',
                 file_preview:'',
                 height:770,
                 width:384,
@@ -937,10 +1004,33 @@ export default {
             }
 
             this.showPreviewSlider=false
+            this.tampilBatalSlide=false
         },
 
         hapusSlider: function(index) {
             this.state.slider.splice(index, 1);
+        },
+
+        editSliderDb(l){
+            this.slider={
+                kode:l.id,
+                title:l.title,
+                file:'',
+                file_preview:l.file,
+                status:'edit',
+                height:l.image_height,
+                width:l.image_width,
+                border_radius:{
+                    top_left:l.image_border_top_left_radius,
+                    top_right:l.image_border_top_right_radius,
+                    bottom_left:l.image_border_bottom_left_radius,
+                    bottom_right:l.image_border_bottom_right_radius
+                },
+                alignment:l.image_alignment
+            }
+
+            this.showPreviewSlider=true
+            this.tampilBatalSlide=true
         },
 
         hapusSliderFromDB: function(index,id) {

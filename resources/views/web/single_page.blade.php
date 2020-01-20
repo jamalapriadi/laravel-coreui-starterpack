@@ -77,6 +77,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="divModal"></div>
                 </div>
             </section>            
         @endif

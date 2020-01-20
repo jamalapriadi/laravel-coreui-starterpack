@@ -33,7 +33,7 @@ $(function () {
                                 '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
                                     '<div class="inner-box imageGallery1">'+
                                         '<h3>'+b.title+'</h3>'+
-                                        '<a href="'+b.image_url+'" rel="prettyPhoto[pp_gal]" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
+                                        '<a href="'+b.image_url+'" rel="prettyPhoto['+b.gallery_id+']" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>';
@@ -66,7 +66,7 @@ $(function () {
                                 '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
                                     '<div class="inner-box imageGallery1">'+
                                         '<h3>'+b.title+'</h3>'+
-                                        '<a href="'+b.image_url+'" rel="prettyPhoto[pp_gal]" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
+                                        '<a href="'+b.image_url+'" rel="prettyPhoto['+b.gallery_id+']" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
                                     '</div>'+
                                 '</div>'+
                             '</div>';
@@ -101,7 +101,6 @@ $(function () {
                 $("#tampilGalleryFile").empty().html(el);
                 $("#tampilLoadMore").empty().html(al);
 
-                // $("a[rel^='prettyPhoto']").prettyPhoto();
                 $("[rel^='prettyPhoto']").prettyPhoto({
                     animation_speed: 'normal',
                     opacity: 1,
@@ -114,11 +113,6 @@ $(function () {
         })
 
     }
-
-    // $(document).on("click","a[rel^='prettyPhoto']",function(e){
-    //     jQuery.prettyPhoto.open(jQuery(this).attr("href"),"","");
-    //     return false;
-    // })
 
     $(document).on("click","#btnloadmore",function(e){
         e.preventDefault();

@@ -133,6 +133,7 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::resource('carousel','Backend\CarouselController');
     Route::get('carousel-overlay','Backend\CarouselController@overlay');
     Route::post('carousel-overlay','Backend\CarouselController@store_overlay');
+    Route::post('update-post-file/{id}','Backend\PageController@update_post_file');
 
     /**================================== KIDS */
     Route::resource('jabatan','Kids\JabatanController');

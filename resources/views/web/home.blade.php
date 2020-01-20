@@ -171,7 +171,7 @@
                         <div class="img-holder">
                             <figure>
                                 <a href="{{URL::to('promo/'.$val->slug)}}" target="_blank">
-                                    <img src="{{$val->feature_image_url}}" alt="images" class="img-responsive img-fluid">
+                                    <img src="{{$val->feature_image_url}}" alt="images" class="img-responsive img-fluid" style="width:370px;height:370px;">
                                 </a>
                             </figure>
                             <div class="content bg-color-3" style="line-height: 1.5em; height: 6em; overflow: hidden;">
@@ -225,7 +225,7 @@
                         <div class="slidertetimony">
                             @foreach($testimoni as $key=>$val)
                                 <div class="item center" style="background-color: rgba(250, 250, 250, 0.5)">
-                                    <img src="{{$val->feature_image_url}}" alt="images">
+                                    <img src="{{$val->feature_image_url}}" alt="images" style="width:75px; height:75px">
                                     <div class="img-ifo">
                                         <div class="text">
                                             <p>

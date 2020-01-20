@@ -515,4 +515,50 @@ class PageController extends Controller
 
         return $data;
     }
+
+    public function update_post_file(Request $request, $id)
+    {
+        $post=\App\Models\Cms\Postfile::find($id);
+        
+        $post->type_file='image';
+        $post->title=$request->input('title');
+        $post->image_width=$request->input('width');
+        $post->image_height=$request->input('height');
+        $post->image_border_top_left_radius=$request->input('border_radius')['top_left'];
+        $post->image_border_top_right_radius=$request->input('border_radius')['top_right'];
+        $post->image_border_bottom_left_radius=$request->input('border_radius')['bottom_left'];
+        $post->image_border_bottom_right_radius=$request->input('border_radius')['bottom_right'];
+        $post->image_alignment=$request->input('alignment');
+        $post->author=auth()->user()->id;
+
+        if($request->has('file') && $request->input('file')!=""){
+            if(!is_dir('uploads/file/')){
+                mkdir('uploads/file/', 0777, TRUE);
+            }
+
+            $imageData = $val['file'];
+            $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+            Image::make($val['file'])->save(public_path('uploads/file/').$filename); 
+            
+            $post->file=$filename;
+        }
+
+        $simpan=$post->save();
+
+        if($simpan){
+            $data=array(
+                'success'=>true,
+                'pesan'=>'Data berhasil disimpan',
+                'error'=>''
+            );
+        }else{
+            $data=array(
+                'success'=>false,
+                'pesan'=>'Data gagal disimpan',
+                'error'=>''
+            );
+        }
+
+        return $data;
+    }
 }
