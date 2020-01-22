@@ -7,7 +7,7 @@
         </div>
     </section>
 
-    <section class="two-column style-3" id="testimony">
+    <section class="two-column style-3 animated fadeIn" id="testimony">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12 testimonial">

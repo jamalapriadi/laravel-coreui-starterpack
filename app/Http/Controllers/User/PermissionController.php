@@ -157,7 +157,9 @@ class PermissionController extends Controller
                 ->delete();
 
             foreach($perm as $row){
-                $role->givePermissionTo($row['name']);
+                if($row!=null){
+                    $role->givePermissionTo($row['name']);
+                }
             }
 
             $data=array(

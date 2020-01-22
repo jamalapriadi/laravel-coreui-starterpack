@@ -41911,7 +41911,7 @@ $(function () {
           el += '</div>';
         });
         $.each(result.tambahan, function (a, b) {
-          el += '<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item">';
+          el += '<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item" style="display:none;">';
 
           if (b.file_type == "image") {
             el += '<div class="inner-box">' + '<figure class="image-box">' + '<img style="height:270px; width:370px;" src="' + b.image_url + '" alt="">' + '</figure>' + '<div class="content" style="text-shadow: 2px 2px 4px black;">' + '<div class="inner-box imageGallery1">' + '<h3>' + b.title + '</h3>' + '<a href="' + b.image_url + '" rel="prettyPhoto[' + b.gallery_id + ']" class="bg-color-1 tampilfoto" alamat="' + b.image_url + '">View Photo</a>' + '</div>' + '</div>' + '</div>'; // <a href="images/fullscreen/2.jpg" rel="prettyPhoto" title="This is the description">
@@ -41932,8 +41932,8 @@ $(function () {
           al += '<div id="btnloadmore" class="link-btn center"><a href="javascript:void(0)" class="theme-btn btn-style-one">load more</a></div>';
         }
 
-        $("#tampilGalleryFile").empty().html(el);
-        $("#tampilLoadMore").empty().html(al);
+        $("#tampilGalleryFile").empty().html(el); // $("#tampilLoadMore").empty().html(al);
+
         $("[rel^='prettyPhoto']").prettyPhoto({
           animation_speed: 'normal',
           opacity: 1,

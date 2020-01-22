@@ -185,11 +185,19 @@ class KidsController extends Controller
 
             return array(
                 'default'=>$listdefault,
-                'tambahan'=>$model->limit($per_page)->get()
+                'tambahan'=>$model->get()
             );
         }
 
         return abort(404);
+    }
+
+    public function gallery_file_by_id(Request $request, $id)
+    {
+        $model=\App\Models\Cms\Galleryfile::where('gallery_id',$id)
+            ->get();
+
+        return $model;
     }
 
     public function upload_file_ckfinder(Request $request)

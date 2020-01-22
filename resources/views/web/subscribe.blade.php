@@ -19,7 +19,7 @@
         </div>           
     </section>
 
-    <section class="contact-us">
+    <section class="contact-us animated fadeIn">
         <div class="container">
             <div class="section-title center">
                 <h2>Subscribe <span>Newsletter</span></h2>

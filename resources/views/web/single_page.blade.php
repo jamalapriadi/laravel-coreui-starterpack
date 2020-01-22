@@ -19,7 +19,7 @@
 
     @if($page->page_type == "component")
         @if($page->component_name == "founder-component")
-            <section class="about" id="founder">
+            <section class="about animated fadeIn" id="founder">
                 <div class="container">
                     <div class="section-title">
                         <h2>Founders <span>Profile</span> </h2>
@@ -54,7 +54,7 @@
         @endif
 
         @if($page->component_name == "gallery-component")
-            <section class="filter" style="padding-top: 75px;">
+            <section class="filter animated fadeIn" style="padding-top: 75px;">
                 <div class="container">
                     <div class="pull-left">
                         <select class="col-md-4 col-sm-6 col-xs-12 btn-style-one" id="pilihgallery">
@@ -67,7 +67,7 @@
                 </div>
             </section>
 
-            <section class="gallery-section gallery-three-column style-3">
+            <section class="gallery-section gallery-three-column style-3 animated fadeIn">
                 <div class="container">
                 
                     <!--Sortable Masonry-->
@@ -90,7 +90,7 @@
 
         
         @if($page->component_name == "contact-component")
-            <section class="contact-us" style="background-color: rgb(189, 230, 251);">
+            <section class="contact-us animated fadeIn" style="background-color: rgb(189, 230, 251);">
                 <div class="upper">
                     <div class="container">
                         <div class="row">
@@ -212,7 +212,7 @@
         @endif
 
         @if($page->component_name == "newsletter-component")
-            <div class="sidebar-page blog">
+            <div class="sidebar-page blog animated fadeIn">
                 <div class="container">
                 
                     <div class="row clearfix">
@@ -222,7 +222,7 @@
                             <section class="blog-container">
                                 <!--Blog Post-->
                                 @foreach($component as $key=>$val)
-                                <div class="blog-post wow fadeInLeft animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInLeft; background-size: contain;">
+                                <div class="blog-post wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn; background-size: contain;">
                                     <article class="single-column">
                                         <div class="img-box-s2">
                                             <div class="img-holder">
@@ -262,7 +262,7 @@
                         <div class="col-md-4 col-sm-5 col-xs-12 sidebar-column">
                             <aside class="sidebar">
                                 <!-- Popular Categories -->
-                                <div class="widget popular-categories wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                                <div class="widget popular-categories wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn;">
                                     <div class="sidebar-title"><h2>Peri<span>ode</span></h2></div>
                                     
                                     <ul class="list catagories">
@@ -305,7 +305,7 @@
     @if($page->page_type == "text")
         {{-- Column Two --}}
         @if($page->post_template == "column-two")
-            <section class="about" id="story">
+            <section class="about animated fadeIn" id="story">
                 <div class="container">
                     <div class="row">
                         <div class="single-column col-md-6 col-sm-12">
@@ -321,7 +321,7 @@
                         </div> 
 
                         <div class="single-column col-md-6 col-sm-12" style="margin-top: 90px;">
-                            <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn; border: 0;border-radius: 10px;">
+                            <div class="wow fadeIn animated" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn; border: 0;border-radius: 10px;">
                                 <figure class="img-box">
                                     <a href="#">
                                         @if($agent->isDesktop())
@@ -342,7 +342,7 @@
         {{-- End Column Two --}}
 
         @if($page->post_template == "default")
-            <section class="about" id="teacher">
+            <section class="about animated fadeIn" id="teacher">
                 <div class="container">
                     <div class="row">
                         <div class="single-column col-md-12 col-sm-12">
@@ -365,7 +365,7 @@
         @endif
 
         @if($page->post_template == "column-two-with-slider")
-            <section class="about" id="facility">
+            <section class="about animated fadeIn" id="facility">
                 <div class="container">
                     <div class="section-title"> 
                         <h2>{{$page->title}}<span> {{$page->second_title}}</span> </h2>
@@ -416,7 +416,7 @@
 
         @if($page->post_template == "column-two-with-thumbnail")
 
-            <section class="about" id="teacher">
+            <section class="about animated fadeIn" id="teacher">
                 <div class="container"> 
                     <div class="row">
                         <div class="single-column col-md-12 col-sm-12">
@@ -456,7 +456,7 @@
         @endif
 
         @if($page->post_template =="column-two-with-carousel")
-            <section class="about" id="teacher">
+            <section class="about animated fadeIn" id="teacher">
                 <div class="container">
                     <div class="row">
                         <div class="single-column col-md-12 col-sm-12">
@@ -613,7 +613,7 @@
     @endif
 
     @if($page->page_type == "text and component")
-        <section class="about" id="teacher">
+        <section class="about animated fadeIn" id="teacher">
             <div class="container">
                 <div class="row">
                     <div class="single-column col-md-12 col-sm-12">

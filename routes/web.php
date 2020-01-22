@@ -48,6 +48,7 @@ Route::group(['prefix'=>'list'],function(){
     Route::get('program','KidsController@list_program');
     Route::get('calendar','KidsController@list_calendar');
     Route::post('upload-file-ckfinder','KidsController@upload_file_ckfinder');
+    Route::get('gallery-file-by-id/{id}','KidsController@gallery_file_by_id');
 });
 
 Route::group(['prefix'=>'proses'],function(){

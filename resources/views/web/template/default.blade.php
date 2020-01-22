@@ -17,6 +17,7 @@
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/responsive.css')}}">
 	<link media="all" type="text/css" rel="stylesheet" href="{{asset('kids/css/prettyPhoto.css')}}">
     <link rel="shortcut icon" href="https://kidsrepublic.sch.id/uploads/icons/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
 
     @yield('css')
 </head>

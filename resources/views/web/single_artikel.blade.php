@@ -7,7 +7,7 @@
         </div>
     </section>
 
-    <div class="sidebar-page product-details">
+    <div class="sidebar-page product-details animated fadeIn">
         <div class="container">
         
             <div class="row clearfix">
@@ -40,7 +40,7 @@
                 <div class="col-md-4 col-sm-5 col-xs-12 sidebar-column">
                     <aside class="sidebar">
                         <!-- Popular Categories -->
-                        <div class="widget popular-categories wow fadeInUp animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                        <div class="widget popular-categories wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn;">
                             <div class="sidebar-title"><h2>Another<span> News</span></h2></div>
 
                             <ul class="list catagories">

@@ -57,7 +57,7 @@ $(function () {
                 })
 
                 $.each(result.tambahan,function(a,b){
-                    el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item">';
+                    el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item" style="display:none;">';
                         if(b.file_type == "image"){
                             el+='<div class="inner-box">'+
                                 '<figure class="image-box">'+
@@ -99,7 +99,7 @@ $(function () {
                 }
 
                 $("#tampilGalleryFile").empty().html(el);
-                $("#tampilLoadMore").empty().html(al);
+                // $("#tampilLoadMore").empty().html(al);
 
                 $("[rel^='prettyPhoto']").prettyPhoto({
                     animation_speed: 'normal',
