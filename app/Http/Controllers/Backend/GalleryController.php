@@ -19,7 +19,7 @@ class GalleryController extends Controller
             $model=$model->where('name','like','%'.$request->input('q').'%');
         }
 
-        $model=$model->orderBy('updated_at','desc')->paginate(25);
+        $model=$model->orderBy('no_urut')->paginate(25);
 
         return $model;
     }
@@ -46,10 +46,13 @@ class GalleryController extends Controller
             }else{
                 $model= new Gallery;
             }
+
+            $jumlah_gallery=Gallery::all();
             
             $model->name=$request->input('name');
             $model->description = $request->input('desc');
             $model->author=auth()->user()->id;
+            $model->no_urut=count($jumlah_gallery)+1;
 
             $related=$request->input('related');
 
@@ -81,6 +84,32 @@ class GalleryController extends Controller
         return $data;
     }
 
+    public function destroy($id)
+    {
+        $model= Gallery::find($id);
+
+        $hapus=$model->delete();
+
+        if($hapus){
+            \App\Models\Cms\Galleryfile::where('gallery_id',$id)
+                ->delete();
+
+            $data=array(
+                'success'=>true,
+                'pesan'=>'Data berhasil dihapus',
+                'error'=>''
+            );
+        }else{
+            $data=array(
+                'success'=>false,
+                'pesan'=>'Data gagal dihapus',
+                'error'=>''
+            );
+        }
+
+        return $data;
+    }
+
     public function detail_gallery($id)
     {
         $model=Gallery::with('file')->find($id);
@@ -90,15 +119,6 @@ class GalleryController extends Controller
 
     public function save_file_gallery(Request $request, $id)
     {
-        if($request->hasFile('file')){
-            $imageData = $request->file('file');
-            $fileName = time().'.'.$request->file->getClientOriginalExtension();
-
-            return $fileName;
-        }else{
-            return "Tidak ada file";
-        }
-        
         $model=Gallery::with('file')->find($id);
 
         $type=$request->input('type');
@@ -125,10 +145,13 @@ class GalleryController extends Controller
                             ]
                         );
                 }else{
+                    $jumlah_file=\App\Models\Cms\Galleryfile::where('gallery_id',$id)->count();
+
                     $model->file()->create([
                         'file' => $filename,
                         'title'=>$request->input('video_title'),
                         'file_type'=>'image',
+                        'sortir'=>$jumlah_file+1,
                         'author'=>auth()->user()->id
                     ]);
                 }
@@ -160,11 +183,14 @@ class GalleryController extends Controller
                         ]
                     );
             }else{
+                $jumlah_file=\App\Models\Cms\Galleryfile::where('gallery_id',$id)->count();
+
                 $model->file()->create([
                     'file' => $videoId,
                     'title'=>$request->input('video_title'),
                     'file_type'=>'video',
                     'video_url'=>$request->input('video_url'),
+                    'sortir'=>$jumlah_file+1,
                     'author'=>auth()->user()->id
                 ]);
             }
@@ -202,5 +228,41 @@ class GalleryController extends Controller
         }
 
         return $data;
+    }
+
+    public function re_order_gallery(Request $request, $id)
+    {
+        $baru = $request->input('baru');
+        $lama = $request->input('lama');
+        
+        //update dulu gallery dengan no urut baru
+        Gallery::where('no_urut', $baru)
+            ->update(
+                [
+                    'no_urut'=>null
+                ]
+            );
+
+        //update gallery dengan no urut lama ke no urut baru
+        Gallery::where('no_urut', $lama)
+            ->update(
+                [
+                    'no_urut'=>$baru
+                ]
+            );
+
+        //update gallery dengan no urut null ke no urut lama
+        Gallery::whereNull('no_urut')
+            ->update(
+                [
+                    'no_urut'=>$lama
+                ]
+            );
+
+        return array(
+            'success'=>true,
+            'message'=>'Data has been saved',
+            'error'=>array()
+        );
     }
 }

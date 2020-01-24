@@ -34,6 +34,7 @@ import VueCarousel from '@chenfengyuan/vue-carousel'
 import VueLazyLoad from 'vue-lazyload'
 
 
+
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
 Vue.use(VueSweetalert2);
@@ -55,7 +56,7 @@ Vue.use(checkbox)
 Vue.use(ToggleButton)
 Vue.use(VueYouTubeEmbed)
 Vue.use(Vue2Editor)
-Vue.use(VueCarousel);
+Vue.use(VueCarousel)
 Vue.use(VueLazyLoad)
 
 

@@ -51,7 +51,7 @@
                                             <th width="17%"></th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <draggable v-model="list.data" tag="tbody" @change="updateTabel">
                                         <tr v-for="(l, index) in list.data" v-bind:key="index">
                                             <td>{{index+1}}</td>
                                             <td>{{l.name}}</td>
@@ -72,7 +72,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    </tbody>
+                                    </draggable>
                                 </table>
                             </div>
 
@@ -253,7 +253,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- <draggable v-model="list" tag="tbody"> -->
+                                <!-- <draggable v-model="listdetailGallery" tag="tbody" @change="updateListGalleryFile"> -->
                                     <tr v-for="(l,index) in listdetailGallery.file" :key="index">
                                         <td>{{index+1}}</td>
                                         <td>
@@ -279,7 +279,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <!-- </draggable> -->
+                                <!-- </draggable> -->
                                 </tbody>
                             </table>
 
@@ -342,7 +342,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { VueLoading } from 'vue-loading-template'
-import draggable from 'vuedraggable'
+import draggable from 'vuedraggable';
 
 export default {
     components: {
@@ -457,6 +457,28 @@ export default {
                 filebrowserWindowWidth: '1000',
                 filebrowserWindowHeight: '700'
             });
+        },
+
+        updateTabel(e){
+            let id = e.moved.element.id;
+            let lama = parseInt(e.moved.oldIndex)+1;
+            let baru = parseInt(e.moved.newIndex)+1;
+
+            axios.post('data/re-order-gallery/'+id,{
+                lama:lama, 
+                baru:baru
+            }).then(response => {
+                if(response.data.success == true){
+                    this.$swal('Updated', response.data.message , 'success');
+                }
+            })
+
+        },
+
+        updateListGalleryFile(e){
+            let id = e.moved.element.id;
+            let lama = parseInt(e.moved.oldIndex)+1;
+            let baru = parseInt(e.moved.newIndex)+1;
         },
 
         editGallery(l){
@@ -587,7 +609,7 @@ export default {
             })
             .then((result) => {
                 if(result.value) {
-                    axios.delete('data/post/'+id)
+                    axios.delete('data/gallery/'+id)
                         .then(response => {
                             if(response.data.success==true){
                                 this.message="";
@@ -732,7 +754,16 @@ export default {
                         video_title:'',
                         video_url:'',
                         preview_file:'',
-                        file:''
+                        file:'',
+                        height:770,
+                        width:384,
+                        border_radius:{
+                            top_left:0,
+                            top_right:0,
+                            bottom_left:0,
+                            bottom_right:0
+                        },
+                        alignment:'left'
                     }
 
                     this.message = 'Data has been saved.';

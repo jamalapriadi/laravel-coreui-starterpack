@@ -107,6 +107,7 @@ Route::group(['prefix'=>'data','middleware'=>'auth'],function(){
     Route::resource('promo','Backend\PromoController');
     Route::resource('newsletter','Backend\NewsletterController');
     Route::resource('gallery','Backend\GalleryController');
+    Route::post('re-order-gallery/{id}','Backend\GalleryController@re_order_gallery');
     Route::resource('program','Backend\ProgramController');
     Route::resource('calendar','Backend\CalendarController');
     Route::get('detail-gallery/{id}','Backend\GalleryController@detail_gallery');

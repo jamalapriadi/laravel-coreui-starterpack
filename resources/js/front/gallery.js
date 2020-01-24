@@ -5,7 +5,7 @@ $(function () {
         return false;
     }
 
-    var per_page=0;
+    var per_page=6;
     $("a[rel^='prettyPhoto']").prettyPhoto();
 
     function getFile(){
@@ -23,8 +23,14 @@ $(function () {
                 // $('[role="status"]').hide();
 
                 var el="";
-                $.each(result.default,function(a,b){
-                    el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item">';
+                var al="";
+
+                $.each(result,function(a,b){
+                    if(a < per_page){
+                        el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item">';
+                    }else {
+                        el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item" style="display:none">';
+                    }
                         if(b.file_type == "image"){
                             el+='<div class="inner-box">'+
                                 '<figure class="image-box">'+
@@ -32,7 +38,7 @@ $(function () {
                                 '</figure>'+
                                 '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
                                     '<div class="inner-box imageGallery1">'+
-                                        '<h3>'+b.title+'</h3>'+
+                                        '<h3>'+b.gallery_name+'</h3>'+
                                         '<a href="'+b.image_url+'" rel="prettyPhoto['+b.gallery_id+']" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
                                     '</div>'+
                                 '</div>'+
@@ -46,7 +52,7 @@ $(function () {
                                     '<img style="height:270px; width:370px;" src="https://img.youtube.com/vi/'+b.video_url+'/mqdefault.jpg" alt="Kids Republic"></figure>'+
                                     '<div class="content">'+
                                         '<div class="inner-box imageGallery1">'+
-                                            '<h3>'+b.title+'</h3>'+
+                                            '<h3>'+b.gallery_name+'</h3>'+
                                             '<a testprety href="https://www.youtube.com/watch?v='+b.video_url+'" rel="prettyPhoto[gallery]" class="bg-color-1">View Video<span class=""></span></a>'+
                                         '</div>'+
                                     '</div>'+
@@ -56,50 +62,12 @@ $(function () {
                     el+='</div>';
                 })
 
-                $.each(result.tambahan,function(a,b){
-                    el+='<div class="col-md-4 col-sm-6 col-xs-12 default-portfolio-item" style="display:none;">';
-                        if(b.file_type == "image"){
-                            el+='<div class="inner-box">'+
-                                '<figure class="image-box">'+
-                                    '<img style="height:270px; width:370px;" src="'+b.image_url+'" alt="">'+
-                                '</figure>'+
-                                '<div class="content" style="text-shadow: 2px 2px 4px black;">'+
-                                    '<div class="inner-box imageGallery1">'+
-                                        '<h3>'+b.title+'</h3>'+
-                                        '<a href="'+b.image_url+'" rel="prettyPhoto['+b.gallery_id+']" class="bg-color-1 tampilfoto" alamat="'+b.image_url+'">View Photo</a>'+
-                                    '</div>'+
-                                '</div>'+
-                            '</div>';
-
-                            // <a href="images/fullscreen/2.jpg" rel="prettyPhoto" title="This is the description">
-                            //     <img src="images/thumbnails/t_2.jpg" width="60" height="60" alt="This is the title" /></a>
-                        }else if(b.file_type == 'video'){
-                            el+='<div class="inner-box">'+
-                                '<figure class="image-box">'+
-                                    '<img style="height:270px; width:370px;" src="https://img.youtube.com/vi/'+b.video_url+'/mqdefault.jpg" alt="Kids Republic"></figure>'+
-                                    '<div class="content">'+
-                                        '<div class="inner-box imageGallery1">'+
-                                            '<h3>'+b.title+'</h3>'+
-                                            '<a testprety href="https://www.youtube.com/watch?v='+b.video_url+'" rel="prettyPhoto['+b.gallery_id+']" class="bg-color-1">View Video<span class=""></span></a>'+
-                                        '</div>'+
-                                    '</div>'+
-                                '</div>';
-                        }
-
-                    el+='</div>';
-                })
-
-                var al="";
-                if(result.tambahan.length > 0){
-                    al+='<div id="btnloadmore" class="link-btn center"><a href="javascript:void(0)" class="theme-btn btn-style-one">load more</a></div>';
-                }
-
-                if(per_page == 0){
+                if(per_page < result.length){
                     al+='<div id="btnloadmore" class="link-btn center"><a href="javascript:void(0)" class="theme-btn btn-style-one">load more</a></div>';
                 }
 
                 $("#tampilGalleryFile").empty().html(el);
-                // $("#tampilLoadMore").empty().html(al);
+                $("#tampilLoadMore").empty().html(al);
 
                 $("[rel^='prettyPhoto']").prettyPhoto({
                     animation_speed: 'normal',

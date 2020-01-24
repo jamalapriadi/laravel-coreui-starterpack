@@ -17,13 +17,18 @@ class Galleryfile extends Model
     ];
 
     protected $appends = [
-        'image_url'
+        'image_url',
+        'gallery_name'
     ];
 
     public function getImageUrlAttribute(){
         $url = asset('uploads/gallery/'.$this->gallery_id.'/'.$this->file);
 
         return $url;
+    }
+
+    public function getGalleryNameAttribute(){
+        return $this->gallery->name;
     }
 
     public function gallery()

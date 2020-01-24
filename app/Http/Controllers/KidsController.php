@@ -143,50 +143,26 @@ class KidsController extends Controller
     public function list_gallery_file(Request $request)
     {
         if($request->ajax()){
-            /** set untuk default gallery */
-            $gallery=\App\Models\Cms\Gallery::with(
+            $model=\App\Models\Cms\Gallery::with(
                 [
-                    'file',
-                    'file.gallery'
+                    'file'
                 ]
-            )
-            ->orderBy('id','asc');
-
+            )->orderBy('no_urut');
+    
             if($request->has('kode') && $request->input('kode')!=""){
-                $gallery=$gallery->where('id',$request->input('kode'));
+                $model=$model->where('id',$request->input('kode'));
             }
-
-            $gallery=$gallery->get();
     
-            $listdefault=array();
-            $iddefault=array();
+            $model=$model->get();
     
-            foreach($gallery as $key=>$val){
-                $listdefault[]=$val->file[0];
-    
-                if(count($val->file) > 0){
-                    $iddefault[]=$val->file[0]->id;
+            $list=array();
+            foreach($model as $key=>$val){
+                foreach($val->file as $f){
+                    $list[]=$f;
                 }
             }
-            /**end set default gallery */
-
-            $model=\App\Models\Cms\Galleryfile::select('*')
-                ->whereNotIn('id',$iddefault);
-
-            if($request->has('kode') && $request->input('kode')!=""){
-                $model=$model->where('gallery_id',$request->input('kode'));
-            }
-
-            if($request->has('per_page')){
-                $per_page=$request->input('per_page');
-            }else{
-                $per_page=6;
-            }
-
-            return array(
-                'default'=>$listdefault,
-                'tambahan'=>$model->get()
-            );
+    
+            return $list;
         }
 
         return abort(404);

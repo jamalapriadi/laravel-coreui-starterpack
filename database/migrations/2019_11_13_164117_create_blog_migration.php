@@ -120,6 +120,7 @@ class CreateBlogMigration extends Migration
             $table->string('slug',191)->nullable();
             $table->text('description')->nullable();
             $table->integer('event_id')->nullable();
+            $table->integer('no_urut')->nullable();
             $table->unsignedBigInteger('author');
             $table->timestamps();
         });
