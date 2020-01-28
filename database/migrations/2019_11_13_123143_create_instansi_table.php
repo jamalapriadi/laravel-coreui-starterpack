@@ -30,6 +30,7 @@ class CreateInstansiTable extends Migration
             $table->string('logo',191)->nullable();
             $table->float('lat')->nullable();
             $table->float('lng')->nullable();
+            $table->string('seo_id',191)->nullable();
             $table->timestamps();
         });
 

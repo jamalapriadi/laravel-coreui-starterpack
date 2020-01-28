@@ -105,6 +105,7 @@ class InfoController extends Controller
             $newinfo->website=$request->input('website');
             $newinfo->lat=$request->input('lat');
             $newinfo->lng=$request->input('lng');
+            $newinfo->seo_id=$request->input('seo');
 
             if($request->has('logo') && $request->input('logo')!=""){
                 if(!is_dir('uploads/info/')){

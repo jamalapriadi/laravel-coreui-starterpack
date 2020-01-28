@@ -86,6 +86,10 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="" class="control">SEO ID</label>
+                            <input type="text" class="form-control" v-model="state.seo">
+                        </div>
+                        <div class="form-group">
                             <label for="" class="control-label">Logo</label>
                             <img v-bind:src="state.logo" v-show="tampilLogo" class="img-fluid"/>
                             <img v-bind:src="state.tmplogo" v-show="tmptampilLogo" class="img-fluid"/>
@@ -160,7 +164,8 @@ export default {
                 lat:'',
                 lng:'',
                 tagline:'',
-                teaser:''
+                teaser:'',
+                seo:''
             },
             pesankelas:'',
             message:'',
@@ -201,7 +206,8 @@ export default {
                             lat:response.data.lat,
                             lng:response.data.lng,
                             tagline:response.data.tagline,
-                            teaser:response.data.teaser
+                            teaser:response.data.teaser,
+                            seo:response.data.seo_id
                         }
                         if(response.data.logo != null){
                             this.tmptampilLogo=true;

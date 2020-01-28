@@ -125,13 +125,13 @@ class GalleryController extends Controller
 
         if($type == "image"){
             if($request->has('file') && $request->input('file')!=""){
-                if(!is_dir('uploads/gallery/'.$id.'/')){
-                    mkdir('uploads/gallery/'.$id.'/', 0777, TRUE);
+                if(!is_dir('uploads/gallery/')){
+                    mkdir('uploads/gallery/', 0777, TRUE);
                 }
 
                 $imageData = $request->input('file');
                 $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-                Image::make($request->input('file'))->save(public_path('uploads/gallery/'.$id.'/').$filename);
+                Image::make($request->input('file'))->save(public_path('uploads/gallery/').$filename);
                 // $post->featured_image=$filename;
 
                 if($request->has('kode') && $request->input('kode')!=null){

@@ -22,7 +22,7 @@ class Galleryfile extends Model
     ];
 
     public function getImageUrlAttribute(){
-        $url = asset('uploads/gallery/'.$this->gallery_id.'/'.$this->file);
+        $url = asset('uploads/gallery/'.$this->file);
 
         return $url;
     }
