@@ -17,7 +17,8 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="control-label">Tanggal</label>
-                                    <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker>
+                                    <!-- <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker> -->
+                                    <VueHotelDatepicker @update="updateRangePicker"></VueHotelDatepicker>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -307,6 +308,8 @@ import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/plugins/fontsize/trumbowyg.fontsize';
 import 'trumbowyg/plugins/fontfamily/trumbowyg.fontfamily';
 
+import VueHotelDatepicker from '@northwalker/vue-hotel-datepicker'
+
 export default {
     components: {
         VueLoading,
@@ -314,7 +317,8 @@ export default {
         Multiselect,
         Datepicker,
         Timeselector,
-        Trumbowyg
+        Trumbowyg,
+        VueHotelDatepicker
     },
     data(){
         return {
@@ -324,6 +328,7 @@ export default {
                 teaser:'',
                 desc:'',
                 tanggal: '',
+                tanggal_selesai:'',
                 jam_mulai:'',
                 jam_selesai:'',
                 comment:'open',
@@ -424,6 +429,10 @@ export default {
         }
     },
     methods:{
+        updateRangePicker(event){
+            this.state.tanggal=event.start;
+            this.state.tanggal_selesai=event.end;
+        },
         tanggalFormatter(date) {
             return moment(date).format('YYYY-MM-DD');
         },
@@ -777,6 +786,10 @@ export default {
         border-radius: 0.25rem;
         transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     }    
+
+    .vhd-input{
+        height: 33px;
+    }
 
 </style>
 

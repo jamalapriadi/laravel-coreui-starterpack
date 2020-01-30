@@ -56,6 +56,7 @@ class CreateBlogMigration extends Migration
             $table->string('sidebar_layout',191)->nullable();
             $table->string('sidebar_content',191)->nullable();
             $table->date('tanggal')->nullable();
+            $table->date('tanggal_selesai')->nullable();
             $table->string('jam_mulai')->nullable();
             $table->string('jam_selesai')->nullable();
             $table->string('page_url')->nullable();

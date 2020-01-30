@@ -61,7 +61,7 @@
                             </td>
                             <td>{{l.title}}</td>
                             <td>{{l.lokasi}}</td>
-                            <td>{{l.tanggal}}</td>
+                            <td>{{l.periode}}</td>
                             <td>{{l.jam_mulai}}</td>
                             <td>{{l.jam_selesai}}</td>
                             <td>

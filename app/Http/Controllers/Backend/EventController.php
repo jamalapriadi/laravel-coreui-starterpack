@@ -34,6 +34,7 @@ class EventController extends Controller
             'jam_mulai',
             'jam_selesai',
             'tanggal',
+            'tanggal_selesai',
             'featured_image'
         );
 
@@ -77,6 +78,7 @@ class EventController extends Controller
             $post->comment=$request->input('comment');
             $post->teaser=$request->input('teaser');
             $post->tanggal=date('Y-m-d',strtotime($request->input('tanggal')));
+            $post->tanggal_selesai=date('Y-m-d',strtotime($request->input('tanggal_selesai')));
             $post->jam_mulai=date('H:i:s',strtotime($request->input('jam_mulai')));
             $post->jam_selesai=date('H:i:s',strtotime($request->input('jam_selesai')));
             $post->lokasi=$request->input('lokasi');
@@ -161,6 +163,7 @@ class EventController extends Controller
             $post->comment=$request->input('comment');
             $post->teaser=$request->input('teaser');
             $post->tanggal=date('Y-m-d',strtotime($request->input('tanggal')));
+            $post->tanggal_selesai=date('Y-m-d',strtotime($request->input('tanggal_selesai')));
             $post->jam_mulai=date('H:i:s',strtotime($request->input('jam_mulai')));
             $post->jam_selesai=date('H:i:s',strtotime($request->input('jam_selesai')));
             $post->lokasi=$request->input('lokasi');

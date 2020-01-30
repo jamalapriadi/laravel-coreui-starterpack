@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\MigrasiEvent::class,
         Commands\MigrasiNews::class,
         Commands\MigrasiGallery::class,
+        Commands\MigrasiPromo::class,
     ];
 
     /**

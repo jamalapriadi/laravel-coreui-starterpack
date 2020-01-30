@@ -17,8 +17,9 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="" class="control-label">Tanggal</label>
-                                    <!-- <input type="date" class="form-control" v-model="state.tanggal"> -->
-                                    <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker>
+                                    <!-- <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker> -->
+                                    <VueHotelDatepicker @update="updateRangePicker"></VueHotelDatepicker>
+                                    <small>{{state.tanggal}} - {{state.tanggal_selesai}}</small>
                                 </div>
                             </div>
                             <div class="col-lg-3">
@@ -313,6 +314,7 @@ import Trumbowyg from 'vue-trumbowyg';
 import 'trumbowyg/dist/ui/trumbowyg.css';
 import 'trumbowyg/plugins/fontsize/trumbowyg.fontsize';
 import 'trumbowyg/plugins/fontfamily/trumbowyg.fontfamily';
+import VueHotelDatepicker from '@northwalker/vue-hotel-datepicker'
 
 export default {
     components: {
@@ -321,7 +323,8 @@ export default {
         Multiselect,
         Datepicker,
         Timeselector,
-        Trumbowyg
+        Trumbowyg,
+        VueHotelDatepicker
     },
     data(){
         return {
@@ -332,6 +335,7 @@ export default {
                 teaser:'',
                 desc:'',
                 tanggal: '',
+                tanggal_selesai:'',
                 jam_mulai:'',
                 jam_selesai:'',
                 comment:'open',
@@ -428,6 +432,10 @@ export default {
         }
     },
     methods:{
+        updateRangePicker(event){
+            this.state.tanggal=event.start;
+            this.state.tanggal_selesai=event.end;
+        },
         tanggalFormatter(date) {
             return moment(date).format('DD-MM-YYYY');
         },
@@ -473,6 +481,7 @@ export default {
                     this.state.relatednews=response.data.related;
                     this.state.status=response.data.post_status;
                     this.state.tanggal=response.data.tanggal;
+                    this.state.tanggal_selesai=response.data.tanggal_selesai;
                     this.state.jam_mulai=response.data.jam_mulai;
                     this.state.jam_selesai=response.data.jam_selesai;
                     this.state.comment=response.data.comment,

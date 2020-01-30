@@ -218,7 +218,7 @@
                                         <figure>
                                             <a href="{{URL::to('news/'.$val->slug)}}" target="_blank">
                                                 @if($agent->isDesktop())
-                                                    <img src="{{$val->feature_image_url}}" style="width:236px;height:106px;" alt="images">
+                                                    <img src="{{$val->feature_image_url}}" style="width:236px;height:126px;" alt="images">
                                                 @endif
 
                                                 @if($agent->isPhone())
@@ -327,7 +327,8 @@
                                     <tr>
                                         <td>
                                             <h4><a href="{{URL::to('event/'.$val->slug)}}" target="_blank" style="font color: #000">{{$val->title}}</a></h4>
-                                            <p><span class="fa fa-calendar-o"></span> {{$val->hari_indo}}, {{date('d M Y',strtotime($val->tanggal))}}</p>
+                                            {{-- <p><span class="fa fa-calendar-o"></span> {{$val->hari_indo}}, {{date('d M Y',strtotime($val->tanggal))}}</p> --}}
+                                            <p><span class="fa fa-calendar-o"></span> {{$val->hari_indo}}, {{periode($val->tanggal, $val->tanggal_selesai)}}</p>
                                             <p><span class="fa fa-clock-o"></span> {{date('H:i',strtotime($val->jam_mulai))}} - {{date('H:i',strtotime($val->jam_selesai))}}</p>
                                             <p><span class="fa fa-map-marker"></span>{{$val->lokasi}}</p>
                                         </td>

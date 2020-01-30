@@ -26,7 +26,7 @@
                                     <div class="outer-box">
                                         <div class="content">
                                             <h3><a href="#">{{$page->title}}</a></h3>
-                                            <div class="date"><span class="icon-clock">{{date('d M Y',strtotime($page->tanggal))}} | {{date('H:i', strtotime($page->jam_mulai))}} - {{date('H:i', strtotime($page->jam_selesai))}}</span> <span class="icon-location">{{$page->lokasi}}</span></div>
+                                            <div class="date"><span class="icon-clock">{{periode($page->tanggal,$page->tanggal_selesai)}} | {{date('H:i', strtotime($page->jam_mulai))}} - {{date('H:i', strtotime($page->jam_selesai))}}</span> <span class="icon-location">{{$page->lokasi}}</span></div>
                                             {!! $page->description !!}
                                         </div>
                                     </div>

@@ -16,11 +16,18 @@ class Post extends Model
     protected $appends = [
         'feature_image_url',
         'tanggal_indo',
-        'hari_indo'
+        'hari_indo',
+        'periode'
     ];
 
     public function getFeatureImageUrlAttribute(){
         $url = asset('uploads/'.$this->post_type.'/'.$this->featured_image);
+
+        return $url;
+    }
+
+    public function getPeriodeAttribute(){
+        $url = periode($this->tanggal, $this->tanggal_selesai);
 
         return $url;
     }
