@@ -18,7 +18,7 @@
                                 <div class="form-group">
                                     <label for="" class="control-label">Tanggal</label>
                                     <!-- <datepicker :value="state.tanggal" :format="tanggalFormatter" v-model="state.tanggal"></datepicker> -->
-                                    <VueHotelDatepicker @update="updateRangePicker"></VueHotelDatepicker>
+                                    <VueHotelDatepicker @update="updateRangePicker" :minDate="'2018-01-01'"></VueHotelDatepicker>
                                     <small>{{state.tanggal}} - {{state.tanggal_selesai}}</small>
                                 </div>
                             </div>
