@@ -536,9 +536,9 @@ class PageController extends Controller
                 mkdir('uploads/file/', 0777, TRUE);
             }
 
-            $imageData = $val['file'];
+            $imageData = $request->input('file');
             $filename = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-            Image::make($val['file'])->save(public_path('uploads/file/').$filename); 
+            Image::make($request->input('file'))->save(public_path('uploads/file/').$filename); 
             
             $post->file=$filename;
         }

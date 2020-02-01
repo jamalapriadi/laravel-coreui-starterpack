@@ -37,7 +37,13 @@
                                 <center>
                                     <figure class="img-box">
                                         @if($agent->isDesktop())
-                                            <img src="{{$row->image_url}}" alt="images" style="width:{{$row->image_width}}px; height:{{$row->image_height}}px;border-radius: {{$row->image_border_top_left_radius}}px {{$row->image_border_top_right_radius}}px {{$row->image_border_bottom_right_radius}}px {{$row->image_border_bottom_left_radius}}px ;">
+                                            @if($row->image_alignment == "center")
+                                                <center>
+                                                    <img src="{{$row->image_url}}" class="img-responsive" align="{{$row->image_alignment}}" alt="images" style="max-width:{{$row->image_width}}px; max-height:{{$row->image_height}}px;border-radius: {{$row->image_border_top_left_radius}}px {{$row->image_border_top_right_radius}}px {{$row->image_border_bottom_right_radius}}px {{$row->image_border_bottom_left_radius}}px ;">
+                                                </center>
+                                            @else 
+                                                <img src="{{$row->image_url}}" class="img-responsive" align="{{$row->image_alignment}}" alt="images" style="max-width:{{$row->image_width}}px; max-height:{{$row->image_height}}px;border-radius: {{$row->image_border_top_left_radius}}px {{$row->image_border_top_right_radius}}px {{$row->image_border_bottom_right_radius}}px {{$row->image_border_bottom_left_radius}}px ;">
+                                            @endif
                                         @endif
 
                                         @if($agent->isPhone())
@@ -388,7 +394,13 @@
                                                 <figure>
                                                     <a href="#">
                                                         @if($agent->isDesktop())
-                                                            <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                            @if($val->image_alignment == "center")
+                                                                <center>
+                                                                    <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                                </center>
+                                                            @else 
+                                                                <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                            @endif
                                                         @endif
 
                                                         @if($agent->isPhone())
@@ -437,7 +449,13 @@
                                             <p>{{$val->title}}</p>
                                             <p>
                                                 @if($agent->isDesktop())
-                                                    <img src="{{$val->image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                    @if($val->image_alignment == "center")
+                                                        <center>
+                                                            <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                        </center>
+                                                    @else 
+                                                        <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                    @endif
                                                 @endif
 
                                                 @if($agent->isPhone())
@@ -548,7 +566,13 @@
                                     <div class="item @if($key == 0) active @endif" style="background:transparent">
                                         
                                         @if($agent->isDesktop())
-                                            <img src="{{$val->image_url}}" class="img-responsive" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                            @if($val->image_alignment == "center")
+                                                <center>
+                                                    <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                </center>
+                                            @else 
+                                                <img src="{{$val->image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                            @endif
                                         @endif
 
                                         @if($agent->isPhone())
