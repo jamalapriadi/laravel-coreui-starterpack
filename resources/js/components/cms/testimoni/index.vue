@@ -46,9 +46,9 @@
                             <th width="10%">Image</th>
                             <th width="15%">Title</th>
                             <th>Testimoni</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th width="17%"></th>
+                            <th width="13%">Created At</th>
+                            <th width="13%">Updated At</th>
+                            <th width="13%"></th>
                         </tr>
                     </thead>
                     <tbody>

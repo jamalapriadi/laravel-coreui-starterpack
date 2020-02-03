@@ -48,9 +48,9 @@
                             <th>Images</th>
                             <th>Title</th>
                             <th>Description</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
-                            <th width="17%"></th>
+                            <th width="13%">Created At</th>
+                            <th width="13%">Updated At</th>
+                            <th width="13%"></th>
                         </tr>
                     </thead>
                     <tbody>

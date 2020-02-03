@@ -45,6 +45,8 @@
                             <th>File</th>
                             <th>Title</th>
                             <th>Description</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th width="17%"></th>
                         </tr>
                     </thead>
@@ -60,6 +62,8 @@
                             <td>
                                 <div v-html="l.description"></div>
                             </td>
+                            <td>{{l.created_at}}</td>
+                            <td>{{l.updated_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <router-link :to="{ name: 'calendarEdit', params: {id: l.id}}" class="btn btn-warning">

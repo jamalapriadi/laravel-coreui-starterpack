@@ -24,6 +24,7 @@ class CalendarController extends Controller
             'title',
             'slug',
             'description',
+            'created_at',
             'updated_at',
             'author',
             'post_type',

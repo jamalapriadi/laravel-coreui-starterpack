@@ -20,7 +20,7 @@ class PostController extends Controller
                 'penulis'
             ]
         )->select('id','heading_title','title','slug','description','updated_at','author','post_type','di_lihat',
-        'post_status','featured_image','tanggal');
+        'post_status','featured_image','tanggal','created_at');
 
         if($request->has('type')){
             $type=$request->input('type');

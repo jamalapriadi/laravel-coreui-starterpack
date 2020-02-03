@@ -48,10 +48,10 @@
                             <th>Images</th>
                             <th>Date Event</th>
                             <th>Title</th>
-                            <th>Slug</th>
+                            <!-- <th>Slug</th> -->
                             <th>Post Status</th>
-                            <th>Created At</th>
-                            <th>Updated At</th>
+                            <th width="11%">Created At</th>
+                            <th width="11%">Updated At</th>
                             <th></th>
                             <th width="10%"></th>
                         </tr>
@@ -64,7 +64,7 @@
                             </td>
                             <td>{{l.tanggal_indo}}</td>
                             <td>{{l.title}}</td>
-                            <td>{{l.slug}}</td>
+                            <!-- <td>{{l.slug}}</td> -->
                             <td>{{l.post_status}}</td>
                             <td>{{l.created_at}}</td>
                             <td>{{l.updated_at}}</td>

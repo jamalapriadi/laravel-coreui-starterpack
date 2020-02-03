@@ -15,7 +15,7 @@ class TestimoniController extends Controller
     public function index(Request $request)
     {
         $post=Post::where('post_type','testimoni')
-            ->select('id','title','description','post_type','featured_image');
+            ->select('id','title','description','post_type','featured_image','created_at','updated_at');
 
         if($request->has('q')){
             $post=$post->where('title','like','%'.$request->input('q').'%');
