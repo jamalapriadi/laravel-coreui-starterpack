@@ -50,6 +50,8 @@
                             <th>Title</th>
                             <th>Slug</th>
                             <th>Post Status</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th></th>
                             <th width="10%"></th>
                         </tr>
@@ -64,6 +66,8 @@
                             <td>{{l.title}}</td>
                             <td>{{l.slug}}</td>
                             <td>{{l.post_status}}</td>
+                            <td>{{l.created_at}}</td>
+                            <td>{{l.updated_at}}</td>
                             <td>
                                 <a @click="goToWeb(l.slug)" target="_blank" class="btn btn-primary text-white">
                                     <i class="fa fa-browser"></i>

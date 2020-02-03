@@ -70,6 +70,8 @@
                                     <th>Slug</th>
                                     <th>Description</th>
                                     <th>Parent</th>
+                                    <th>Created At</th>
+                                    <th>Updated At</th>
                                     <th width="17%"></th>
                                 </tr>
                             </thead>
@@ -84,6 +86,8 @@
                                     </td>
                                     <td v-if="l.parent==null">-</td>
                                     <td v-if="l.parent!=null">{{l.parent.category_name}}</td>
+                                    <td>{{l.created_at}}</td>
+                                    <td>{{l.updated_at}}</td>
                                     <td>
                                         <div class="btn-group">
                                             <a class="btn btn-warning" @click="updateKategori(l.id)">

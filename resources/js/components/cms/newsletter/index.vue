@@ -49,6 +49,8 @@
                             <th>Title</th>
                             <th>Description</th>
                             <th>Attachment</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th width="17%"></th>
                         </tr>
                     </thead>
@@ -69,6 +71,8 @@
                                     </a>
                                 </label>
                             </td>
+                            <td>{{l.created_at}}</td>
+                            <td>{{l.updated_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <router-link :to="{ name: 'newsletterEdit', params: {id: l.id}}" class="btn btn-warning">

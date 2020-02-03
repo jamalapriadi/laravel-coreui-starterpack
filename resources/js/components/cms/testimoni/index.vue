@@ -46,6 +46,8 @@
                             <th width="10%">Image</th>
                             <th width="15%">Title</th>
                             <th>Testimoni</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th width="17%"></th>
                         </tr>
                     </thead>
@@ -59,6 +61,8 @@
                             <td>
                                 <div v-html="l.description"></div>
                             </td>
+                            <td>{{l.created_at}}</td>
+                            <td>{{l.updated_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <router-link :to="{ name: 'testimoniEdit', params: {id: l.id}}" class="btn btn-warning">

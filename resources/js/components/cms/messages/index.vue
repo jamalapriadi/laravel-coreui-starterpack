@@ -38,7 +38,8 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Message</th>
-                            <th>Date Update</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th width="17%"></th>
                         </tr>
                     </thead>
@@ -51,6 +52,7 @@
                             <td>
                                 <div v-html="l.message"></div>
                             </td>
+                            <td>{{l.created_at}}</td>
                             <td>{{l.updated_at}}</td>
                             <td>
                                 <div class="btn-group">

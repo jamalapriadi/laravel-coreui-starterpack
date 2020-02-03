@@ -50,6 +50,8 @@
                             <th>Tanggal</th>
                             <th>Jam Mulai</th>
                             <th>Jam Selesai</th>
+                            <th>Created At</th>
+                            <th>Updated At</th>
                             <th width="17%"></th>
                         </tr>
                     </thead>
@@ -64,6 +66,8 @@
                             <td>{{l.periode}}</td>
                             <td>{{l.jam_mulai}}</td>
                             <td>{{l.jam_selesai}}</td>
+                            <td>{{l.created_at}}</td>
+                            <td>{{l.updated_at}}</td>
                             <td>
                                 <div class="btn-group">
                                     <router-link :to="{ name: 'eventEdit', params: {id: l.id}}" class="btn btn-warning">

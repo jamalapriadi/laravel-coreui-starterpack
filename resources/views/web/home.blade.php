@@ -163,7 +163,7 @@
                 <div class="single-column col-md-5 col-sm-12">  
                     <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn;">
                         <figure class="img-box">
-                            <a href="javascript:void(0)"><img src="https://kidsrepublic.sch.id/resizepng/3/OurFeature-97019.png/700/515/0/0" alt="images"> </a>
+                            <a href="javascript:void(0)"><img src="{{asset('img/OurFeature-97019.png')}}" alt="images"> </a>
                         </figure>
                     </div> 
                 </div>
