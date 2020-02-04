@@ -47,7 +47,7 @@
                             <th width="5%">No.</th>
                             <th>Images</th>
                             <th>Title</th>
-                            <th>Description</th>
+                            <th>Teaser</th>
                             <th>Attachment</th>
                             <th width="13%">Created At</th>
                             <th width="13%">Updated At</th>
