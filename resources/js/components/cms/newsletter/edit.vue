@@ -10,7 +10,7 @@
                             <input class="form-control" name="title" id="title" placeholder="Title" v-model="state.title">
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Deskripsi</label>
+                            <label class="control-label">Teaser</label>
                             <!-- <trumbowyg v-model="state.desc" class="form-control" :config="configText" name="content"></trumbowyg> -->
                             <textarea name="desc" id="desc" v-model="state.desc" cols="30" rows="10"></textarea>
                         </div>

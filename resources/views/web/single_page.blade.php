@@ -227,27 +227,42 @@
                         <div class="col-md-8 col-sm-7 col-xs-12 blog-column">
                             <section class="blog-container">
                                 <!--Blog Post-->
+                                @php $lebar=0 @endphp
                                 @foreach($component as $key=>$val)
                                 <div class="blog-post wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn; background-size: contain;">
                                     <article class="single-column">
                                         <div class="img-box-s2">
+                                            @if($key==0)
+                                                @php $lebar=$val->image_width; @endphp
                                             <div class="img-holder">
                                                 @if($agent->isDesktop())
-                                                    <img src="{{$val->feature_image_url}}" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                    @if($val->image_alignment == "center")
+                                                        <center>
+                                                            <img src="{{$val->feature_image_url}}" class="img-responsive" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                        </center>
+                                                    @else 
+                                                        <img src="{{$val->feature_image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                    @endif
                                                 @endif
 
                                                 @if($agent->isPhone())
                                                     <img src="{{$val->feature_image_url}}" class="img-responsive" alt="" style="border-radius: 0 15px 0 15px;">
                                                 @endif
                                             </div>
-                                            <div class="outer-box">
+                                            
+                                            <div style="clear:both"></div>
+                                            @endif
+                                            
+                                            <div class="outer-box" style="width:{{$lebar}}px;">
                                                 <div class="content">
+                                                    @if($key==0)
                                                     <div class="date">
                                                         <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
                                                     </div>
                                                     <h3>
                                                         <a>{{$val->title}}</a>
                                                     </h3>
+                                                    @endif
                                             
                                                     <div class="text">
                                                         <p>
@@ -272,12 +287,38 @@
                                     <div class="sidebar-title"><h2>Peri<span>ode</span></h2></div>
                                     
                                     <ul class="list catagories">
+                                        @php $jum_arsip=0; @endphp
+                                        
                                         @foreach($summary as $key=>$val)
-                                            <li>
-                                                <a href="javascript:void(0)" >{{$val->periode}}<span class="float-right">({{$val->jumlah}})</span></a>
-                                            </li>
+                                            @if(date('Y',strtotime($val->created_at)) == date('Y'))
+                                                <li>
+                                                    <!--<a href="javascript:void(0)" >{{$val->periode}}<span class="float-right">({{$val->jumlah}})</span></a>-->
+                                                    <a href="javascript:void(0)" >{{$val->title}}</a>
+                                                </li>
+                                            @endif
+                                            
+                                            @if(date('Y',strtotime($val->created_at)) < date('Y'))
+                                                @php $jum_arsip=1; @endphp
+                                            @endif
                                         @endforeach
                                     </ul>
+                                    
+                                    @if($jum_arsip > 0)
+                                        <div id="demo" class="collapse">
+                                            <ul class="list catagories">
+                                                @foreach($summary as $key=>$val)
+                                                    @if(date('Y',strtotime($val->created_at)) < date('Y'))
+                                                        <li>
+                                                            <a href="javascript:void(0)" >{{$val->title}}</a>
+                                                        </li>
+                                                    @endif
+                                            @endforeach
+                                            </ul>
+                                        </div>
+                                        <a href="#demo" class="btn btn-block" data-toggle="collapse">
+                                            <i class="fa fa-plus"></i>
+                                        </a>
+                                    @endif
                                 </div>
                                 
                                 <!-- Popular Tags -->
