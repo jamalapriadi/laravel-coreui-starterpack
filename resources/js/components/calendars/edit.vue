@@ -217,7 +217,7 @@ export default {
 
         getCKeditor(){
             CKEDITOR.replace( 'desc',{
-                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs'],
+                extraPlugins : ['btgrid','wenzgmap','bootstrapTabs','link'],
                 language: 'en',
                 allowedContent: true,
                 entities: false,
@@ -231,7 +231,7 @@ export default {
                         [ 'Paste', 'PasteText', 'PasteFromWord'],
                         '/',
                         [ 'NumberedList', 'BulletedList', '-','JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-                        [ 'btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
+                        [ 'Link','Anchor','btgrid','About','wenzgmap','BootstrapTabs','Source','Maximize'],
                     ],
                 toolbarGroupsCanCollapse:true,
                 filebrowserBrowseUrl: 'ckfinder/ckfinder.html',

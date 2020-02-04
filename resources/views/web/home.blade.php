@@ -218,7 +218,8 @@
                                         <figure>
                                             <a href="{{URL::to('news/'.$val->slug)}}" target="_blank">
                                                 @if($agent->isDesktop())
-                                                    <img src="{{$val->feature_image_url}}" style="width:236px;height:126px;" alt="images">
+                                                    {{-- <img src="{{$val->feature_image_url}}" style="width:236px;height:126px;" alt="images"> --}}
+                                                    <img src="{{ imageUrl($val->feature_image_url,'236','126','100') }}" class="img-responsive image-blur">
                                                 @endif
 
                                                 @if($agent->isPhone())
