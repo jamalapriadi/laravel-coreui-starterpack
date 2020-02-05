@@ -110,7 +110,7 @@
                     </div>  
                 </div>
 
-                <div class="card card-primary">
+                <!-- <div class="card card-primary">
                     <div class="card-header">
                         <h6 class="card-title">Comment</h6>
                     </div>
@@ -120,7 +120,7 @@
                             <option value="close">Close</option>
                         </select>
                     </div>  
-                </div>
+                </div> -->
 
                 <div class="card card-flat">
                     <div class="card-header">

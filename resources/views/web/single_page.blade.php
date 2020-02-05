@@ -234,44 +234,49 @@
                                         <div class="img-box-s2">
                                             @if($key==0)
                                                 @php $lebar=$val->image_width; @endphp
-                                            <div class="img-holder">
-                                                @if($agent->isDesktop())
-                                                    @if($val->image_alignment == "center")
-                                                        <center>
-                                                            <img src="{{$val->feature_image_url}}" class="img-responsive" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
-                                                        </center>
-                                                    @else 
-                                                        <img src="{{$val->feature_image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                <div class="img-holder">
+                                                    @if($agent->isDesktop())
+                                                        @if($val->image_alignment == "center")
+                                                            <center>
+                                                                <img src="{{$val->feature_image_url}}" class="img-responsive" alt="images" style="width:{{$val->image_width}}px; height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                            </center>
+                                                        @else 
+                                                            <img src="{{$val->feature_image_url}}" class="img-responsive" align="{{$val->image_alignment}}" alt="images" style="max-width:{{$val->image_width}}px; max-height:{{$val->image_height}}px;border-radius: {{$val->image_border_top_left_radius}}px {{$val->image_border_top_right_radius}}px {{$val->image_border_bottom_right_radius}}px {{$val->image_border_bottom_left_radius}}px ;">
+                                                        @endif
                                                     @endif
-                                                @endif
 
-                                                @if($agent->isPhone())
-                                                    <img src="{{$val->feature_image_url}}" class="img-responsive" alt="" style="border-radius: 0 15px 0 15px;">
-                                                @endif
-                                            </div>
-                                            
-                                            <div style="clear:both"></div>
+                                                    @if($agent->isPhone())
+                                                        <img src="{{$val->feature_image_url}}" class="img-responsive" alt="" style="border-radius: 0 15px 0 15px;">
+                                                    @endif
+                                                </div>
+                                                
+                                                <div style="clear:both"></div>
                                             @endif
                                             
-                                            <div class="outer-box" style="width:{{$lebar}}px;">
-                                                <div class="content">
-                                                    @if($key==0)
-                                                    <div class="date">
-                                                        <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
-                                                    </div>
-                                                    <h3>
-                                                        <a>{{$val->title}}</a>
-                                                    </h3>
-                                                    @endif
-                                            
-                                                    <div class="text">
-                                                        <p>
-                                                            {!! $val->description !!}
-                                                        </p>
-                                                        <p>Please <a href="{{URL::to('subscribe')}}">Subscribe here</a> for update Newsletter</p>
+
+                                            @if($key <=2)
+                                                <div class="outer-box" style="width:{{$lebar}}px;">
+                                                    <div class="content">
+                                                        @if($key==0)
+                                                        {{-- <div class="date">
+                                                            <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
+                                                        </div> --}}
+                                                        
+                                                        @endif
+
+                                                        <h3>
+                                                            <a>{{$val->title}}</a>
+                                                        </h3>
+                                                
+                                                        <div class="text">
+                                                            <p>
+                                                                {!! $val->description !!}
+                                                            </p>
+                                                            <p>Please <a href="{{URL::to('subscribe')}}">Subscribe here</a> for update Newsletter</p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     </article>  
                                 </div>
@@ -284,7 +289,7 @@
                             <aside class="sidebar">
                                 <!-- Popular Categories -->
                                 <div class="widget popular-categories wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn;">
-                                    <div class="sidebar-title"><h2>Peri<span>ode</span></h2></div>
+                                    <div class="sidebar-title"><h2>Edi<span>tion</span></h2></div>
                                     
                                     <ul class="list catagories">
                                         @php $jum_arsip=0; @endphp
@@ -293,7 +298,8 @@
                                             @if(date('Y',strtotime($val->created_at)) == date('Y'))
                                                 <li>
                                                     <!--<a href="javascript:void(0)" >{{$val->periode}}<span class="float-right">({{$val->jumlah}})</span></a>-->
-                                                    <a href="javascript:void(0)" >{{$val->title}}</a>
+                                                    {{-- <a href="javascript:void(0)" >{{$val->title}}</a> --}}
+                                                    <a href="javascript:void(0)" >Newsletter {{date('M Y',strtotime($val->created_at))}}</a>
                                                 </li>
                                             @endif
                                             

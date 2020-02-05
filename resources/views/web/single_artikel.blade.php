@@ -43,10 +43,31 @@
                         <div class="widget popular-categories wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn;">
                             <div class="sidebar-title"><h2>Another<span> News</span></h2></div>
 
+                            @php $jum_news=0; @endphp
                             <ul class="list catagories">
-                                @foreach($other as $row)
-                                    <li><a href="{{URL::to('news/'.$row->slug)}}">{{$row->title}}</a></li>
+                                @foreach($other as $key=>$row)
+                                    @if($key <= 9)
+                                        
+                                        @php $jum_news=1; @endphp 
+
+                                        <li><a href="{{URL::to('news/'.$row->slug)}}">{{$row->title}}</a></li>
+                                    @endif
                                 @endforeach
+
+                                @if($jum_news > 0)
+                                    <div id="demo" class="collapse">
+                                        <ul class="list catagories">
+                                            @foreach($other as $key=>$row)
+                                                @if($key > 9)
+                                                    <li><a href="{{URL::to('news/'.$row->slug)}}">{{$row->title}}</a></li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <a href="#demo" class="btn btn-block" data-toggle="collapse">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                @endif
                             </ul>
                         </div>
 
