@@ -220,20 +220,25 @@
         @if($page->component_name == "newsletter-component")
             <div class="sidebar-page blog animated fadeIn">
                 <div class="container">
-                
                     <div class="row clearfix">
-                        
                         <!--Content Side--> 
                         <div class="col-md-8 col-sm-7 col-xs-12 blog-column">
                             <section class="blog-container">
                                 <!--Blog Post-->
-                                @php $lebar=0 @endphp
+                                @php 
+                                    $lebar=0;
+                                    $posisi="";
+                                @endphp
+
                                 @foreach($component as $key=>$val)
-                                <div class="blog-post wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeIn; background-size: contain;">
+                                <div class="blog-post wow fadeIn animated" data-wow-delay="0ms" data-wow-duration="1500ms">
                                     <article class="single-column">
                                         <div class="img-box-s2">
                                             @if($key==0)
-                                                @php $lebar=$val->image_width; @endphp
+                                                @php 
+                                                    $lebar=$val->image_width;
+                                                    $posisi=$val->image_alignment;
+                                                @endphp
                                                 <div class="img-holder">
                                                     @if($agent->isDesktop())
                                                         @if($val->image_alignment == "center")
@@ -255,27 +260,65 @@
                                             
 
                                             @if($key <=2)
-                                                <div class="outer-box" style="width:{{$lebar}}px;">
-                                                    <div class="content">
-                                                        @if($key==0)
-                                                        {{-- <div class="date">
-                                                            <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
-                                                        </div> --}}
-                                                        
+                                                @if($posisi == "center")
+                                                    <center>
+                                                        @if($agent->isDesktop())
+                                                            <div class="outer-box" style="width:{{$lebar}}px;">
+                                                        @elseif($agent->isPhone())
+                                                            <div class="outer-box">
+                                                        @else 
+                                                            <div class="outer-box">
                                                         @endif
-
-                                                        <h3>
-                                                            <a>{{$val->title}}</a>
-                                                        </h3>
-                                                
-                                                        <div class="text">
-                                                            <p>
-                                                                {!! $val->description !!}
-                                                            </p>
-                                                            <p>Please <a href="{{URL::to('subscribe')}}">Subscribe here</a> for update Newsletter</p>
+                                                            <div class="content">
+                                                                @if($key==0)
+                                                                {{-- <div class="date">
+                                                                    <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
+                                                                </div> --}}
+                                                                
+                                                                @endif
+        
+                                                                <h3>
+                                                                    <a>{{$val->title}}</a>
+                                                                </h3>
+                                                        
+                                                                <div class="text">
+                                                                    <p>
+                                                                        {!! $val->description !!}
+                                                                    </p>
+                                                                    <p>Please <a href="{{URL::to('subscribe')}}">Subscribe here</a> for update Newsletter</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </center>    
+                                                @else
+                                                    @if($agent->isDesktop())
+                                                        <div class="outer-box" style="width:{{$lebar}}px;">
+                                                    @elseif($agent->isPhone())
+                                                        <div class="outer-box"></div>
+                                                    @else 
+                                                        <div class="outer-box"></div>
+                                                    @endif
+                                                        <div class="content">
+                                                            @if($key==0)
+                                                            {{-- <div class="date">
+                                                                <span>{{date('d M Y',strtotime($val->updated_at))}}</span>
+                                                            </div> --}}
+                                                            
+                                                            @endif
+    
+                                                            <h3>
+                                                                <a>{{$val->title}}</a>
+                                                            </h3>
+                                                    
+                                                            <div class="text">
+                                                                <p>
+                                                                    {!! $val->description !!}
+                                                                </p>
+                                                                <p>Please <a href="{{URL::to('subscribe')}}">Subscribe here</a> for update Newsletter</p>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                @endif
                                             @endif
                                         </div>
                                     </article>  
